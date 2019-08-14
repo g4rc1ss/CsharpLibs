@@ -1,7 +1,11 @@
-# CsharpNetCore
+# CsharpLibs
 
-Este es un repositorio de librerias y estudio sobre el lenguaje de programacion Csharp
+Conjunto de librerias desarrolladas en .Net Standard
 
-Dentro de la carpeta **CsharpNetCore** se encuentran 3 carpetas destinadas a la programacion de las librerias y probar las mismas.
+Cuando se compile los proyectos en modo `Release` se almacenaran los paquetes Nuget en la carpeta `NugetPackages`
 
-Dentro de la carpeta **NugetPackages** se almacenaran paquetes nuget compilados de las librerias desarrolladas para subirlo a un repositorio nuget como `gemfury` o `GitHub Package Registry`
+Dentro de la carpeta `CsharpLibs` habra dos carpetas principalmente
+
+- `01_CsharpLibs`: En esta carpeta se ubicarán los proyectos que vamos a ir desarrollando
+
+- `02_Test`: En esta carpeta se van a ubicar los Test de los proyectos que se iran desarrollando, osea las pruebas de que funcionan las librerias
