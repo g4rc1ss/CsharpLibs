@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>garciss.DirectoriosArchivos</PackageId>
+    <Authors>Asier Garcia</Authors>
+    <Description>Libreria para facilitar la gestion de archivos y directorios como copiar, ordenar rutas etc.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DocumentationFile>DirectoriosArchivos.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+</Project>

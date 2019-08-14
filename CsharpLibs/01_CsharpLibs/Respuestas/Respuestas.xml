@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Respuestas</name>
+    </assembly>
+    <members>
+        <member name="T:Respuestas.Respuesta">
+            <summary>
+            Clase que contiene un objeto para gestionar resultados y excepciones
+            principalemente en aplicaciones Web, hace que se devuelva los
+            resultados en un formato parecido o igual
+            </summary>
+        </member>
+        <member name="P:Respuestas.Respuesta.datos">
+            <summary>
+            propiedad que va a contener un objeto
+            </summary>
+        </member>
+        <member name="P:Respuestas.Respuesta.mensaje">
+            <summary>
+            Propiedad para enseñar un mensaje de error, advertencia, etc
+            </summary>
+        </member>
+        <member name="P:Respuestas.Respuesta.resultado">
+            <summary>
+            Propiedad que contiene el codigo de un error
+            </summary>
+        </member>
+        <member name="M:Respuestas.Respuesta.#ctor">
+            <summary>
+            Se usa para no retornar datos
+            </summary>
+        </member>
+        <member name="M:Respuestas.Respuesta.#ctor(System.Object,System.String,System.Int32)">
+            <summary>
+            Tipo de salida cuando "se supone" que hay datos
+            </summary>
+            <param name="datos">va a contener un objeto con los datos que queremos retornar al controller</param>
+            <param name="mensaje">va a contener un mensaje escrito por el usuario tipo informativo, sino no va a contener nada</param>
+            <param name="resultado">va a contener el resultado de la aplicacion, si todo va bien sera 0</param>
+        </member>
+        <member name="M:Respuestas.Respuesta.#ctor(System.Exception,System.Int32)">
+            <summary>
+            usado para retornar una excepcion
+            </summary>
+            <param name="ex">contendra la excepcion</param>
+            <param name="resultado">contendra un codigo encontrado en la estructura Errores</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,54 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+# the build will trigger on any changes to the master branch
+trigger:
+- master
+
+# the build will run on a Microsoft hosted agent, using the lastest Windows VM Image
+pool:
+  vmImage: 'windows-latest'
+
+# these variables are available throughout the build file
+# just the build configuration is defined, in this case we are building Release packages
+variables:
+  buildConfiguration: 'Release'
+
+
+steps:
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Test'
+  inputs:
+    command: test
+    projects: '**/02_Test/**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: '**/01_CsharpLibs/**/*.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    feedsToUse: 'select'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'PackNuget'
+    versioningScheme: 'off'
+    allowPackageConflicts: true

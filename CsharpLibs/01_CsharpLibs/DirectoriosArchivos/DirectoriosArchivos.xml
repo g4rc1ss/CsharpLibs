@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DirectoriosArchivos</name>
+    </assembly>
+    <members>
+        <member name="T:DirectoriosArchivos.DirectoryAndFiles">
+            <summary>
+            Clase encargada de gestionar directorios y ficheros, es añadida a las ya existentes
+            </summary>
+        </member>
+        <member name="M:DirectoriosArchivos.DirectoryAndFiles.Copy(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Copiar directorios recursivamente(todos los archivos y subdirectorios)
+            </summary>
+            <param name="origen">directorio origen</param>
+            <param name="destino">directorio destino</param>
+        </member>
+        <member name="M:DirectoriosArchivos.DirectoryAndFiles.FicherosOrdenados(System.String[])">
+            <summary>
+            Ordenamos una lista de ficheros
+            </summary>
+            <returns>
+            Devolvemos una List de tipo string con los elementos ordenados
+            </returns>
+            <param name="listaDesordenada">Recibimos un array tipo string</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Databases</name>
+    </assembly>
+    <members>
+        <member name="T:Databases.SQLite.SQLiteDB">
+            <summary>
+            Clase para la creacion y uso de una base de datos SQLite
+            </summary>
+        </member>
+        <member name="P:Databases.SQLite.SQLiteDB.DBName">
+            <summary>
+            Elegimos la base de datos, sino se llamara "Database.db"
+            </summary>
+            <returns>
+            devuelve el nombre de la base de datos
+            </returns>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.IsCreateDatabase">
+            <summary>
+            Metodo para comprobar si existe la base de datos
+            </summary>
+            <returns>
+            retorna true o false dependiendo de si existe o no
+            </returns>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.CreateDatabase(System.String)">
+            <summary>
+            Metodo para crear la base de datos, tambien comprueba
+            si existe o no la base de datos
+            </summary>
+            <param name="Query">consulta SQL escrita como una cadena</param>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.Conexion">
+            <summary>
+            Establece la conexion con la base de datos
+            </summary>
+            <returns>
+            Retorna la conexion establecida con la base de datos
+            </returns>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.Select(System.String,System.Data.SQLite.SQLiteConnection)">
+            <summary>
+            Ejecuta la sentencia SELECT
+            </summary>
+            <returns>
+            Retorna en un objeto la consulta SELECT que se leera como un array
+            ej: nombreObjeto["nombreColumna"];
+            </returns>
+            <param name="Query">Consulta SQL en formato cadena</param>
+            <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.UpdateOrInsert(System.String,System.Data.SQLite.SQLiteConnection)">
+            <summary>
+            Se usa para ejecutar la instruccion Insert, Update o Delete
+            </summary>
+            <returns>
+            Retorna el numero de elementos que ha sido retocado
+            </returns>
+            <param name="Query">Consulta SQL en formato cadena</param>
+            <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
+        </member>
+        <member name="M:Databases.SQLite.SQLiteDB.maxID(System.String,System.String)">
+            <summary>
+            Se usa para ejecutar la instruccion Insert, Update o Delete
+            </summary>
+            <returns>
+            Retorna el numero de elementos que ha sido retocado
+            </returns>
+            <param name="columna">El nombre de la columna con el que vamos a obtener el max</param>
+            <param name="table">El nombre de la tabla para realizar la consulta</param>
+        </member>
+    </members>
+</doc>
