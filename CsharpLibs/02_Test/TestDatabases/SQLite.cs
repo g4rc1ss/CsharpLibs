@@ -35,7 +35,7 @@ namespace TestDatabases {
             var baseDatos = new SQLiteDB();
             try {
                 using (var connect = baseDatos.Conexion())
-                    Assert.IsTrue(baseDatos.IsCreateDatabase() && connect != null);
+                    Assert.IsFalse(baseDatos.IsCreateDatabase() && connect != null);
 
             } finally {
                 File.Delete(baseDatos.DBName);
