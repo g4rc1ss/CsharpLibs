@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TestModulosCifrado {
     [TestClass]
-    public class AES {
+    public class TestAES {
         const string textoPlano = "Este texto es el que se va a encriptar :P /\\";
         [TestMethod]
         public void CifradoTexto() {

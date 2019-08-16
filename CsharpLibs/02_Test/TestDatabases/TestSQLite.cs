@@ -5,7 +5,7 @@ using System.IO;
 
 namespace TestDatabases {
     [TestClass]
-    public class SQLite {
+    public class TestSQLite {
 
         public void CrearBBDD_Fake() {
             var baseDatos = new SQLiteDB();

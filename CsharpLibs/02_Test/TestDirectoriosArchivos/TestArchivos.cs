@@ -4,12 +4,13 @@ using DirectoriosArchivos;
 
 namespace TestDirectoriosArchivos {
     [TestClass]
-    public class Archivos {
+    public class TestArchivos {
+
         [TestMethod]
         public void Ordenar() {
             var archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
 
-            var listaOrdenada = DirectoryAndFiles.FicherosOrdenados(archivos);
+            var listaOrdenada = Archivos.FicherosOrdenados(archivos);
 
             Assert.IsTrue(listaOrdenada.Count == archivos.Length);
         }

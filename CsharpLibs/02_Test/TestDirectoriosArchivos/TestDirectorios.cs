@@ -4,12 +4,12 @@ using System.IO;
 
 namespace TestDirectoriosArchivos {
     [TestClass]
-    public class Directorios {
+    public class TestDirectorios {
 
         [TestMethod]
         public void Copiar() {
             try {
-                DirectoryAndFiles.Copy(
+                Directorios.Copy(
                     new DirectoryInfo("prueba"),
                     new DirectoryInfo("copia")
                 );

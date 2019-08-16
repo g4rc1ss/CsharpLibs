@@ -4,19 +4,13 @@
         <name>DirectoriosArchivos</name>
     </assembly>
     <members>
-        <member name="T:DirectoriosArchivos.DirectoryAndFiles">
+        <member name="T:DirectoriosArchivos.Archivos">
             <summary>
-            Clase encargada de gestionar directorios y ficheros, es añadida a las ya existentes
+            Clase con metodos utiles para la gestion de archivos que no estan
+            disponibles en las librerias habituales
             </summary>
         </member>
-        <member name="M:DirectoriosArchivos.DirectoryAndFiles.Copy(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
-            <summary>
-            Copiar directorios recursivamente(todos los archivos y subdirectorios)
-            </summary>
-            <param name="origen">directorio origen</param>
-            <param name="destino">directorio destino</param>
-        </member>
-        <member name="M:DirectoriosArchivos.DirectoryAndFiles.FicherosOrdenados(System.String[])">
+        <member name="M:DirectoriosArchivos.Archivos.FicherosOrdenados(System.String[])">
             <summary>
             Ordenamos una lista de ficheros
             </summary>
@@ -24,6 +18,19 @@
             Devolvemos una List de tipo string con los elementos ordenados
             </returns>
             <param name="listaDesordenada">Recibimos un array tipo string</param>
+        </member>
+        <member name="T:DirectoriosArchivos.Directorios">
+            <summary>
+            Clase para tratamiento de directorios que no estan disponibles en las
+            librerias habituales
+            </summary>
+        </member>
+        <member name="M:DirectoriosArchivos.Directorios.Copy(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Copiar directorios recursivamente(todos los archivos y subdirectorios)
+            </summary>
+            <param name="origen">directorio origen</param>
+            <param name="destino">directorio destino</param>
         </member>
     </members>
 </doc>

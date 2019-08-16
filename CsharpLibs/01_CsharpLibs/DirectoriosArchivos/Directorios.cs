@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace DirectoriosArchivos {
     /// <summary>
-    /// Clase encargada de gestionar directorios y ficheros, es añadida a las ya existentes
+    /// Clase para tratamiento de directorios que no estan disponibles en las
+    /// librerias habituales
     /// </summary>
-    public class DirectoryAndFiles {
-
-        #region Directorios
+    public class Directorios {
 
         /// <summary>
         /// Copiar directorios recursivamente(todos los archivos y subdirectorios)
@@ -16,7 +13,7 @@ namespace DirectoriosArchivos {
         /// <param name="origen">directorio origen</param>
         /// <param name="destino">directorio destino</param>
         public static void Copy(DirectoryInfo origen, DirectoryInfo destino) {
-            new DirectoryAndFiles().CopyDirectory(origen, destino);
+            new Directorios().CopyDirectory(origen, destino);
         }
         private void CopyDirectory(DirectoryInfo origen, DirectoryInfo destino) {
             // Comprueba que el destino exista:
@@ -38,29 +35,6 @@ namespace DirectoriosArchivos {
                 CopyDirectory(directorio, new DirectoryInfo(directorioDestino));
             }
         }
-        #endregion
-
-        #region Ficheros
-
-        /// <summary>
-        /// Ordenamos una lista de ficheros
-        /// </summary>
-        /// <returns>
-        /// Devolvemos una List de tipo string con los elementos ordenados
-        /// </returns>
-        /// <param name="listaDesordenada">Recibimos un array tipo string</param>
-        public static List<string> FicherosOrdenados(string[] listaDesordenada) {
-            return new DirectoryAndFiles().OrdenarFicheros(listaDesordenada);
-        }
-
-        private List<string> OrdenarFicheros(string[] listaDesordenada) {
-            var listaOrdenada = (from item in listaDesordenada
-                                 orderby item
-                                 select item).ToList();
-
-            return listaOrdenada;
-        }
-        #endregion
     }
 }
 
