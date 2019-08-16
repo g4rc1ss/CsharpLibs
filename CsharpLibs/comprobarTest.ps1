@@ -4,7 +4,7 @@ $countCsharpLibs = (Get-ChildItem -Path $rutaCsharpLibs -Recurse -Filter *.cs).c
 $rutaTest = Convert-Path ./02_Test
 $countTest = (Get-ChildItem -Path $rutaTest -Recurse -Filter *.cs).count
 
-if($countCsharpLibs -eq $countTest+1) {
+if($countCsharpLibs -eq $countTest) {
     Write-Host "Hay " $countCsharpLibs "archivos en CsharpLibs y " $countTest "archivos en Test"
 
 } else {
