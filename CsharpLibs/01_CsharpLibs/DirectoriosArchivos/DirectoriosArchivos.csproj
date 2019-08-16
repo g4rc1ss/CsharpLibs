@@ -6,6 +6,7 @@
     <Authors>Asier Garcia</Authors>
     <Description>Libreria para facilitar la gestion de archivos y directorios como copiar, ordenar rutas etc.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
