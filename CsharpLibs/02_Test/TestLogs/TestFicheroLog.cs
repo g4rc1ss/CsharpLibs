@@ -1,11 +1,11 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Logs;
-using System;
 
 namespace TestLogs {
     [TestClass]
-    public class FicheroLog {
+    public class TestFicheroLog {
 
         [TestMethod]
         public void Logs() {
