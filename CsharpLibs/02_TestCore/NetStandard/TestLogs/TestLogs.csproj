@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\01_CsharpLibs\ModulosCifrado\ModulosCifrado.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\NetStandard\Logs\Logs.csproj" />
   </ItemGroup>
 
 </Project>
