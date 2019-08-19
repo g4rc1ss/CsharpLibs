@@ -6,7 +6,7 @@ namespace TestRespuesta {
     [TestClass]
     // respuesta es una clase que recibe un objeto y lugo se trata para extraer los resultados
     // de un modo especifico
-    public class TestRespuesta {
+    public class TestRespuestaCore {
         [TestMethod]
         public void RespuestaConstrutores() {
             Respuesta resp1 = null, resp2 = null, resp3 = null;
