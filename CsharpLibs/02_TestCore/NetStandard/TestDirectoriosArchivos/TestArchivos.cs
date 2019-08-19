@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using DirectoriosArchivos;
 
-namespace TestDirectoriosArchivosCore {
+namespace TestDirectoriosArchivos {
     [TestClass]
     public class TestArchivos {
 

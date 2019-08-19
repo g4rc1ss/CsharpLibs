@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Logs;
 
-namespace TestLogsCore {
+namespace TestLogs {
     [TestClass]
     public class TestFicheroLog {
 

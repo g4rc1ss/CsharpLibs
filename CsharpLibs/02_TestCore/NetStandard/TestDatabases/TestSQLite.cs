@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Databases.SQLite;
 using System.IO;
 
-namespace TestDatabasesCore {
+namespace TestDatabases {
     [TestClass]
     public class TestSQLite {
 

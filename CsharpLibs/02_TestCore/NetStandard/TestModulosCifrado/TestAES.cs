@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TestModulosCifradoCore {
+namespace TestModulosCifrado {
     [TestClass]
     public class TestAES {
         const string textoPlano = "Este texto es el que se va a encriptar :P /\\";

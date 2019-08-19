@@ -4,19 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_CsharpLibs", "01_CsharpLibs", "{98C6551E-0F30-44D1-BDF4-F71BAE118002}"
-	ProjectSection(SolutionItems) = preProject
-		01_CsharpLibs\README.md = 01_CsharpLibs\README.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_TestCore", "02_TestCore", "{BEB1288C-83C6-4457-A787-28A5023C18E3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_TestFramework", "03_TestFramework", "{21F923A9-24E4-4ACE-B6F5-2B1F5BF87F3B}"
+	ProjectSection(SolutionItems) = preProject
+		02_TestCore\README.md = 02_TestCore\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetStandard", "01_NetStandard", "{EED3D97F-8704-4357-B031-B92684ABF603}"
+	ProjectSection(SolutionItems) = preProject
+		01_CsharpLibs\NetStandard\README.md = 01_CsharpLibs\NetStandard\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_NetCore", "02_NetCore", "{A7A4A8DE-DF34-44AC-81E9-DF4D10735BE5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_NetFramework", "03_NetFramework", "{F34DD3EC-6E4D-4CC2-A175-F0973046F9C9}"
+	ProjectSection(SolutionItems) = preProject
+		01_CsharpLibs\NetCore\README.md = 01_CsharpLibs\NetCore\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Databases", "01_CsharpLibs\NetStandard\Databases\Databases.csproj", "{AC88B54E-01E0-477C-937C-73D8B1594340}"
 EndProject
@@ -29,18 +31,19 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Respuestas", "01_CsharpLibs\NetStandard\Respuestas\Respuestas.csproj", "{AA84A33A-C333-4884-B23B-43F953D3C0AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetStandard", "01_NetStandard", "{2A8F0528-16DD-4424-A396-7F997F110108}"
+	ProjectSection(SolutionItems) = preProject
+		02_TestCore\NetStandard\README.md = 02_TestCore\NetStandard\README.md
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetStandard", "01_NetStandard", "{2401B2D0-F283-4CFA-818B-6603FD8B9F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDatabases", "02_TestCore\NetStandard\TestDatabases\TestDatabases.csproj", "{75B3EEA7-4FB4-4C3F-B12C-095384A32BCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDatabasesCore", "02_TestCore\NetStandard\TestDatabases\TestDatabasesCore.csproj", "{75B3EEA7-4FB4-4C3F-B12C-095384A32BCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDirectoriosArchivos", "02_TestCore\NetStandard\TestDirectoriosArchivos\TestDirectoriosArchivos.csproj", "{C82F4A96-7B34-4C8E-B550-7AFA4F4CE236}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDirectoriosArchivosCore", "02_TestCore\NetStandard\TestDirectoriosArchivos\TestDirectoriosArchivosCore.csproj", "{C82F4A96-7B34-4C8E-B550-7AFA4F4CE236}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLogs", "02_TestCore\NetStandard\TestLogs\TestLogs.csproj", "{FF674851-927D-42FF-B081-92E1091B5344}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLogsCore", "02_TestCore\NetStandard\TestLogs\TestLogsCore.csproj", "{FF674851-927D-42FF-B081-92E1091B5344}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestModulosCifrado", "02_TestCore\NetStandard\TestModulosCifrado\TestModulosCifrado.csproj", "{A1B2B495-8FFA-40C0-B035-7BA1320000BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestModulosCifradoCore", "02_TestCore\NetStandard\TestModulosCifrado\TestModulosCifradoCore.csproj", "{A1B2B495-8FFA-40C0-B035-7BA1320000BB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRespuestaCore", "02_TestCore\NetStandard\TestRespuesta\TestRespuestaCore.csproj", "{BAB6A51E-384E-4760-988B-3043D0D30F4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRespuesta", "02_TestCore\NetStandard\TestRespuesta\TestRespuesta.csproj", "{BAB6A51E-384E-4760-988B-3043D0D30F4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,14 +98,12 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EED3D97F-8704-4357-B031-B92684ABF603} = {98C6551E-0F30-44D1-BDF4-F71BAE118002}
 		{A7A4A8DE-DF34-44AC-81E9-DF4D10735BE5} = {98C6551E-0F30-44D1-BDF4-F71BAE118002}
-		{F34DD3EC-6E4D-4CC2-A175-F0973046F9C9} = {98C6551E-0F30-44D1-BDF4-F71BAE118002}
 		{AC88B54E-01E0-477C-937C-73D8B1594340} = {EED3D97F-8704-4357-B031-B92684ABF603}
 		{0AD0B2E0-FB1E-40D2-8EB6-75369AE99540} = {EED3D97F-8704-4357-B031-B92684ABF603}
 		{9A53DADD-42EF-47D7-998F-4466B2E04916} = {EED3D97F-8704-4357-B031-B92684ABF603}
 		{91DD8AB4-E698-48DE-8875-49C72FD3C48F} = {EED3D97F-8704-4357-B031-B92684ABF603}
 		{AA84A33A-C333-4884-B23B-43F953D3C0AD} = {EED3D97F-8704-4357-B031-B92684ABF603}
 		{2A8F0528-16DD-4424-A396-7F997F110108} = {BEB1288C-83C6-4457-A787-28A5023C18E3}
-		{2401B2D0-F283-4CFA-818B-6603FD8B9F5A} = {21F923A9-24E4-4ACE-B6F5-2B1F5BF87F3B}
 		{75B3EEA7-4FB4-4C3F-B12C-095384A32BCE} = {2A8F0528-16DD-4424-A396-7F997F110108}
 		{C82F4A96-7B34-4C8E-B550-7AFA4F4CE236} = {2A8F0528-16DD-4424-A396-7F997F110108}
 		{FF674851-927D-42FF-B081-92E1091B5344} = {2A8F0528-16DD-4424-A396-7F997F110108}
