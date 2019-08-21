@@ -1,11 +1,40 @@
-# CsharpLibs
+# Introduction 
+Conjunto de librerias desarrolladas en .Net Standard o .Net CORE
 
-Conjunto de librerias desarrolladas en .Net Standard
+Cuando se compile los proyectos en modo `Release` se almacenarán los paquetes Nuget en la carpeta `NugetPackages`
 
-Cuando se compile los proyectos en modo `Release` se almacenaran los paquetes Nuget en la carpeta `NugetPackages`
+# Getting Started
+> Installation process
+1. Instalaremos Visual Studio con los paquetes de desarrollo .Net multiplataforma
+2. Instalamos un cliente git como Source Tree
+3. En sourceTree agregaremos la cuenta Azure DevOps
+    
+    1. `URL`: https://asiergarciss.visualstudio.com
+    2. `Username`: nombre de usuario de la cuenta de azure DevOps
+    3. `Password`: Creamos un Token privado en la cuenta y agregamos este Token
+    4. `Protocol`: Configuramos el protocolo como https
 
-Dentro de la carpeta `CsharpLibs` habra dos carpetas principalmente
+> Software dependencies
+- **Databases.csproj** -> `System.Data.SQLite.Core`
 
-- `01_CsharpLibs`: En esta carpeta se ubicarán los proyectos que vamos a ir desarrollando
+# Build and Test
+Los proyectos tienen que ir ubicados en la carpeta `01_CsharpLibs`, en ella habrá dos carpetas
+1. **NetCore**: En esta carpeta se ubicarán todas las librerias desarrolladas en `.Net Core`
+2. **NetStandard**: En esta se ubicarán los desarrollados en `.NetStandard`
 
-- `02_Test`: En esta carpeta se van a ubicar los Test de los proyectos que se iran desarrollando, osea las pruebas de que funcionan las librerias
+Se intentará usar siempre que se pueda .Net Standard puesto que es una librería portable
+
+El uso y creación de Test es obligatorio, con ellos se demostrará y comprobará que las liberias funcionan y 
+realizan las acciones para las que están destinadas.
+
+Los Test se tendrán que ser fiables y deberán de llamarse igual que el proyecto con "Test" por delante.
+De tal manera que quedaría `TestNombreLibreria`.
+
+# Pull Requests
+
+Para crear la Pull Requests la podemos crear desde el IDE VisualStudio, el cliente SourceTree o 
+desde Azure DevOps en la parte de `Repos > Pull Requests`.
+
+Agregamos el Título y la descripción del Pull Requests y la creamos. Esta pasara por un proceso de validación
+automaticó que ejecutará los Test y compilará la solución. Si esos dos procesos no fallan  se subirán los paquetes
+NuGet generados automaticamente para poder ser descargados mas adelante.
