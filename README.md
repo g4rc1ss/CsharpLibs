@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/asierGarciss/Tecnologia%20.NET/_apis/build/status/CsharpLibs?branchName=master)](https://dev.azure.com/asierGarciss/Tecnologia%20.NET/_build/latest?definitionId=9&branchName=master)
+
 # Introduction 
 Conjunto de librerias desarrolladas en .Net Standard o .Net CORE
 
