@@ -6,13 +6,7 @@ Cuando se compile los proyectos en modo `Release` se almacenarán los paquetes N
 # Getting Started
 > Installation process
 1. Instalaremos Visual Studio con los paquetes de desarrollo .Net multiplataforma
-2. Instalamos un cliente git como Source Tree
-3. En sourceTree agregaremos la cuenta Azure DevOps
-    
-    1. `URL`: https://asiergarciss.visualstudio.com
-    2. `Username`: nombre de usuario de la cuenta de azure DevOps
-    3. `Password`: Creamos un Token privado en la cuenta y agregamos este Token
-    4. `Protocol`: Configuramos el protocolo como https
+2. Instalaremos un cliente git como GitHub Desktop
 
 > Software dependencies
 - **Databases.csproj** -> `System.Data.SQLite.Core`
@@ -32,8 +26,7 @@ De tal manera que quedaría `TestNombreLibreria`.
 
 # Pull Requests
 
-Para crear la Pull Requests la podemos crear desde el IDE VisualStudio, el cliente SourceTree o 
-desde Azure DevOps en la parte de `Repos > Pull Requests`.
+Para crear la Pull Requests la podemos crear desde el cliente git o desde la pagina de github
 
 Agregamos el Título y la descripción del Pull Requests y la creamos. Esta pasara por un proceso de validación
 automaticó que ejecutará los Test y compilará la solución. Si esos dos procesos no fallan  se subirán los paquetes
