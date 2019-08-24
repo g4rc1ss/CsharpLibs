@@ -33,3 +33,19 @@ Para crear la Pull Requests la podemos crear desde el cliente git o desde la pag
 Agregamos el Título y la descripción del Pull Requests y la creamos. Esta pasara por un proceso de validación
 automaticó que ejecutará los Test y compilará la solución. Si esos dos procesos no fallan  se subirán los paquetes
 NuGet generados automaticamente para poder ser descargados mas adelante.
+
+# Distribucion
+
+La distribucion de este software se realizará el paquetes NuGet.
+
+La dirección del **repositorio Nuget** es: 
+
+    https://pkgs.dev.azure.com/asierGarciss/_packaging/AsierLibs/nuget/v3/index.json
+
+**usuario**: 
+
+    -------
+
+El **token**, solo de lectura: 
+
+    2lei7o5huwyojdznmocbv2rv4b5yls437373vzrtobkxjy4z3jja
