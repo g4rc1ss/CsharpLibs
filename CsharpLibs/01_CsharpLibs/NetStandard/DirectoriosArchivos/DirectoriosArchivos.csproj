@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
     <DocumentationFile>DirectoriosArchivos.xml</DocumentationFile>
   </PropertyGroup>
 
