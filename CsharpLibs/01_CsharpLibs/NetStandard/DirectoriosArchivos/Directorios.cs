@@ -26,9 +26,6 @@ namespace DirectoriosArchivos {
             Parallel.ForEach(origen.EnumerateFiles(), (archivo) => {
                 archivo.CopyTo(Path.Combine(destino.FullName, archivo.Name), true);
             });
-            //foreach (FileInfo archivo in origen.EnumerateFiles()) {
-            //    archivo.CopyTo(Path.Combine(destino.FullName, archivo.Name), true);
-            //}
 
             // Procesamiento recursivo de subdirectorios:
             Parallel.ForEach(origen.EnumerateDirectories(), (directorio) => {
@@ -38,14 +35,6 @@ namespace DirectoriosArchivos {
                 // Invocación recursiva del método `CopiarDirectorio`:
                 CopyDirectory(directorio, new DirectoryInfo(directorioDestino));
             });
-
-            //foreach (DirectoryInfo directorio in origen.EnumerateDirectories()) {
-            //    // Obtención de directorio de destino:
-            //    string directorioDestino = Path.Combine(destino.FullName, directorio.Name);
-
-            //    // Invocación recursiva del método `CopiarDirectorio`:
-            //    CopyDirectory(directorio, new DirectoryInfo(directorioDestino));
-            //}
         }
     }
 }
