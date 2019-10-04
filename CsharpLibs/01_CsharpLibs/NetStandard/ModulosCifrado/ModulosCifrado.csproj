@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>garciss.ModulosCifrado</PackageId>
     <Authors>Asier Garcia</Authors>
     <Description>Libreria para usar algoritmos de cifrado mas sencillamente como AES etc</Description>
+    <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
