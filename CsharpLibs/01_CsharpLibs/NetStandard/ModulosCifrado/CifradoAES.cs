@@ -44,11 +44,10 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public byte[] EncriptarTexto(string Text, byte[] KeyParameter = null, byte[] IVparameter = null) {
-            return EncryptStringToBytes_Aes(Text: Text, KeyParameter: KeyParameter, IVparameter: IVparameter);
-        }
+        public byte[] EncriptarTexto (string Text, byte[] KeyParameter = null, byte[] IVparameter = null) =>
+            EncryptStringToBytes_Aes(Text: Text, KeyParameter: KeyParameter, IVparameter: IVparameter);
 
-        private byte[] EncryptStringToBytes_Aes(string Text, byte[] KeyParameter = null, byte[] IVparameter = null) {
+        private byte[] EncryptStringToBytes_Aes (string Text, byte[] KeyParameter = null, byte[] IVparameter = null) {
             // Check arguments.
             if (KeyParameter == null && IVparameter == null) {
                 if (!Create())
@@ -104,11 +103,10 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public string DesencriptarTexto(byte[] cipherText, byte[] KeyParameter = null, byte[] IVparameter = null) {
-            return DecryptStringFromBytes_Aes(cipherText: cipherText, KeyParameter: KeyParameter, IVparameter: IVparameter);
-        }
+        public string DesencriptarTexto (byte[] cipherText, byte[] KeyParameter = null, byte[] IVparameter = null) =>
+            DecryptStringFromBytes_Aes(cipherText: cipherText, KeyParameter: KeyParameter, IVparameter: IVparameter);
 
-        private string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] KeyParameter = null, byte[] IVparameter = null) {
+        private string DecryptStringFromBytes_Aes (byte[] cipherText, byte[] KeyParameter = null, byte[] IVparameter = null) {
             if (KeyParameter != null && IVparameter != null) {
                 Key = KeyParameter;
                 IV = IVparameter;
@@ -128,18 +126,14 @@ namespace ModulosCifrado {
                 aesAlg.IV = IV;
 
                 // Create a decryptor to perform the stream transform.
-                using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV)) {
+                using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
                     // Create the streams used for decryption.
-                    using (MemoryStream msDecrypt = new MemoryStream(cipherText)) {
-                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {
-                            using (StreamReader srDecrypt = new StreamReader(csDecrypt)) {
+                    using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                                 // Read the decrypted bytes from the decrypting stream
                                 // and place them in a string.
                                 return srDecrypt.ReadToEnd();
-                            }
-                        }
-                    }
-                }
             }
         }
         #endregion
@@ -160,10 +154,10 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public bool CriptografiaFicheros(string Path, cifrarDescifrar modo, byte[] KeyParameter = null, byte[] IVparameter = null) {
-            return CryptDecrypt_File(Path: Path, modo: modo, KeyParameter: KeyParameter, IVparameter: IVparameter);
-        }
-        private bool CryptDecrypt_File(string Path, cifrarDescifrar modo, byte[] KeyParameter = null, byte[] IVparameter = null) {
+        public bool CriptografiaFicheros (string Path, cifrarDescifrar modo, byte[] KeyParameter = null, byte[] IVparameter = null) =>
+            CryptDecrypt_File(Path: Path, modo: modo, KeyParameter: KeyParameter, IVparameter: IVparameter);
+
+        private bool CryptDecrypt_File (string Path, cifrarDescifrar modo, byte[] KeyParameter = null, byte[] IVparameter = null) {
             // Check arguments.
             if (KeyParameter == null && IVparameter == null && modo == cifrarDescifrar.cifrar) {
                 if (!Create())
@@ -187,40 +181,23 @@ namespace ModulosCifrado {
                     aesAlg.IV = IV;
 
                     // Create the streams used for encryption.
-                    if (modo == cifrarDescifrar.cifrar) {
+                    if (modo == cifrarDescifrar.cifrar)
                         // Create an encryptor to perform the stream transform.
-                        using (ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV)) {
-                            using (FileStream fileStreamOutput = new FileStream($"{Path}.crypt", FileMode.Create, FileAccess.Write)) {
-                                using (CryptoStream cryptStream = new CryptoStream(fileStreamOutput, encryptor, CryptoStreamMode.Write)) {
-                                    using (FileStream fileStreamInput = new FileStream(Path, FileMode.Open, FileAccess.Read)) {
+                        using (ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
+                            using (FileStream fileStreamOutput = new FileStream($"{Path}.crypt", FileMode.Create, FileAccess.Write))
+                                using (CryptoStream cryptStream = new CryptoStream(fileStreamOutput, encryptor, CryptoStreamMode.Write))
+                                    using (FileStream fileStreamInput = new FileStream(Path, FileMode.Open, FileAccess.Read))
                                         for (int data; (data = fileStreamInput.ReadByte()) != -1;)
                                             cryptStream.WriteByte((byte)data);
 
-                                        fileStreamInput.Close();
-                                    }
-                                    cryptStream.Close();
-                                }
-                                fileStreamOutput.Close();
-                            }
-                        }
-                    }
-                    if (modo == cifrarDescifrar.descifrar) {
+                    else if (modo == cifrarDescifrar.descifrar)
                         // Create an encryptor to perform the stream transform.
-                        using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV)) {
-                            using (FileStream fileStreamCrypt = new FileStream(Path.Contains(".crypt") ? Path : $"{Path}.crypt", FileMode.Open, FileAccess.Read)) {
-                                using (FileStream fileStreamOut = new FileStream(Path.Contains(".crypt") ? Path.Replace(".crypt", "") : $"{Path}", FileMode.Create, FileAccess.Write)) {
-                                    using (CryptoStream decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read)) {
+                        using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
+                            using (FileStream fileStreamCrypt = new FileStream(Path.Contains(".crypt") ? Path : $"{Path}.crypt", FileMode.Open, FileAccess.Read))
+                                using (FileStream fileStreamOut = new FileStream(Path.Contains(".crypt") ? Path.Replace(".crypt", "") : $"{Path}", FileMode.Create, FileAccess.Write))
+                                    using (CryptoStream decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read))
                                         for (int data; (data = decryptStream.ReadByte()) != -1;)
                                             fileStreamOut.WriteByte((byte)data);
-
-                                        decryptStream.Close();
-                                    }
-                                    fileStreamOut.Close();
-                                }
-                                fileStreamCrypt.Close();
-                            }
-                        }
-                    }
                 }
                 return true;
             } catch (Exception) {
@@ -238,7 +215,7 @@ namespace ModulosCifrado {
         /// <exception cref="System.Reflection.TargetInvocationException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ObjectDisposedException"/>
-        private bool Create() {
+        private bool Create () {
             try {
                 using (Aes crear = Aes.Create()) {
                     crear.KeySize = 256;

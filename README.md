@@ -1,5 +1,3 @@
-[![Build Status](https://dev.azure.com/asierGarciss/Tecnologia%20.NET/_apis/build/status/CsharpLibs?branchName=master)](https://dev.azure.com/asierGarciss/Tecnologia%20.NET/_build/latest?definitionId=9&branchName=master)
-
 # Introduction 
 Conjunto de librerías desarrolladas en .Net Standard o .Net CORE
 
@@ -39,13 +37,6 @@ NuGet generados automáticamente para poder ser descargados mas adelante.
 La distribución de este software se realizará el paquetes NuGet.
 
 La dirección del **repositorio Nuget** es: 
-
-    https://pkgs.dev.azure.com/asierGarciss/_packaging/AsierLibs/nuget/v3/index.json
-
-**usuario**: 
-
-    -------
-
-El **token**, solo de lectura: 
-
-    2lei7o5huwyojdznmocbv2rv4b5yls437373vzrtobkxjy4z3jja
+```text
+    https://nuget.pkg.github.com/g4rc1ss/index.json
+```
