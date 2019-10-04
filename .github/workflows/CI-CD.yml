@@ -1,0 +1,32 @@
+name: Pipeline_PullRequests
+
+on:
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Dotnet Build
+      run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
+    
+    - name: Dotnet Test
+      run: dotnet test --configuration Release ./CsharpLibs/CsharpLibs.sln
+    
+    
+    - name: Install NuGet client
+      uses: warrenbuckley/Setup-Nuget@v1
+
+    - name: Add private GitHub registry to NuGet
+      run: nuget sources add -name "PackagesGitHub" -Source https://nuget.pkg.github.com/${{ secrets.USERNAME_GITHUB }}/index.json -Username ${{ secrets.USERNAME_GITHUB }} -Password ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
+
+    - name: Push generated package to GitHub registry
+      run: |
+        cd NugetPackages/PackagesCompilaciones/
+        nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
+        

@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>garciss.Respuestas</PackageId>
     <Authors>Asier Garcia</Authors>
     <Description>Libreria que contiene un objeto para gestionar resultados y excepciones principalemente en aplicaciones Web, hace que se devuelva los resultados en un formato parecido o igual</Description>
+    <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
