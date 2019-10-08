@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Databases.SQLite;
 using System.IO;
@@ -28,7 +28,6 @@ namespace TestDatabases {
                     $"{e.StackTrace}");
             }
         }
-
 
         [TestMethod]
         public void Conectar() {
