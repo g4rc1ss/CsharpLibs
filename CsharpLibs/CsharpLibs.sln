@@ -8,14 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Test", "02_Test", "{BEB1288C-83C6-4457-A787-28A5023C18E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetStandard", "01_NetStandard", "{EED3D97F-8704-4357-B031-B92684ABF603}"
-	ProjectSection(SolutionItems) = preProject
-		01_CsharpLibs\NetStandard\README.md = 01_CsharpLibs\NetStandard\README.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_NetCore", "02_NetCore", "{A7A4A8DE-DF34-44AC-81E9-DF4D10735BE5}"
-	ProjectSection(SolutionItems) = preProject
-		01_CsharpLibs\NetCore\README.md = 01_CsharpLibs\NetCore\README.md
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Databases", "01_CsharpLibs\NetStandard\Databases\Databases.csproj", "{AC88B54E-01E0-477C-937C-73D8B1594340}"
 EndProject
@@ -29,20 +23,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Respuestas", "01_CsharpLibs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetStandard", "01_NetStandard", "{2A8F0528-16DD-4424-A396-7F997F110108}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Core", "02_Core", "{D385331D-7465-4674-ACF8-F0670A2EB4AB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_NetCore", "02_NetCore", "{D385331D-7465-4674-ACF8-F0670A2EB4AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDatabases", "02_Test\NetStandard\TestDatabases\TestDatabases.csproj", "{B7D46320-634E-4292-B0B9-D9DD72A6F9FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDirectoriosArchivos", "02_Test\NetStandard\TestDirectoriosArchivos\TestDirectoriosArchivos.csproj", "{FC6423F6-0D1B-4DBE-9971-599364BB0753}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLogs", "02_Test\NetStandard\TestLogs\TestLogs.csproj", "{ABD0A1F6-447F-45B9-9E59-DBB876C8E454}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestModulosCifrado", "02_Test\NetStandard\TestModulosCifrado\TestModulosCifrado.csproj", "{2B8B3C38-F201-469E-ACA0-19D3705C1337}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRespuesta", "02_Test\NetStandard\TestRespuesta\TestRespuesta.csproj", "{BB4AA579-76E7-461B-B346-C45662A78988}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_NetFramework", "03_NetFramework", "{E450FEAB-FE8F-4DAF-9B22-830F068A856D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_NetFramework", "03_NetFramework", "{FEC27CC7-C71A-4EA4-809A-3E8351BFA76C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configs", "_Configs", "{407CBADE-DFE9-4AFE-9BBE-65272625EF22}"
 	ProjectSection(SolutionItems) = preProject
-		02_Test\NetCore\README.md = 02_Test\NetCore\README.md
+		.editorconfig = .editorconfig
+		nuget.config = nuget.config
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDatabases", "02_Test\NetStandard\TestDatabases\TestDatabases.csproj", "{B7D46320-634E-4292-B0B9-D9DD72A6F9FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDirectoriosArchivos", "02_Test\NetStandard\TestDirectoriosArchivos\TestDirectoriosArchivos.csproj", "{FC6423F6-0D1B-4DBE-9971-599364BB0753}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLogs", "02_Test\NetStandard\TestLogs\TestLogs.csproj", "{ABD0A1F6-447F-45B9-9E59-DBB876C8E454}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModulosCifrado", "02_Test\NetStandard\TestModulosCifrado\TestModulosCifrado.csproj", "{2B8B3C38-F201-469E-ACA0-19D3705C1337}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRespuesta", "02_Test\NetStandard\TestRespuesta\TestRespuesta.csproj", "{BB4AA579-76E7-461B-B346-C45662A78988}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +110,8 @@ Global
 		{ABD0A1F6-447F-45B9-9E59-DBB876C8E454} = {2A8F0528-16DD-4424-A396-7F997F110108}
 		{2B8B3C38-F201-469E-ACA0-19D3705C1337} = {2A8F0528-16DD-4424-A396-7F997F110108}
 		{BB4AA579-76E7-461B-B346-C45662A78988} = {2A8F0528-16DD-4424-A396-7F997F110108}
+		{E450FEAB-FE8F-4DAF-9B22-830F068A856D} = {98C6551E-0F30-44D1-BDF4-F71BAE118002}
+		{FEC27CC7-C71A-4EA4-809A-3E8351BFA76C} = {BEB1288C-83C6-4457-A787-28A5023C18E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}

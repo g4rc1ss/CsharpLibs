@@ -7,6 +7,7 @@
     <Authors>Asier Garcia</Authors>
     <Description>Libreria para la gestion de bases de datos como SQLite</Description>
     <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
