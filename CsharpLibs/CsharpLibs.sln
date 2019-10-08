@@ -47,6 +47,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_NetCore", "02_NetCore", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_NetFramework", "03_NetFramework", "{D96BA141-2DD8-4895-B966-FE613DBB6B62}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configs", "_Configs", "{407CBADE-DFE9-4AFE-9BBE-65272625EF22}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
