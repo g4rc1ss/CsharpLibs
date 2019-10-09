@@ -7,7 +7,7 @@
     <Authors>Asier Garcia</Authors>
     <Description>Libreria para crear un fichero de escritura de logs</Description>
     <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
