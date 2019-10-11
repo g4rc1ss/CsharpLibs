@@ -1,7 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DirectoriosArchivos;
-using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace TestDirectoriosArchivos {
@@ -29,7 +29,7 @@ namespace TestDirectoriosArchivos {
                 Assert.IsTrue(Directory.Exists("prueba") && Directory.Exists("copia"));
                 Assert.IsTrue(nombresOrigen.Count == nombresDestino.Count);
 
-                foreach(string origen in nombresOrigen)
+                foreach (string origen in nombresOrigen)
                     Assert.IsTrue(nombresOrigen.Contains(origen));
 
             } finally {

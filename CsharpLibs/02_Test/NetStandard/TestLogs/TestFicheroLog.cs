@@ -1,7 +1,7 @@
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 using Logs;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace TestLogs {
     [TestClass]
@@ -23,8 +23,8 @@ namespace TestLogs {
                 }
                 Assert.IsTrue(File.Exists($"{fecha}.log"));
                 //$"{fecha}.log"
-                using(StreamReader read = new StreamReader($"{fecha}.log")) {
-                    string[] modosParaComprobar = {"[DEBUG]", "[LOGGING]", "[ERROR]" };
+                using (StreamReader read = new StreamReader($"{fecha}.log")) {
+                    string[] modosParaComprobar = { "[DEBUG]", "[LOGGING]", "[ERROR]" };
 
                     var linea = read.ReadToEnd();
                     Assert.IsTrue(

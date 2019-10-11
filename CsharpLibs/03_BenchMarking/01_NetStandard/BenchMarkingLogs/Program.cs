@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Running;
 
 namespace BenchMarkingLogs {
-    class Program {
-        static void Main(string[] args) {
+    internal class Program {
+        private static void Main(string[] _args) {
             BenchmarkRunner.Run<BenchFicheroLog>();
         }
     }

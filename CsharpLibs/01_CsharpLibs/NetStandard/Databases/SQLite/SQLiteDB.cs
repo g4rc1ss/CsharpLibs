@@ -36,18 +36,18 @@ namespace Databases.SQLite {
         /// Metodo para crear la base de datos, tambien comprueba
         /// si existe o no la base de datos
         /// </summary>
-        /// <param name="Query">consulta SQL escrita como una cadena</param>
-        public void CreateDatabase(string Query) {
-            ExecuteCreateDatabase(Query: Query);
+        /// <param name="query">consulta SQL escrita como una cadena</param>
+        public void CreateDatabase(string query) {
+            ExecuteCreateDatabase(_query: query);
         }
 
-        private void ExecuteCreateDatabase(string Query) {
+        private void ExecuteCreateDatabase(string _query) {
             // Crea la base de datos y registra usuario solo una vez
             if (!IsCreateDatabase()) {
                 SQLiteConnection.CreateFile(DBName);
 
                 using (var connect = ConnectionToDatabase())
-                using (var command = new SQLiteCommand(Query, connect)) {
+                using (var command = new SQLiteCommand(_query, connect)) {
                     command.ExecuteNonQuery();
                     connect.Close();
                 }
@@ -77,14 +77,14 @@ namespace Databases.SQLite {
         /// Retorna en un objeto la consulta SELECT que se leera como un array
         /// ej: nombreObjeto["nombreColumna"];
         /// </returns>
-        /// <param name="Query">Consulta SQL en formato cadena</param>
+        /// <param name="query">Consulta SQL en formato cadena</param>
         /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
-        public SQLiteDataReader Select(string Query, SQLiteConnection connect) {
-            return ExecuteSelect(Query: Query, connect: connect);
+        public SQLiteDataReader Select(string query, SQLiteConnection connect) {
+            return ExecuteSelect(_query: query, _connect: connect);
         }
 
-        private SQLiteDataReader ExecuteSelect(string Query, SQLiteConnection connect) {
-            using (var command = new SQLiteCommand(Query, connect))
+        private SQLiteDataReader ExecuteSelect(string _query, SQLiteConnection _connect) {
+            using (var command = new SQLiteCommand(_query, _connect))
 
                 return command.ExecuteReader();
         }
@@ -95,14 +95,14 @@ namespace Databases.SQLite {
         /// <returns>
         /// Retorna el numero de elementos que ha sido retocado
         /// </returns>
-        /// <param name="Query">Consulta SQL en formato cadena</param>
+        /// <param name="query">Consulta SQL en formato cadena</param>
         /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
-        public int UpdateOrInsert(string Query, SQLiteConnection connect) {
-            return ExecuteUpdateOrInsert(Query: Query, connect: connect);
+        public int UpdateOrInsert(string query, SQLiteConnection connect) {
+            return ExecuteUpdateOrInsert(_query: query, _connect: connect);
         }
 
-        private int ExecuteUpdateOrInsert(string Query, SQLiteConnection connect) {
-            using (var command = new SQLiteCommand(Query, connect))
+        private int ExecuteUpdateOrInsert(string _query, SQLiteConnection _connect) {
+            using (var command = new SQLiteCommand(_query, _connect))
                 return command.ExecuteNonQuery();
         }
 
@@ -114,15 +114,15 @@ namespace Databases.SQLite {
         /// </returns>
         /// <param name="columna">El nombre de la columna con el que vamos a obtener el max</param>
         /// <param name="table">El nombre de la tabla para realizar la consulta</param>
-        public int maxID(string columna, string table) {
-            return getMaxCount(columna: columna, table: table);
+        public int MaxID(string columna, string table) {
+            return GetMaxCount(_columna: columna, _table: table);
         }
 
-        private int getMaxCount(string columna, string table) {
+        private int GetMaxCount(string _columna, string _table) {
             try {
                 int cont;
                 using (var conexion = ConnectionToDatabase()) {
-                    using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}", conexion)) {
+                    using (var countID = ExecuteSelect($"SELECT COUNT({_columna}) FROM {_table}", conexion)) {
                         countID.Read();
                         cont = int.Parse(countID[0].ToString()) + 1;
                         countID.Close();
