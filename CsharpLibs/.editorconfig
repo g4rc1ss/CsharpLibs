@@ -110,7 +110,7 @@ dotnet_naming_symbols._convencionconprivatecampos.applicable_kinds = field, para
 dotnet_naming_symbols._convencionconprivatecampos.applicable_accessibilities = private, private_protected
 dotnet_naming_symbols._convencionconprivatecampos.required_modifiers = 
 
-dotnet_naming_symbols._convencionprivateother.applicable_kinds = property, event, class, struct, enum, delegate, method, local_function
+dotnet_naming_symbols._convencionprivateother.applicable_kinds = property, local_function
 dotnet_naming_symbols._convencionprivateother.applicable_accessibilities = private, private_protected
 dotnet_naming_symbols._convencionprivateother.required_modifiers = 
 
@@ -119,7 +119,7 @@ dotnet_naming_symbols._privateconvencionconstantes.applicable_accessibilities = 
 dotnet_naming_symbols._privateconvencionconstantes.required_modifiers = const
 
 dotnet_naming_symbols.convencionotros.applicable_kinds = property, event, class, struct, interface, enum, delegate, method, local_function
-dotnet_naming_symbols.convencionotros.applicable_accessibilities = public, internal, protected, private_protected, local
+dotnet_naming_symbols.convencionotros.applicable_accessibilities = public, internal, protected, local, private, private_protected
 dotnet_naming_symbols.convencionotros.required_modifiers = 
 
 # Naming styles
