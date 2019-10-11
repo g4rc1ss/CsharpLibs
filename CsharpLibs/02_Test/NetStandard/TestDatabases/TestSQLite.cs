@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Databases.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Databases.SQLite;
+using System;
 using System.IO;
 
 namespace TestDatabases {
@@ -18,10 +18,10 @@ namespace TestDatabases {
                     "DIRECCION   INT                        NOT NULL," +
                     "SALARIO     REAL)"
                     );
-                using(var connect = baseDatos.Conexion())
+                using (var connect = baseDatos.Conexion())
                     baseDatos.UpdateOrInsert("INSERT INTO EMPRESA (ID, NOMBRE, EDAD, DIRECCION, SALARIO) " +
                         $"VALUES (1, 'Asier', 22, 'alguna', 3000)", connect);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Console.WriteLine($"------------MESSAGE----------------\n" +
                     $"{e.Message}\n" +
                     $"---------------------STACKTRACE------------------------\n" +
@@ -46,10 +46,10 @@ namespace TestDatabases {
             var baseDatos = new SQLiteDB();
             try {
                 CrearBBDD_Fake();
-                using(var connect = baseDatos.Conexion())
-                    using (var read = baseDatos.Select("SELECT * from EMPRESA", connect)) {
-                        Assert.IsTrue(read.HasRows && read.FieldCount == 5);
-                    }
+                using (var connect = baseDatos.Conexion())
+                using (var read = baseDatos.Select("SELECT * from EMPRESA", connect)) {
+                    Assert.IsTrue(read.HasRows && read.FieldCount == 5);
+                }
             } finally {
                 File.Delete(baseDatos.DBName);
             }
@@ -83,7 +83,7 @@ namespace TestDatabases {
             try {
                 CrearBBDD_Fake();
 
-                Assert.IsTrue(baseDatos.maxID("ID", "EMPRESA") >= 1);
+                Assert.IsTrue(baseDatos.MaxID("ID", "EMPRESA") >= 1);
             } finally {
                 File.Delete(baseDatos.DBName);
             }

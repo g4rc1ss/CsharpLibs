@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DirectoriosArchivos {
     /// <summary>
@@ -19,8 +19,8 @@ namespace DirectoriosArchivos {
             return new Archivos().OrdenarFicheros(listaDesordenada);
         }
 
-        private List<string> OrdenarFicheros(string[] listaDesordenada) {
-            var listaOrdenada = (from item in listaDesordenada
+        private List<string> OrdenarFicheros(string[] _listaDesordenada) {
+            var listaOrdenada = (from item in _listaDesordenada
                                  orderby item
                                  select item).ToList();
 
