@@ -2,7 +2,7 @@
 
 namespace BenchMarkingModulosCifrado {
     internal class Program {
-        private static void Main(string[] _args) {
+        private static void Main(string[] args) {
             BenchmarkRunner.Run<BenchAES>();
         }
     }

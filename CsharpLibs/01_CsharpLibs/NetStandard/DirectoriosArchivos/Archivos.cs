@@ -19,8 +19,8 @@ namespace DirectoriosArchivos {
             return new Archivos().OrdenarFicheros(listaDesordenada);
         }
 
-        private List<string> OrdenarFicheros(string[] _listaDesordenada) {
-            var listaOrdenada = (from item in _listaDesordenada
+        private List<string> OrdenarFicheros(string[] listaDesordenada) {
+            var listaOrdenada = (from item in listaDesordenada
                                  orderby item
                                  select item).ToList();
 

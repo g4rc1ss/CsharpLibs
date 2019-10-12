@@ -23,10 +23,10 @@ namespace Logs {
         /// que se pueda hacer uso del modo LOGGING(explicado su uso mas abajo) o DEBUG(no tan habitual)
         /// el cual no se usa con Excepciones
         /// </param>
-        public static bool crearLogs(object obj, modos modo, Exception ex = null, string mensaje = null) {
-            return new Log().save(obj, modo, ex, mensaje);
+        public static bool CrearLogs(object obj, Modos modo, Exception ex = null, string mensaje = null) {
+            return new Log().Save(obj, modo, ex, mensaje);
         }
-        private bool save(object obj, modos modo, Exception ex, string mensaje) {
+        private bool Save(object obj, Modos modo, Exception ex, string mensaje) {
             try {
                 string fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
                 string hora = System.DateTime.Now.ToString("HH:mm:ss");
@@ -42,7 +42,7 @@ namespace Logs {
                 }
 
                 escribir = File.CreateText($"{fecha}.log");
-                StackTrace stacktrace = new StackTrace();
+                var stacktrace = new StackTrace();
 
                 escribir.Write(contenido);
                 escribir.WriteLine(obj.GetType().FullName + " " + hora);
@@ -62,7 +62,7 @@ namespace Logs {
     /// <summary>
     /// Enumerador para seleccionar el modo de Log
     /// </summary>
-    public enum modos {
+    public enum Modos {
         /// <summary>
         /// [DEBUG] -> se usa para depurar, indicar trazas, etc
         /// </summary>
