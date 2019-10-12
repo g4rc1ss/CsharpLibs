@@ -1,4 +1,4 @@
-using Logs;
+﻿using Logs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
@@ -12,18 +12,18 @@ namespace TestLogs {
             string fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
 
             try {
-                Log.crearLogs(this, modos.DEBUG);
-                Log.crearLogs(this, modos.LOGGING, mensaje: "Hola, este es un mensaje del logging");
+                Log.CrearLogs(this, Modos.DEBUG);
+                Log.CrearLogs(this, Modos.LOGGING, mensaje: "Hola, este es un mensaje del logging");
 
                 try {
                     int x = 0; int y = 1;
                     int z = y / x;
                 } catch (DivideByZeroException e) {
-                    Log.crearLogs(this, modos.ERROR, e);
+                    Log.CrearLogs(this, Modos.ERROR, e);
                 }
                 Assert.IsTrue(File.Exists($"{fecha}.log"));
                 //$"{fecha}.log"
-                using (StreamReader read = new StreamReader($"{fecha}.log")) {
+                using (var read = new StreamReader($"{fecha}.log")) {
                     string[] modosParaComprobar = { "[DEBUG]", "[LOGGING]", "[ERROR]" };
 
                     var linea = read.ReadToEnd();

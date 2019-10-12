@@ -33,7 +33,7 @@ namespace TestModulosCifrado {
                 var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                 textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
-                
+
                     text: _TEXTOPLANO,
                     keyParameter: keyHashByte,
                     iVparameter: cifrarTextoClavePropia.IV
@@ -63,7 +63,7 @@ namespace TestModulosCifrado {
                 keyParameter: File.ReadAllBytes("Key.aes"),
                 iVparameter: File.ReadAllBytes("IV.aes")
             );
-            File.Delete("Key.aes"); File.Delete("IV.aes"); 
+            File.Delete("Key.aes"); File.Delete("IV.aes");
             File.Delete("TextoCifradoClaveRandom.aes");
 
             Assert.IsTrue(

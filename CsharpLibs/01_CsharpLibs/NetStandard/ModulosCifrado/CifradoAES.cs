@@ -45,22 +45,22 @@ namespace ModulosCifrado {
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
         public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            EncryptStringToBytes_Aes(_text: text, _keyParameter: keyParameter, _iVparameter: iVparameter);
+            EncryptStringToBytes_Aes(text: text, keyParameter: keyParameter, iVparameter: iVparameter);
 
-        private byte[] EncryptStringToBytes_Aes(string _text, byte[] _keyParameter = null, byte[] _iVparameter = null) {
+        private byte[] EncryptStringToBytes_Aes(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
             // Check arguments.
-            if (_keyParameter == null && _iVparameter == null) {
+            if (keyParameter == null && iVparameter == null) {
                 if (!Create())
                     throw new ArgumentException("Ha fallado la generacion de claves aleatoria");
             } else {
-                Key = _keyParameter;
-                IV = _iVparameter;
+                Key = keyParameter;
+                IV = iVparameter;
             }
-            if (string.IsNullOrEmpty(_text))
+            if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException("plainText");
-            if ((_keyParameter == null || _keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
+            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
                 throw new ArgumentNullException("Key");
-            if ((_iVparameter == null || _iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
+            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
                 throw new ArgumentNullException("IV");
             //----------------------------------------------------------------------------------------\\
             // Create an Aes object
@@ -75,8 +75,8 @@ namespace ModulosCifrado {
                         using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) {
                             using (var swEncrypt = new StreamWriter(csEncrypt)) {
                                 //Write all data to the stream.
-                                swEncrypt.Write(_text);
-                                _text = string.Empty;
+                                swEncrypt.Write(text);
+                                text = string.Empty;
                             }
                             return (msEncrypt.ToArray());
                         }
@@ -104,19 +104,19 @@ namespace ModulosCifrado {
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
         public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            DecryptStringFromBytes_Aes(_cipherText: cipherText, _keyParameter: keyParameter, _iVparameter: iVparameter);
+            DecryptStringFromBytes_Aes(cipherText: cipherText, keyParameter: keyParameter, iVparameter: iVparameter);
 
-        private string DecryptStringFromBytes_Aes(byte[] _cipherText, byte[] _keyParameter = null, byte[] _iVparameter = null) {
-            if (_keyParameter != null && _iVparameter != null) {
-                Key = _keyParameter;
-                IV = _iVparameter;
+        private string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
+            if (keyParameter != null && iVparameter != null) {
+                Key = keyParameter;
+                IV = iVparameter;
             }
             // Check arguments.
-            if (_cipherText == null || _cipherText.Length <= 0)
+            if (cipherText == null || cipherText.Length <= 0)
                 throw new ArgumentNullException("cipherText");
-            if ((_keyParameter == null || _keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
+            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
                 throw new ArgumentNullException("Key");
-            if ((_iVparameter == null || _iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
+            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
                 throw new ArgumentNullException("IV");
 
             // Create an Aes object
@@ -128,7 +128,7 @@ namespace ModulosCifrado {
                 // Create a decryptor to perform the stream transform.
                 using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
                 // Create the streams used for decryption.
-                using (var msDecrypt = new MemoryStream(_cipherText))
+                using (var msDecrypt = new MemoryStream(cipherText))
                 using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                 using (var srDecrypt = new StreamReader(csDecrypt))
                     // Read the decrypted bytes from the decrypting stream
@@ -155,22 +155,22 @@ namespace ModulosCifrado {
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
         public bool CriptografiaFicheros(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            CryptDecrypt_File(_path: path, _modo: modo, _keyParameter: keyParameter, _iVparameter: iVparameter);
+            CryptDecrypt_File(path: path, modo: modo, keyParameter: keyParameter, iVparameter: iVparameter);
 
-        private bool CryptDecrypt_File(string _path, CifrarDescifrar _modo, byte[] _keyParameter = null, byte[] _iVparameter = null) {
+        private bool CryptDecrypt_File(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) {
             // Check arguments.
-            if (_keyParameter == null && _iVparameter == null && _modo == CifrarDescifrar.cifrar) {
+            if (keyParameter == null && iVparameter == null && modo == CifrarDescifrar.cifrar) {
                 if (!Create())
                     throw new ArgumentException("Ha fallado la generacion de claves aleatoria");
             } else {
-                Key = _keyParameter;
-                IV = _iVparameter;
+                Key = keyParameter;
+                IV = iVparameter;
             }
-            if (string.IsNullOrEmpty(_path))
+            if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException("No hay ruta");
-            if ((_keyParameter == null || _keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
+            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
                 throw new ArgumentNullException("Key");
-            if ((_iVparameter == null || _iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
+            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
                 throw new ArgumentNullException("IV");
             //----------------------------------------------------------------------------------------\\
             // Create an Aes object
@@ -181,20 +181,20 @@ namespace ModulosCifrado {
                     aesAlg.IV = IV;
 
                     // Create the streams used for encryption.
-                    if (_modo == CifrarDescifrar.cifrar)
+                    if (modo == CifrarDescifrar.cifrar)
                         // Create an encryptor to perform the stream transform.
                         using (var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
-                        using (var fileStreamOutput = new FileStream($"{_path}.crypt", FileMode.Create, FileAccess.Write))
+                        using (var fileStreamOutput = new FileStream($"{path}.crypt", FileMode.Create, FileAccess.Write))
                         using (var cryptStream = new CryptoStream(fileStreamOutput, encryptor, CryptoStreamMode.Write))
-                        using (var fileStreamInput = new FileStream(_path, FileMode.Open, FileAccess.Read))
+                        using (var fileStreamInput = new FileStream(path, FileMode.Open, FileAccess.Read))
                             for (int data; (data = fileStreamInput.ReadByte()) != -1;)
                                 cryptStream.WriteByte((byte)data);
 
-                    else if (_modo == CifrarDescifrar.descifrar)
+                    else if (modo == CifrarDescifrar.descifrar)
                         // Create an encryptor to perform the stream transform.
                         using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
-                        using (var fileStreamCrypt = new FileStream(_path.Contains(".crypt") ? _path : $"{_path}.crypt", FileMode.Open, FileAccess.Read))
-                        using (var fileStreamOut = new FileStream(_path.Contains(".crypt") ? _path.Replace(".crypt", "") : $"{_path}", FileMode.Create, FileAccess.Write))
+                        using (var fileStreamCrypt = new FileStream(path.Contains(".crypt") ? path : $"{path}.crypt", FileMode.Open, FileAccess.Read))
+                        using (var fileStreamOut = new FileStream(path.Contains(".crypt") ? path.Replace(".crypt", "") : $"{path}", FileMode.Create, FileAccess.Write))
                         using (var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read))
                             for (int data; (data = decryptStream.ReadByte()) != -1;)
                                 fileStreamOut.WriteByte((byte)data);

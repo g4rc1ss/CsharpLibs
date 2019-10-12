@@ -38,16 +38,16 @@ namespace Databases.SQLite {
         /// </summary>
         /// <param name="query">consulta SQL escrita como una cadena</param>
         public void CreateDatabase(string query) {
-            ExecuteCreateDatabase(_query: query);
+            ExecuteCreateDatabase(query: query);
         }
 
-        private void ExecuteCreateDatabase(string _query) {
+        private void ExecuteCreateDatabase(string query) {
             // Crea la base de datos y registra usuario solo una vez
             if (!IsCreateDatabase()) {
                 SQLiteConnection.CreateFile(DBName);
 
                 using (var connect = ConnectionToDatabase())
-                using (var command = new SQLiteCommand(_query, connect)) {
+                using (var command = new SQLiteCommand(query, connect)) {
                     command.ExecuteNonQuery();
                     connect.Close();
                 }
@@ -80,11 +80,11 @@ namespace Databases.SQLite {
         /// <param name="query">Consulta SQL en formato cadena</param>
         /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         public SQLiteDataReader Select(string query, SQLiteConnection connect) {
-            return ExecuteSelect(_query: query, _connect: connect);
+            return ExecuteSelect(query: query, connect: connect);
         }
 
-        private SQLiteDataReader ExecuteSelect(string _query, SQLiteConnection _connect) {
-            using (var command = new SQLiteCommand(_query, _connect))
+        private SQLiteDataReader ExecuteSelect(string query, SQLiteConnection connect) {
+            using (var command = new SQLiteCommand(query, connect))
 
                 return command.ExecuteReader();
         }
@@ -98,11 +98,11 @@ namespace Databases.SQLite {
         /// <param name="query">Consulta SQL en formato cadena</param>
         /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         public int UpdateOrInsert(string query, SQLiteConnection connect) {
-            return ExecuteUpdateOrInsert(_query: query, _connect: connect);
+            return ExecuteUpdateOrInsert(query: query, connect: connect);
         }
 
-        private int ExecuteUpdateOrInsert(string _query, SQLiteConnection _connect) {
-            using (var command = new SQLiteCommand(_query, _connect))
+        private int ExecuteUpdateOrInsert(string query, SQLiteConnection connect) {
+            using (var command = new SQLiteCommand(query, connect))
                 return command.ExecuteNonQuery();
         }
 
@@ -115,14 +115,14 @@ namespace Databases.SQLite {
         /// <param name="columna">El nombre de la columna con el que vamos a obtener el max</param>
         /// <param name="table">El nombre de la tabla para realizar la consulta</param>
         public int MaxID(string columna, string table) {
-            return GetMaxCount(_columna: columna, _table: table);
+            return GetMaxCount(columna: columna, table: table);
         }
 
-        private int GetMaxCount(string _columna, string _table) {
+        private int GetMaxCount(string columna, string table) {
             try {
                 int cont;
                 using (var conexion = ConnectionToDatabase()) {
-                    using (var countID = ExecuteSelect($"SELECT COUNT({_columna}) FROM {_table}", conexion)) {
+                    using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}", conexion)) {
                         countID.Read();
                         cont = int.Parse(countID[0].ToString()) + 1;
                         countID.Close();

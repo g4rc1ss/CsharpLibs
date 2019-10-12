@@ -28,12 +28,12 @@ namespace TestRespuesta {
             }
 
             Assert.IsTrue(
-                resp1.datos == null && resp1.mensaje == "" && resp1.resultado == 0 &&
+                resp1.Datos == null && resp1.Mensaje == "" && resp1.Resultado == 0 &&
 
-                object.ReferenceEquals(resp2.datos.GetType(), new Datos().GetType()) &&
-                resp2.mensaje == string.Empty && resp2.resultado == 0 &&
+                object.ReferenceEquals(resp2.Datos.GetType(), new Datos().GetType()) &&
+                resp2.Mensaje == string.Empty && resp2.Resultado == 0 &&
 
-                resp3.mensaje == ex.Message && resp3.resultado != Errores.SINERROR
+                resp3.Mensaje == ex.Message && resp3.Resultado != Errores.SINERROR
                 );
         }
     }
