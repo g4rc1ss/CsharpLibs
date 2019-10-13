@@ -77,17 +77,9 @@ dotnet_naming_rule.variablesmenosprivate_should_be_convencionvariables.severity 
 dotnet_naming_rule.variablesmenosprivate_should_be_convencionvariables.symbols = variablesmenosprivate
 dotnet_naming_rule.variablesmenosprivate_should_be_convencionvariables.style = convencionvariables
 
-dotnet_naming_rule._convencionconprivatecampos_should_be__convencionprivatecampos.severity = error
-dotnet_naming_rule._convencionconprivatecampos_should_be__convencionprivatecampos.symbols = _convencionconprivatecampos
-dotnet_naming_rule._convencionconprivatecampos_should_be__convencionprivatecampos.style = _convencionprivatecampos
-
 dotnet_naming_rule.convencionconstantes_should_be_convencionconstantes.severity = error
 dotnet_naming_rule.convencionconstantes_should_be_convencionconstantes.symbols = convencionconstantes
 dotnet_naming_rule.convencionconstantes_should_be_convencionconstantes.style = convencionconstantes
-
-dotnet_naming_rule._privateconvencionconstantes_should_be__convencionprivateconstantes.severity = error
-dotnet_naming_rule._privateconvencionconstantes_should_be__convencionprivateconstantes.symbols = _privateconvencionconstantes
-dotnet_naming_rule._privateconvencionconstantes_should_be__convencionprivateconstantes.style = _convencionprivateconstantes
 
 # Symbol specifications
 dotnet_naming_symbols.interface.applicable_kinds = interface
@@ -99,19 +91,11 @@ dotnet_naming_symbols.variablesmenosprivate.applicable_accessibilities = public,
 dotnet_naming_symbols.variablesmenosprivate.required_modifiers = 
 
 dotnet_naming_symbols.convencionconstantes.applicable_kinds = property, field, local
-dotnet_naming_symbols.convencionconstantes.applicable_accessibilities = public, internal, protected, protected_internal, local
+dotnet_naming_symbols.convencionconstantes.applicable_accessibilities = public, internal, protected, protected_internal, local, private, private_protected
 dotnet_naming_symbols.convencionconstantes.required_modifiers = const
 
-dotnet_naming_symbols._convencionconprivatecampos.applicable_kinds = field, local
-dotnet_naming_symbols._convencionconprivatecampos.applicable_accessibilities = private, private_protected
-dotnet_naming_symbols._convencionconprivatecampos.required_modifiers = 
-
-dotnet_naming_symbols._privateconvencionconstantes.applicable_kinds = field
-dotnet_naming_symbols._privateconvencionconstantes.applicable_accessibilities = private, private_protected
-dotnet_naming_symbols._privateconvencionconstantes.required_modifiers = const
-
 dotnet_naming_symbols.convencionotros.applicable_kinds = property, event, class, struct, interface, enum, delegate, method, local_function
-dotnet_naming_symbols.convencionotros.applicable_accessibilities = public, internal, protected, local, private, private_protected
+dotnet_naming_symbols.convencionotros.applicable_accessibilities = public, internal, protected, protected_internal, local, private, private_protected
 dotnet_naming_symbols.convencionotros.required_modifiers = 
 
 # Naming styles
@@ -129,16 +113,6 @@ dotnet_naming_style.convencionconstantes.required_prefix =
 dotnet_naming_style.convencionconstantes.required_suffix = 
 dotnet_naming_style.convencionconstantes.word_separator = 
 dotnet_naming_style.convencionconstantes.capitalization = all_upper
-
-dotnet_naming_style._convencionprivatecampos.required_prefix = _
-dotnet_naming_style._convencionprivatecampos.required_suffix = 
-dotnet_naming_style._convencionprivatecampos.word_separator = 
-dotnet_naming_style._convencionprivatecampos.capitalization = camel_case
-
-dotnet_naming_style._convencionprivateconstantes.required_prefix = _
-dotnet_naming_style._convencionprivateconstantes.required_suffix = 
-dotnet_naming_style._convencionprivateconstantes.word_separator = 
-dotnet_naming_style._convencionprivateconstantes.capitalization = all_upper
 
 dotnet_naming_style.convencionotros.required_prefix = 
 dotnet_naming_style.convencionotros.required_suffix = 

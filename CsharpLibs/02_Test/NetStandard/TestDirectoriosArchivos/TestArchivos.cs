@@ -8,7 +8,7 @@ namespace TestDirectoriosArchivos {
 
         [TestMethod]
         public void Ordenar() {
-            var archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
+            string[] archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
 
             var listaOrdenada = Archivos.FicherosOrdenados(archivos);
 

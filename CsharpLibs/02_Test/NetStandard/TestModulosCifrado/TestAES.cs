@@ -12,7 +12,7 @@ namespace TestModulosCifrado {
         public void CifradoTexto() {
             //----------------------CON CLAVE ALEATORIA------------------\\
             var cifrarTextoClaveRandom = new CifradoAES();
-            var textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(_TEXTOPLANO);
+            byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(_TEXTOPLANO);
 
             File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
             File.WriteAllBytes("IV.aes", cifrarTextoClaveRandom.IV);
@@ -30,7 +30,7 @@ namespace TestModulosCifrado {
             //----------------------CON CLAVE PROPIA---------------------\\
             var cifrarTextoClavePropia = new CifradoAES();
             using (HashAlgorithm hash = SHA256.Create()) {
-                var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                 textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
 
@@ -58,7 +58,7 @@ namespace TestModulosCifrado {
             CifradoTexto();
             //----------------------CON CLAVE ALEATORIA------------------\\
             var descifrarTextoClaveRandom = new CifradoAES();
-            var textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
+            string textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
                 cipherText: File.ReadAllBytes("TextoCifradoClaveRandom.aes"),
                 keyParameter: File.ReadAllBytes("Key.aes"),
                 iVparameter: File.ReadAllBytes("IV.aes")
@@ -76,9 +76,9 @@ namespace TestModulosCifrado {
             //----------------------CON CLAVE PROPIA---------------------\\
             var descifrarTextoClavePropia = new CifradoAES();
             using (HashAlgorithm hash = SHA256.Create()) {
-                var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
-                var textoDescifradoPropio = descifrarTextoClavePropia.DesencriptarTexto(
+                string textoDescifradoPropio = descifrarTextoClavePropia.DesencriptarTexto(
                     cipherText: File.ReadAllBytes("TextoCifradoClavePropia.aes"),
                     keyParameter: keyHashByte,
                     iVparameter: File.ReadAllBytes("IVpropia.aes")
@@ -124,7 +124,7 @@ namespace TestModulosCifrado {
                 //----------------------CON CLAVE PROPIA---------------------\\
                 var encriptarArchivoClavePropia = new CifradoAES();
                 using (HashAlgorithm hash = SHA256.Create()) {
-                    var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                    byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     encriptarArchivoClavePropia.CriptografiaFicheros(
                         path: archivoAES_TXT_Propia,
@@ -179,7 +179,7 @@ namespace TestModulosCifrado {
                 //----------------------CON CLAVE PROPIA---------------------\\
                 var desencriptarArchivoClavePropia = new CifradoAES();
                 using (HashAlgorithm hash = SHA256.Create()) {
-                    var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                    byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     desencriptarArchivoClavePropia.CriptografiaFicheros(
                         path: $"{archivoAES_TXT_Propia}.crypt",

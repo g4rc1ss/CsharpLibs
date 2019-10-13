@@ -62,14 +62,14 @@ namespace TestDatabases {
                 CrearBBDD_Fake();
 
                 using (var connect = baseDatos.Conexion()) {
-                    var insert = baseDatos.UpdateOrInsert("INSERT INTO EMPRESA (ID, NOMBRE, EDAD, DIRECCION, SALARIO) " +
+                    int insert = baseDatos.UpdateOrInsert("INSERT INTO EMPRESA (ID, NOMBRE, EDAD, DIRECCION, SALARIO) " +
                         $"VALUES (2, 'prueba', 56, 'insert', 4000)", connect);
                     Assert.IsTrue(insert == 1);
 
-                    var update = baseDatos.UpdateOrInsert("UPDATE EMPRESA set SALARIO = 4500.00 where ID=1", connect);
+                    int update = baseDatos.UpdateOrInsert("UPDATE EMPRESA set SALARIO = 4500.00 where ID=1", connect);
                     Assert.IsTrue(update == 1);
 
-                    var delete = baseDatos.UpdateOrInsert("DELETE FROM EMPRESA WHERE ID=1", connect);
+                    int delete = baseDatos.UpdateOrInsert("DELETE FROM EMPRESA WHERE ID=1", connect);
                     Assert.IsTrue(delete == 1);
                 }
             } finally {

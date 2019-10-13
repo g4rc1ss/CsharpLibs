@@ -26,7 +26,7 @@ namespace TestLogs {
                 using (var read = new StreamReader($"{fecha}.log")) {
                     string[] modosParaComprobar = { "[DEBUG]", "[LOGGING]", "[ERROR]" };
 
-                    var linea = read.ReadToEnd();
+                    string linea = read.ReadToEnd();
                     Assert.IsTrue(
                         linea.Contains("[DEBUG]") &&
                         linea.Contains("[LOGGING]") &&

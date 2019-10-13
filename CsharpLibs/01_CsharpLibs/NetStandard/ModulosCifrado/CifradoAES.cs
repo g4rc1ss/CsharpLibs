@@ -44,8 +44,9 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            EncryptStringToBytes_Aes(text: text, keyParameter: keyParameter, iVparameter: iVparameter);
+        public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
+            return EncryptStringToBytes_Aes(text: text, keyParameter: keyParameter, iVparameter: iVparameter);
+        }
 
         private byte[] EncryptStringToBytes_Aes(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
             // Check arguments.
@@ -103,8 +104,9 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            DecryptStringFromBytes_Aes(cipherText: cipherText, keyParameter: keyParameter, iVparameter: iVparameter);
+        public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
+            return DecryptStringFromBytes_Aes(cipherText: cipherText, keyParameter: keyParameter, iVparameter: iVparameter);
+        }
 
         private string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
             if (keyParameter != null && iVparameter != null) {
@@ -154,8 +156,9 @@ namespace ModulosCifrado {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
-        public bool CriptografiaFicheros(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) =>
-            CryptDecrypt_File(path: path, modo: modo, keyParameter: keyParameter, iVparameter: iVparameter);
+        public bool CriptografiaFicheros(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) {
+            return CryptDecrypt_File(path: path, modo: modo, keyParameter: keyParameter, iVparameter: iVparameter);
+        }
 
         private bool CryptDecrypt_File(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) {
             // Check arguments.
