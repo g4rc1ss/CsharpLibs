@@ -11,17 +11,17 @@
             resultados en un formato parecido o igual
             </summary>
         </member>
-        <member name="P:Respuestas.Respuesta.datos">
+        <member name="P:Respuestas.Respuesta.Datos">
             <summary>
             propiedad que va a contener un objeto
             </summary>
         </member>
-        <member name="P:Respuestas.Respuesta.mensaje">
+        <member name="P:Respuestas.Respuesta.Mensaje">
             <summary>
             Propiedad para enseñar un mensaje de error, advertencia, etc
             </summary>
         </member>
-        <member name="P:Respuestas.Respuesta.resultado">
+        <member name="P:Respuestas.Respuesta.Resultado">
             <summary>
             Propiedad que contiene el codigo de un error
             </summary>

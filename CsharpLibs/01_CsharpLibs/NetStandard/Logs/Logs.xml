@@ -9,7 +9,7 @@
             Clase para crear Logs de registro de las aplicaciones
             </summary>
         </member>
-        <member name="M:Logs.Log.crearLogs(System.Object,Logs.modos,System.Exception,System.String)">
+        <member name="M:Logs.Log.CrearLogs(System.Object,Logs.Modos,System.Exception,System.String)">
             <summary>
             Metodo para crear un archivo .log, se crea en la ruta donde esta
             el archivo compilado
@@ -27,22 +27,22 @@
             el cual no se usa con Excepciones
             </param>
         </member>
-        <member name="T:Logs.modos">
+        <member name="T:Logs.Modos">
             <summary>
             Enumerador para seleccionar el modo de Log
             </summary>
         </member>
-        <member name="F:Logs.modos.DEBUG">
+        <member name="F:Logs.Modos.DEBUG">
             <summary>
             [DEBUG] -> se usa para depurar, indicar trazas, etc
             </summary>
         </member>
-        <member name="F:Logs.modos.ERROR">
+        <member name="F:Logs.Modos.ERROR">
             <summary>
             [ERROR] -> Se usa habitualmente cuando se lanzan excepciones en el programa
             </summary>
         </member>
-        <member name="F:Logs.modos.LOGGING">
+        <member name="F:Logs.Modos.LOGGING">
             <summary>
             [LOGGING] -> Se usa para registrar comportamientos de la aplicacion informativos
             por ejemplo, "se ha iniciado sesion en" o "se ha creado un archivo x"

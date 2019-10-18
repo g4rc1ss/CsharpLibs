@@ -30,7 +30,7 @@
             Metodo para crear la base de datos, tambien comprueba
             si existe o no la base de datos
             </summary>
-            <param name="Query">consulta SQL escrita como una cadena</param>
+            <param name="query">consulta SQL escrita como una cadena</param>
         </member>
         <member name="M:Databases.SQLite.SQLiteDB.Conexion">
             <summary>
@@ -48,7 +48,7 @@
             Retorna en un objeto la consulta SELECT que se leera como un array
             ej: nombreObjeto["nombreColumna"];
             </returns>
-            <param name="Query">Consulta SQL en formato cadena</param>
+            <param name="query">Consulta SQL en formato cadena</param>
             <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         </member>
         <member name="M:Databases.SQLite.SQLiteDB.UpdateOrInsert(System.String,System.Data.SQLite.SQLiteConnection)">
@@ -58,10 +58,10 @@
             <returns>
             Retorna el numero de elementos que ha sido retocado
             </returns>
-            <param name="Query">Consulta SQL en formato cadena</param>
+            <param name="query">Consulta SQL en formato cadena</param>
             <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.maxID(System.String,System.String)">
+        <member name="M:Databases.SQLite.SQLiteDB.MaxID(System.String,System.String)">
             <summary>
             Se usa para ejecutar la instruccion Insert, Update o Delete
             </summary>
