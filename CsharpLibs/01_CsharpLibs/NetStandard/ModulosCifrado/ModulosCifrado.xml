@@ -36,12 +36,12 @@
             <returns>
             Devuelve un array de byte[] con el texto encriptado
             </returns>
-            <param name="Text">Texto a encriptar</param>
-            <param name="KeyParameter">
+            <param name="text">Texto a encriptar</param>
+            <param name="keyParameter">
             Contraseña de un maximo de tamaño de 256, la contraseña
             se tiene que cifrar con un hash como MD5, SHA256
             </param>
-            <param name="IVparameter">
+            <param name="iVparameter">
             Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
@@ -54,16 +54,16 @@
             Devuelve una cadena(string) con el texto descifrado
             </returns>
             <param name="cipherText">conjunto de bytes cifrados</param>
-            <param name="KeyParameter">
+            <param name="keyParameter">
             Contraseña de un maximo de tamaño de 256, la contraseña
             se tiene que cifrar con un hash como MD5, SHA256
             </param>
-            <param name="IVparameter">
+            <param name="iVparameter">
             Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
         </member>
-        <member name="M:ModulosCifrado.CifradoAES.CriptografiaFicheros(System.String,ModulosCifrado.cifrarDescifrar,System.Byte[],System.Byte[])">
+        <member name="M:ModulosCifrado.CifradoAES.CriptografiaFicheros(System.String,ModulosCifrado.CifrarDescifrar,System.Byte[],System.Byte[])">
             <summary>
             Metodo para cifrar y descifrar archivos
             </summary>
@@ -71,13 +71,13 @@
             Devuelve true o false dependiendo de si ha salido bien la operacion de
             cifrado o descifrado
             </returns>
-            <param name="Path">ruta de archivo a cifrar</param>
+            <param name="path">ruta de archivo a cifrar</param>
             <param name="modo">enum para elegir si queremos cifrar o descifrar</param>
-            <param name="KeyParameter">
+            <param name="keyParameter">
             Contraseña de un maximo de tamaño de 256, la contraseña
             se tiene que cifrar con un hash como MD5, SHA256
             </param>
-            <param name="IVparameter">
+            <param name="iVparameter">
             Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
@@ -94,18 +94,18 @@
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.ObjectDisposedException"/>
         </member>
-        <member name="T:ModulosCifrado.cifrarDescifrar">
+        <member name="T:ModulosCifrado.CifrarDescifrar">
             <summary>
             Enumerador para indicar si queremos cifrar o descifrar
             </summary>
         </member>
-        <member name="F:ModulosCifrado.cifrarDescifrar.cifrar">
+        <member name="F:ModulosCifrado.CifrarDescifrar.cifrar">
             <summary>
             indicador de que quieres cifrar algo, por ejemplo un documento
             </summary>
             <example>cifrarDescifrar.cifrar</example>
         </member>
-        <member name="F:ModulosCifrado.cifrarDescifrar.descifrar">
+        <member name="F:ModulosCifrado.CifrarDescifrar.descifrar">
             <summary>
             indicador de que quieres descifrar algo, por ejemplo un archivo zip
             </summary>
