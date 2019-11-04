@@ -7,7 +7,7 @@
     <authors>Asier Garcia</authors>
     <owners>Asier Garcia</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Libreria para la gestion de bases de datos como SQLite</description>
+    <description>Librerias creadas para futuros proyectos o usos</description>
     <repository url="https://github.com/g4rc1ss/CsharpLibs" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
