@@ -28,7 +28,7 @@ jobs:
     - name: Nuget Pack para preparar el paquete
       run: |
         cd NugetPackages/NugetConfig/
-        nuget pack garciss.Libs.nuspec
+        nuget pack garciss.Libs.nuspec -Properties Configuration=Release -Verbosity Detail
         
 
     - name: Push generated package to GitHub registry
