@@ -12,7 +12,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
-    <DocumentationFile>Logs.xml</DocumentationFile>
+    <DocumentationFile>Core.Data.Logs.xml</DocumentationFile>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>

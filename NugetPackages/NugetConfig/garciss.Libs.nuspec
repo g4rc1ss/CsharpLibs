@@ -16,8 +16,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\PackagesCompilaciones\netstandard*\*.dll" target="lib\NetStandard\" />
-    <file src="..\PackagesCompilaciones\netstandard*\*.pdb" target="lib\NetStandard\" />
-    <file src="..\PackagesCompilaciones\netstandard*\*.xml" target="lib\NetStandard\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.dll" target="lib\netStandard2.0\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.pdb" target="lib\netStandard2.0\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.xml" target="lib\netStandard2.0\" />
   </files>
 </package>

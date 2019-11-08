@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>ModulosCifrado.xml</DocumentationFile>
+    <DocumentationFile>Core.Libs.Encriptacion.xml</DocumentationFile>
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Data.Logs</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Data.Logs.Log">
+            <summary>
+            Clase para crear Logs de registro de las aplicaciones
+            </summary>
+        </member>
+        <member name="M:Core.Data.Logs.Log.CrearLogs(System.Object,Core.Data.Logs.Modos,System.Exception,System.String)">
+            <summary>
+            Metodo para crear un archivo .log, se crea en la ruta donde esta
+            el archivo compilado
+            </summary>
+            <param name="obj">recibe informacion sobre el objeto que le mandas, suele ser "this"</param>
+            <param name="modo">
+            recibes un enumerador para seleccionar el tipo de Log que quieres guardar
+            </param>
+            <param name="ex">
+            Recibe la informacion de la excepcion que ha sido lanzada
+            </param>
+            <param name="mensaje">
+            Solo se añadira al fichero LOG cuando "EX" sea null, el motivo es para
+            que se pueda hacer uso del modo LOGGING(explicado su uso mas abajo) o DEBUG(no tan habitual)
+            el cual no se usa con Excepciones
+            </param>
+        </member>
+        <member name="T:Core.Data.Logs.Modos">
+            <summary>
+            Enumerador para seleccionar el modo de Log
+            </summary>
+        </member>
+        <member name="F:Core.Data.Logs.Modos.DEBUG">
+            <summary>
+            [DEBUG] -> se usa para depurar, indicar trazas, etc
+            </summary>
+        </member>
+        <member name="F:Core.Data.Logs.Modos.ERROR">
+            <summary>
+            [ERROR] -> Se usa habitualmente cuando se lanzan excepciones en el programa
+            </summary>
+        </member>
+        <member name="F:Core.Data.Logs.Modos.LOGGING">
+            <summary>
+            [LOGGING] -> Se usa para registrar comportamientos de la aplicacion informativos
+            por ejemplo, "se ha iniciado sesion en" o "se ha creado un archivo x"
+            </summary>
+        </member>
+    </members>
+</doc>

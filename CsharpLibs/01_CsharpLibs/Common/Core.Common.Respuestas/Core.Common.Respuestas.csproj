@@ -12,7 +12,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
-    <DocumentationFile>Respuestas.xml</DocumentationFile>
+    <DocumentationFile>Core.Common.Respuestas.xml</DocumentationFile>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
