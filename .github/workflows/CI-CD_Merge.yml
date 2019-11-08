@@ -1,7 +1,7 @@
-name: Pipeline_PullRequests
+name: On Merge
 
-on:
-  pull_request:
+on: 
+  push:
     branches: 
       - master
 
@@ -14,10 +14,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Dotnet Build
       run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
-    
-    - name: Dotnet Test
-      run: dotnet test --configuration Release ./CsharpLibs/CsharpLibs.sln
-    
+
     
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
@@ -30,7 +27,6 @@ jobs:
         cd NugetPackages/NugetConfig/
         nuget pack garciss.Libs.nuspec -Properties Configuration=Release -Verbosity Detail
         
-
     - name: Push generated package to GitHub registry
       run: |
         nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
