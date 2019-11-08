@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Asier Garcia</Authors>
+    <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Core.Common.EnumHelper.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>
