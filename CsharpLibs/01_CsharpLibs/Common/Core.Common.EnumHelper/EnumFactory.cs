@@ -214,8 +214,8 @@ namespace Core.Common.EnumHelper {
             if (value == null)
                 throw new ArgumentNullException("value");
 
-            // Si se ha pasado como parámetro un valor numérico (devuelto por la BD)
-            if (int.TryParse(value.Trim(), out var valorNumerico)) {
+            // out _ (Se utiliza el discard de Csharp, porque no se necesita ese parametro)
+            if (int.TryParse(value.Trim(), out _)) {
                 var paramValue = Convert.ToInt32(value);
                 foreach (TEnum obj in Enum.GetValues(tp)) {
                     var test = Enum.Parse(typeof(TEnum), obj.ToString()) as Enum;
