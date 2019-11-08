@@ -1,4 +1,4 @@
-﻿using Core.Data.Respuestas;
+﻿using Core.Common.Respuestas;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
