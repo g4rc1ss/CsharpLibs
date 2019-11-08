@@ -70,9 +70,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Data.BenchMarkingLogs"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Libs.BenchEncriptacion", "03_BenchMarking\Libs\Core.Libs.BenchEncriptacion\Core.Libs.BenchEncriptacion.csproj", "{519EAE21-24AD-477A-88EB-9EBC4F486FAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.EnumHelper", "01_CsharpLibs\Common\Core.Common.EnumHelper\Core.Common.EnumHelper.csproj", "{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.EnumHelper", "01_CsharpLibs\Common\Core.Common.EnumHelper\Core.Common.EnumHelper.csproj", "{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.TestEnumHelper", "Core.Common.TestEnumHelper\Core.Common.TestEnumHelper.csproj", "{E4290549-ADEE-41E0-8B70-182D6782692B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.TestEnumHelper", "02_Test\Common\Core.Common.TestEnumHelper\Core.Common.TestEnumHelper.csproj", "{25163E6B-2C09-48F7-98B9-5E741619BB7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,10 +144,10 @@ Global
 		{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4290549-ADEE-41E0-8B70-182D6782692B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4290549-ADEE-41E0-8B70-182D6782692B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4290549-ADEE-41E0-8B70-182D6782692B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4290549-ADEE-41E0-8B70-182D6782692B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25163E6B-2C09-48F7-98B9-5E741619BB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25163E6B-2C09-48F7-98B9-5E741619BB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25163E6B-2C09-48F7-98B9-5E741619BB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25163E6B-2C09-48F7-98B9-5E741619BB7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,7 +181,7 @@ Global
 		{B1C051A0-D073-429A-8118-66E9F85B1B22} = {223FBDC4-DD14-48EA-B245-AB87FA7D043E}
 		{519EAE21-24AD-477A-88EB-9EBC4F486FAF} = {60271866-8BFB-46C8-9B03-9C6304652433}
 		{F2258669-415D-4E6C-A3B3-E6AC5EEEDD7E} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
-		{E4290549-ADEE-41E0-8B70-182D6782692B} = {12628634-7A99-44A2-A873-69F9F754396A}
+		{25163E6B-2C09-48F7-98B9-5E741619BB7C} = {12628634-7A99-44A2-A873-69F9F754396A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}
