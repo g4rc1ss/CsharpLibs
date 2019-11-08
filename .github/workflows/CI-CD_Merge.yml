@@ -29,5 +29,6 @@ jobs:
         
     - name: Push generated package to GitHub registry
       run: |
+        cd NugetPackages/NugetConfig/
         nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
         
