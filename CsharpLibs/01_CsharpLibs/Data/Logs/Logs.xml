@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Logs</name>
+        <name>Core.Data.Logs</name>
     </assembly>
     <members>
-        <member name="T:Logs.Log">
+        <member name="T:Core.Data.Logs.Log">
             <summary>
             Clase para crear Logs de registro de las aplicaciones
             </summary>
         </member>
-        <member name="M:Logs.Log.CrearLogs(System.Object,Logs.Modos,System.Exception,System.String)">
+        <member name="M:Core.Data.Logs.Log.CrearLogs(System.Object,Core.Data.Logs.Modos,System.Exception,System.String)">
             <summary>
             Metodo para crear un archivo .log, se crea en la ruta donde esta
             el archivo compilado
@@ -27,22 +27,22 @@
             el cual no se usa con Excepciones
             </param>
         </member>
-        <member name="T:Logs.Modos">
+        <member name="T:Core.Data.Logs.Modos">
             <summary>
             Enumerador para seleccionar el modo de Log
             </summary>
         </member>
-        <member name="F:Logs.Modos.DEBUG">
+        <member name="F:Core.Data.Logs.Modos.DEBUG">
             <summary>
             [DEBUG] -> se usa para depurar, indicar trazas, etc
             </summary>
         </member>
-        <member name="F:Logs.Modos.ERROR">
+        <member name="F:Core.Data.Logs.Modos.ERROR">
             <summary>
             [ERROR] -> Se usa habitualmente cuando se lanzan excepciones en el programa
             </summary>
         </member>
-        <member name="F:Logs.Modos.LOGGING">
+        <member name="F:Core.Data.Logs.Modos.LOGGING">
             <summary>
             [LOGGING] -> Se usa para registrar comportamientos de la aplicacion informativos
             por ejemplo, "se ha iniciado sesion en" o "se ha creado un archivo x"

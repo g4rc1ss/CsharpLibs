@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Libs\ModulosCifrado\Core.Libs.ModulosCifrado.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Libs\ModulosCifrado\Core.Libs.Encriptacion.csproj" />
   </ItemGroup>
 
 </Project>

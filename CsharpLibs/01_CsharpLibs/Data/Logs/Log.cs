@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace Logs {
+namespace Core.Data.Logs {
     /// <summary>
     /// Clase para crear Logs de registro de las aplicaciones
     /// </summary>

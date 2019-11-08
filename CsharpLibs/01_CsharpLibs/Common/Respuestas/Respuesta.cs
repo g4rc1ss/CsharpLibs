@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Respuestas {
+namespace Core.Common.Respuestas {
     /// <summary>
     /// Clase que contiene un objeto para gestionar resultados y excepciones
     /// principalemente en aplicaciones Web, hace que se devuelva los

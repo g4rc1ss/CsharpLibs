@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>ModulosCifrado</name>
+        <name>Core.Libs.Encriptacion</name>
     </assembly>
     <members>
-        <member name="T:ModulosCifrado.CifradoAES">
+        <member name="T:Core.Libs.Encriptacion.Cryptography.AES">
             <summary>
             Clase con metodos y atributos para facilitar el uso de la clase 
             [System.Security.Cryptography].Aes
             </summary>
         </member>
-        <member name="P:ModulosCifrado.CifradoAES.Key">
+        <member name="P:Core.Libs.Encriptacion.Cryptography.AES.Key">
             <summary>
             Un array de bytes que contiene la contraseña con la que se encriptara
             el texto o descifrara
@@ -20,7 +20,7 @@
             el texto
             </returns>
         </member>
-        <member name="P:ModulosCifrado.CifradoAES.IV">
+        <member name="P:Core.Libs.Encriptacion.Cryptography.AES.IV">
             <summary>
             Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
@@ -29,7 +29,7 @@
             Devuelve el vector de inicializacion
             </returns>
         </member>
-        <member name="M:ModulosCifrado.CifradoAES.EncriptarTexto(System.String,System.Byte[],System.Byte[])">
+        <member name="M:Core.Libs.Encriptacion.Cryptography.AES.EncriptarTexto(System.String,System.Byte[],System.Byte[])">
             <summary>
             Metodo para cifrar una cadena en el algoritmo AES
             </summary>
@@ -46,7 +46,7 @@
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
         </member>
-        <member name="M:ModulosCifrado.CifradoAES.DesencriptarTexto(System.Byte[],System.Byte[],System.Byte[])">
+        <member name="M:Core.Libs.Encriptacion.Cryptography.AES.DesencriptarTexto(System.Byte[],System.Byte[],System.Byte[])">
             <summary>
             Metodo para descifrar una array de bytes cifrados en algoritmo AES
             </summary>
@@ -63,7 +63,7 @@
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
         </member>
-        <member name="M:ModulosCifrado.CifradoAES.CriptografiaFicheros(System.String,ModulosCifrado.CifrarDescifrar,System.Byte[],System.Byte[])">
+        <member name="M:Core.Libs.Encriptacion.Cryptography.AES.CriptografiaFicheros(System.String,Core.Libs.Encriptacion.Cryptography.CifrarDescifrar,System.Byte[],System.Byte[])">
             <summary>
             Metodo para cifrar y descifrar archivos
             </summary>
@@ -82,7 +82,7 @@
             de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
             </param>
         </member>
-        <member name="M:ModulosCifrado.CifradoAES.Create">
+        <member name="M:Core.Libs.Encriptacion.Cryptography.AES.Create">
             <summary>
             Creamos claves aleatorias de cifrado si no queremos usar una contraseña propia
             </summary>
@@ -94,18 +94,18 @@
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.ObjectDisposedException"/>
         </member>
-        <member name="T:ModulosCifrado.CifrarDescifrar">
+        <member name="T:Core.Libs.Encriptacion.Cryptography.CifrarDescifrar">
             <summary>
             Enumerador para indicar si queremos cifrar o descifrar
             </summary>
         </member>
-        <member name="F:ModulosCifrado.CifrarDescifrar.cifrar">
+        <member name="F:Core.Libs.Encriptacion.Cryptography.CifrarDescifrar.cifrar">
             <summary>
             indicador de que quieres cifrar algo, por ejemplo un documento
             </summary>
             <example>cifrarDescifrar.cifrar</example>
         </member>
-        <member name="F:ModulosCifrado.CifrarDescifrar.descifrar">
+        <member name="F:Core.Libs.Encriptacion.Cryptography.CifrarDescifrar.descifrar">
             <summary>
             indicador de que quieres descifrar algo, por ejemplo un archivo zip
             </summary>

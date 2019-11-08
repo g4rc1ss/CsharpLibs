@@ -1,4 +1,4 @@
-﻿using Databases.SQLite;
+﻿using Core.Data.Databases.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

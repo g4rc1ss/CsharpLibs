@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ModulosCifrado;
+﻿using Core.Libs.Encriptacion.Cryptography;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,12 +7,12 @@ using System.Text;
 namespace TestModulosCifrado {
     [TestClass]
     public class TestAES {
-        private const string _TEXTOPLANO = "Este texto es el que se va a encriptar :P /\\";
+        private const string TEXTOPLANO = "Este texto es el que se va a encriptar :P /\\";
         [TestMethod]
         public void CifradoTexto() {
             //----------------------CON CLAVE ALEATORIA------------------\\
-            var cifrarTextoClaveRandom = new CifradoAES();
-            byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(_TEXTOPLANO);
+            var cifrarTextoClaveRandom = new AES();
+            byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
 
             File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
             File.WriteAllBytes("IV.aes", cifrarTextoClaveRandom.IV);
@@ -25,16 +25,16 @@ namespace TestModulosCifrado {
             for (int x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++)
                 Assert.IsTrue(File.ReadAllBytes("IV.aes")[x] == cifrarTextoClaveRandom.IV[x]);
 
-            Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != _TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
+            Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
 
             //----------------------CON CLAVE PROPIA---------------------\\
-            var cifrarTextoClavePropia = new CifradoAES();
+            var cifrarTextoClavePropia = new AES();
             using (HashAlgorithm hash = SHA256.Create()) {
                 byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                 textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
 
-                    text: _TEXTOPLANO,
+                    text: TEXTOPLANO,
                     keyParameter: keyHashByte,
                     iVparameter: cifrarTextoClavePropia.IV
                 );
@@ -46,7 +46,7 @@ namespace TestModulosCifrado {
 
                 Assert.IsTrue(
                     cifrarTextoClavePropia.Key == keyHashByte &&
-                    Encoding.UTF8.GetString(textoCifrado) != _TEXTOPLANO &&
+                    Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO &&
                     cifrarTextoClavePropia.IV.Length == 16 &&
                     File.Exists("TextoCifradoClavePropia.aes")
                 );
@@ -57,7 +57,7 @@ namespace TestModulosCifrado {
         public void DescifrarTexto() {
             CifradoTexto();
             //----------------------CON CLAVE ALEATORIA------------------\\
-            var descifrarTextoClaveRandom = new CifradoAES();
+            var descifrarTextoClaveRandom = new AES();
             string textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
                 cipherText: File.ReadAllBytes("TextoCifradoClaveRandom.aes"),
                 keyParameter: File.ReadAllBytes("Key.aes"),
@@ -67,14 +67,14 @@ namespace TestModulosCifrado {
             File.Delete("TextoCifradoClaveRandom.aes");
 
             Assert.IsTrue(
-                textoDescifrado == _TEXTOPLANO &&
+                textoDescifrado == TEXTOPLANO &&
                 !File.Exists("Key.aes") &&
                 !File.Exists("IV.aes") &&
                 !File.Exists("TextoCifradoClaveRandom.aes")
             );
 
             //----------------------CON CLAVE PROPIA---------------------\\
-            var descifrarTextoClavePropia = new CifradoAES();
+            var descifrarTextoClavePropia = new AES();
             using (HashAlgorithm hash = SHA256.Create()) {
                 byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
@@ -87,7 +87,7 @@ namespace TestModulosCifrado {
 
                 Assert.IsTrue(
                     descifrarTextoClavePropia.Key == keyHashByte &&
-                    textoDescifradoPropio == _TEXTOPLANO &&
+                    textoDescifradoPropio == TEXTOPLANO &&
                     descifrarTextoClavePropia.IV.Length == 16 &&
                     !File.Exists("TextoCifradoClavePropia.aes") &&
                     !File.Exists("IVpropia.aes")
@@ -102,10 +102,10 @@ namespace TestModulosCifrado {
             string archivoKeyRandom = "KeyArchivos.aes"; string archivoIVRandom = "IVarchivos.aes";
             string archivoIVPropia = "IVarchivosPropia.aes";
             try {
-                File.WriteAllText(archivoAES_TXT, _TEXTOPLANO);
-                File.WriteAllText(archivoAES_TXT_Propia, _TEXTOPLANO);
+                File.WriteAllText(archivoAES_TXT, TEXTOPLANO);
+                File.WriteAllText(archivoAES_TXT_Propia, TEXTOPLANO);
 
-                var encriptarFicheroClaveRandom = new CifradoAES();
+                var encriptarFicheroClaveRandom = new AES();
                 encriptarFicheroClaveRandom.CriptografiaFicheros(path: archivoAES_TXT, modo: CifrarDescifrar.cifrar);
                 File.WriteAllBytes(archivoKeyRandom, encriptarFicheroClaveRandom.Key);
                 File.WriteAllBytes(archivoIVRandom, encriptarFicheroClaveRandom.IV);
@@ -119,10 +119,10 @@ namespace TestModulosCifrado {
 
                 Assert.IsTrue(
                     File.Exists($"{archivoAES_TXT}.crypt") &&
-                    Encoding.Unicode.GetString(File.ReadAllBytes($"{archivoAES_TXT}.crypt")) != _TEXTOPLANO
+                    Encoding.Unicode.GetString(File.ReadAllBytes($"{archivoAES_TXT}.crypt")) != TEXTOPLANO
                 );
                 //----------------------CON CLAVE PROPIA---------------------\\
-                var encriptarArchivoClavePropia = new CifradoAES();
+                var encriptarArchivoClavePropia = new AES();
                 using (HashAlgorithm hash = SHA256.Create()) {
                     byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
@@ -142,7 +142,7 @@ namespace TestModulosCifrado {
                     Assert.IsTrue(
                         encriptarArchivoClavePropia.Key == keyHashByte &&
                         File.Exists($"{archivoAES_TXT_Propia}.crypt") &&
-                        Encoding.Unicode.GetString(File.ReadAllBytes($"{archivoAES_TXT_Propia}.crypt")) != _TEXTOPLANO
+                        Encoding.Unicode.GetString(File.ReadAllBytes($"{archivoAES_TXT_Propia}.crypt")) != TEXTOPLANO
                     );
                 }
             } finally {
@@ -158,7 +158,7 @@ namespace TestModulosCifrado {
             string archivoIVPropia = "IVarchivosPropia.aes";
             CifradoArchivos();
             try {
-                var desencriptarFicheroClaveRandom = new CifradoAES();
+                var desencriptarFicheroClaveRandom = new AES();
                 desencriptarFicheroClaveRandom.CriptografiaFicheros(
                     path: archivoAES_TXT,
                     modo: CifrarDescifrar.descifrar,
@@ -174,10 +174,10 @@ namespace TestModulosCifrado {
                     !File.Exists(archivoKeyRandom) &&
                     !File.Exists(archivoIVRandom) &&
                     !File.Exists($"{archivoAES_TXT}.crypt") &&
-                    File.ReadAllText(archivoAES_TXT) == _TEXTOPLANO
+                    File.ReadAllText(archivoAES_TXT) == TEXTOPLANO
                 );
                 //----------------------CON CLAVE PROPIA---------------------\\
-                var desencriptarArchivoClavePropia = new CifradoAES();
+                var desencriptarArchivoClavePropia = new AES();
                 using (HashAlgorithm hash = SHA256.Create()) {
                     byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
@@ -194,7 +194,7 @@ namespace TestModulosCifrado {
                 Assert.IsTrue(
                     !File.Exists(archivoIVPropia) &&
                     !File.Exists($"{archivoAES_TXT_Propia}.crypt") &&
-                    File.ReadAllText(archivoAES_TXT_Propia) == _TEXTOPLANO
+                    File.ReadAllText(archivoAES_TXT_Propia) == TEXTOPLANO
                 );
             } finally {
                 File.Delete(archivoAES_TXT);

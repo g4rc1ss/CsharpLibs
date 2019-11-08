@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Data.Databases", "01_C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Data.Logs", "01_CsharpLibs\Data\Logs\Core.Data.Logs.csproj", "{FDAA56E6-ADE6-45DC-98AB-C3BF39B535D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Libs.ModulosCifrado", "01_CsharpLibs\Libs\ModulosCifrado\Core.Libs.ModulosCifrado.csproj", "{C99B3E96-5FDF-43FA-B979-EBA6F0C81A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Libs.Encriptacion", "01_CsharpLibs\Libs\ModulosCifrado\Core.Libs.Encriptacion.csproj", "{C99B3E96-5FDF-43FA-B979-EBA6F0C81A5B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRespuesta", "02_Test\Common\TestRespuesta\TestRespuesta.csproj", "{1321D47E-35C4-44D8-A2FD-AB5930875950}"
 EndProject

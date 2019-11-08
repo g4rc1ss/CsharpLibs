@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>DirectoriosArchivos</name>
+        <name>Core.Common.DirectoriosArchivos</name>
     </assembly>
     <members>
-        <member name="T:DirectoriosArchivos.Archivos">
+        <member name="T:Core.Common.DirectoriosArchivos.Archivos">
             <summary>
             Clase con metodos utiles para la gestion de archivos que no estan
             disponibles en las librerias habituales
             </summary>
         </member>
-        <member name="M:DirectoriosArchivos.Archivos.FicherosOrdenados(System.String[])">
+        <member name="M:Core.Common.DirectoriosArchivos.Archivos.FicherosOrdenados(System.String[])">
             <summary>
             Ordenamos una lista de ficheros
             </summary>
@@ -19,13 +19,13 @@
             </returns>
             <param name="listaDesordenada">Recibimos un array tipo string</param>
         </member>
-        <member name="T:DirectoriosArchivos.Directorios">
+        <member name="T:Core.Common.DirectoriosArchivos.Directorios">
             <summary>
             Clase para tratamiento de directorios que no estan disponibles en las
             librerias habituales
             </summary>
         </member>
-        <member name="M:DirectoriosArchivos.Directorios.Copy(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+        <member name="M:Core.Common.DirectoriosArchivos.Directorios.Copy(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
             <summary>
             Copiar directorios recursivamente(todos los archivos y subdirectorios)
             </summary>

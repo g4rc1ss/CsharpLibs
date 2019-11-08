@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace DirectoriosArchivos {
+namespace Core.Common.DirectoriosArchivos {
     /// <summary>
     /// Clase para tratamiento de directorios que no estan disponibles en las
     /// librerias habituales

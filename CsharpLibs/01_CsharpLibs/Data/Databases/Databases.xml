@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Databases</name>
+        <name>Core.Data.Databases</name>
     </assembly>
     <members>
-        <member name="T:Databases.SQLite.SQLiteDB">
+        <member name="T:Core.Data.Databases.SQLite.SQLiteDB">
             <summary>
             Clase para la creacion y uso de una base de datos SQLite
             </summary>
         </member>
-        <member name="P:Databases.SQLite.SQLiteDB.DBName">
+        <member name="P:Core.Data.Databases.SQLite.SQLiteDB.DBName">
             <summary>
             Elegimos la base de datos, sino se llamara "Database.db"
             </summary>
@@ -17,7 +17,7 @@
             devuelve el nombre de la base de datos
             </returns>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.IsCreateDatabase">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.IsCreateDatabase">
             <summary>
             Metodo para comprobar si existe la base de datos
             </summary>
@@ -25,14 +25,14 @@
             retorna true o false dependiendo de si existe o no
             </returns>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.CreateDatabase(System.String)">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.CreateDatabase(System.String)">
             <summary>
             Metodo para crear la base de datos, tambien comprueba
             si existe o no la base de datos
             </summary>
             <param name="query">consulta SQL escrita como una cadena</param>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.Conexion">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.Conexion">
             <summary>
             Establece la conexion con la base de datos
             </summary>
@@ -40,7 +40,7 @@
             Retorna la conexion establecida con la base de datos
             </returns>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.Select(System.String,System.Data.SQLite.SQLiteConnection)">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.Select(System.String,System.Data.SQLite.SQLiteConnection)">
             <summary>
             Ejecuta la sentencia SELECT
             </summary>
@@ -51,7 +51,7 @@
             <param name="query">Consulta SQL en formato cadena</param>
             <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.UpdateOrInsert(System.String,System.Data.SQLite.SQLiteConnection)">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.UpdateOrInsert(System.String,System.Data.SQLite.SQLiteConnection)">
             <summary>
             Se usa para ejecutar la instruccion Insert, Update o Delete
             </summary>
@@ -61,7 +61,7 @@
             <param name="query">Consulta SQL en formato cadena</param>
             <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         </member>
-        <member name="M:Databases.SQLite.SQLiteDB.MaxID(System.String,System.String)">
+        <member name="M:Core.Data.Databases.SQLite.SQLiteDB.MaxID(System.String,System.String)">
             <summary>
             Se usa para ejecutar la instruccion Insert, Update o Delete
             </summary>

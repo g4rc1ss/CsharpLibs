@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Respuestas;
+﻿using Core.Common.Respuestas;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace TestRespuesta {
@@ -34,7 +34,7 @@ namespace TestRespuesta {
                 resp2.Mensaje == string.Empty && resp2.Resultado == 0 &&
 
                 resp3.Mensaje == ex.Message && resp3.Resultado != Errores.SINERROR
-                );
+            );
         }
     }
 

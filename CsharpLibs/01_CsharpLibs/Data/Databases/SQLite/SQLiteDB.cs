@@ -2,7 +2,7 @@
 using System.Data.SQLite;
 using System.IO;
 
-namespace Databases.SQLite {
+namespace Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>

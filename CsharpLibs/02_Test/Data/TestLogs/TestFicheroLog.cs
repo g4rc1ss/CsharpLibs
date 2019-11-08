@@ -1,4 +1,4 @@
-﻿using Logs;
+﻿using Core.Data.Logs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

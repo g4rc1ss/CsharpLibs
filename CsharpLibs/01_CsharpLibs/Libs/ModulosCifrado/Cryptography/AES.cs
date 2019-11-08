@@ -2,12 +2,12 @@
 using System.IO;
 using System.Security.Cryptography;
 
-namespace ModulosCifrado {
+namespace Core.Libs.Encriptacion.Cryptography {
     /// <summary>
     /// Clase con metodos y atributos para facilitar el uso de la clase 
     /// [System.Security.Cryptography].Aes
     /// </summary>
-    public class CifradoAES {
+    public class AES {
 
         /// <summary>
         /// Un array de bytes que contiene la contraseña con la que se encriptara
