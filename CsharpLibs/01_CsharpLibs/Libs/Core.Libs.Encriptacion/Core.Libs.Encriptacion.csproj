@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>garciss.ModulosCifrado</PackageId>
     <Authors>Asier Garcia</Authors>
     <Description>Libreria para usar algoritmos de cifrado mas sencillamente como AES etc</Description>
@@ -13,6 +13,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>ModulosCifrado.xml</DocumentationFile>
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
 </Project>
