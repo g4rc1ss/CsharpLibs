@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>garciss.Databases</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Asier Garcia</Authors>
+    <Description>Libreria para la gestion de bases de datos como SQLite</Description>
+    <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
+    <Version>1.2.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Databases.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
+  </ItemGroup>
+
+</Project>
