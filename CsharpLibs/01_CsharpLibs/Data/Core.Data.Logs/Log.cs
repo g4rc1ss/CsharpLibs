@@ -23,6 +23,11 @@ namespace Core.Data.Logs {
         /// que se pueda hacer uso del modo LOGGING(explicado su uso mas abajo) o DEBUG(no tan habitual)
         /// el cual no se usa con Excepciones
         /// </param>
+        /// <example>
+        /// <code>
+        /// Log.CrearLogs(this, Modos.DEBUG);
+        /// </code>
+        /// </example>
         public static bool CrearLogs(object obj, Modos modo, Exception ex = null, string mensaje = null) {
             return new Log().Save(obj, modo, ex, mensaje);
         }

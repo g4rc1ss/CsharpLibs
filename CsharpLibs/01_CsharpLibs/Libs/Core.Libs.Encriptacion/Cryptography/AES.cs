@@ -44,6 +44,11 @@ namespace Core.Libs.Encriptacion.Cryptography {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
+        /// <example>
+        /// <code>
+        /// byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
+        /// </code>
+        /// </example>
         public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
             return EncryptStringToBytes_Aes(text: text, keyParameter: keyParameter, iVparameter: iVparameter);
         }
@@ -104,6 +109,15 @@ namespace Core.Libs.Encriptacion.Cryptography {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
+        /// <example>
+        /// <code>
+        /// string textoDescifradoPropio = descifrarTextoClavePropia.DesencriptarTexto(
+        ///     cipherText: Aqui el texto,
+        ///     keyParameter: Aqui la Key,
+        ///     iVparameter: Aqui el IV
+        /// );
+        /// </code>
+        /// </example>
         public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
             return DecryptStringFromBytes_Aes(cipherText: cipherText, keyParameter: keyParameter, iVparameter: iVparameter);
         }
@@ -156,6 +170,20 @@ namespace Core.Libs.Encriptacion.Cryptography {
         /// Vector de Inicializacion, es un bloque de bits obligatorio en los algoritmos
         /// de cifrado por bloque. https://es.wikipedia.org/wiki/Vector_de_inicialización
         /// </param>
+        /// <example>
+        /// <code>
+        /// var encriptarArchivoClavePropia = new AES();
+        /// using (HashAlgorithm hash = SHA256.Create()) {
+        ///     byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+        ///     encriptarArchivoClavePropia.CriptografiaFicheros(
+        ///         path: archivoAES_TXT_Propia,
+        ///         modo: CifrarDescifrar.cifrar,
+        ///         keyParameter: keyHashByte,
+        ///         iVparameter: encriptarArchivoClavePropia.IV
+        ///     );
+        /// }           
+        /// </code>
+        /// </example>
         public bool CriptografiaFicheros(string path, CifrarDescifrar modo, byte[] keyParameter = null, byte[] iVparameter = null) {
             return CryptDecrypt_File(path: path, modo: modo, keyParameter: keyParameter, iVparameter: iVparameter);
         }
@@ -245,6 +273,7 @@ namespace Core.Libs.Encriptacion.Cryptography {
         /// <summary>
         /// indicador de que quieres descifrar algo, por ejemplo un archivo zip
         /// </summary>
+        /// <example>cifrarDescifrar.descifrar</example>
         descifrar = 1
     }
 }
