@@ -85,7 +85,6 @@ namespace Databases.SQLite {
 
         private SQLiteDataReader ExecuteSelect(string query, SQLiteConnection connect) {
             using (var command = new SQLiteCommand(query, connect))
-
                 return command.ExecuteReader();
         }
 
