@@ -7,23 +7,17 @@ namespace Core.Common.TestEnumHelper {
         testNumCero = 0,
         [EnumDescription(@"10")]
         testNumUno = 1,
-        [EnumDescription(@"25")]
+        [EnumDescription(@"Dos")]
         testNumDos = 2,
-        [EnumDescription(@"tres")]
-        testNumTres = 3,
-        [EnumDescription(@"cuatro")]
-        testNumCuatro = 4,
-        [EnumDescription(@"cinco")]
-        testNumCinco = 5,
-        [EnumDescription(@"seis")]
-        testNumSeis = 6,
-        [EnumDescription(@"siete07")]
-        testNumSiete = 7,
-        [EnumDescription(@"080")]
-        testNumOcho = 8,
-        [EnumDescription(@"1000")]
-        testNumNueve = 9,
         [EnumDescription(@"hgfjrhguor")]
-        testNumDiez = 10,
+        testNumDiez = 3,
+    }
+
+    public enum EnumTestFakeSinClaves {
+        desconocido = -1,
+        enumSinClave0 = 0,
+        enumSinClave1 = 1,
+        enumSinClave2 = 2,
+        enumSinClave3 = 3
     }
 }

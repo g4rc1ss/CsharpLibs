@@ -51,6 +51,8 @@ namespace Core.Common.EnumHelper {
     /// KeyFromEnumItem/<Sino/>(CONST_SiNo, SiNo.Unkwown) devolverá " "
     /// </example>
     public static class EnumFactory {
+
+        #region "Obtencion enumerador a traves de clave"
         /// <summary>
         /// Devuelve el EnumItem correspondiente a una Clave
         /// </summary>
@@ -65,60 +67,7 @@ namespace Core.Common.EnumHelper {
             var posicion = Array.IndexOf(constates, clave);
             if (posicion < 0)
                 posicion = -1;
-            TEnum retorno;
-            Enum.TryParse(posicion.ToString(), out retorno);
-            return retorno;
-        }
-
-        /// <summary>
-        /// Devuleve la clave correspondiente a un EnumItem
-        /// </summary>
-        /// <typeparam name="TEnum">Enumeración</typeparam>
-        /// <param name="constantes">Array que contiene las claves de esa enumeración</param>
-        /// <param name="t">EnumItem del que se quiere conocer la clave</param>
-        /// <returns>Clave asociada a ese EnumItem.
-        ///   Si ese EnumItem no tiene clave asociada devolverá " "
-        /// </returns>
-        public static string KeyFromEnumItem<TEnum>(string[] constantes, TEnum t) where TEnum : struct, IConvertible {
-            var retorno = " ";
-            if (!typeof(TEnum).IsEnum)
-                return retorno;
-            var num = Convert.ToInt32(t);
-            if (num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0))
-                return retorno;
-            return constantes[num];
-        }
-
-        /// <summary>
-        /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración
-        /// </summary>
-        /// <typeparam name="TEnum">Enumeración a la que convertir. El tipo</typeparam>
-        /// <param name="value">Valor a convertir. no se diferencia entre mayúsculas y minúsculas</param>
-        /// <returns>Valor de la enumeración correspondiente</returns>
-        /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
-        /// <exception cref="ArgumentNullException">Si el valor a copnvertir es null</exception>
-        public static TEnum ParseEnum<TEnum>(string value) where TEnum : struct, IConvertible {
-            var retorno = default(TEnum);
-            if (value == null)
-                throw new ArgumentNullException("value");
-            if (!Enum.TryParse(value, true, out retorno))
-                throw new ArgumentException("El valor no existe en la enumeración", "value");
-            return retorno;
-        }
-
-        /// <summary>
-        /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración. Admite valores nulos
-        /// </summary>
-        /// <typeparam name="TEnum">Enumeración a la que convertir. El tipo</typeparam>
-        /// <param name="value">Valor a convertir. no se diferencia entre mayúsculas y minúsculas y se admiten nulos</param>
-        /// <returns>Valor de la enumeración correspondiente o nada si el valor de entrada es null</returns>
-        /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
-        public static TEnum? ParseEnumNullable<TEnum>(string value) where TEnum : struct, IConvertible {
-            var retorno = default(TEnum);
-            if (value == null)
-                return null;
-            if (!Enum.TryParse(value, true, out retorno))
-                return null;
+            Enum.TryParse(posicion.ToString(), out TEnum retorno);
             return retorno;
         }
 
@@ -166,7 +115,9 @@ namespace Core.Common.EnumHelper {
             }
             return (TEnum)Enum.Parse(enumToTranslate, "-1");
         }
+        #endregion
 
+        #region "Obtencion de clave a traves de enumerador"
         /// <summary>
         /// Devuelve la clave correspondiente a un EnumItem
         /// </summary>
@@ -194,6 +145,58 @@ namespace Core.Common.EnumHelper {
         }
 
         /// <summary>
+        /// Devuleve la clave correspondiente a un EnumItem
+        /// </summary>
+        /// <typeparam name="TEnum">Enumeración</typeparam>
+        /// <param name="constantes">Array que contiene las claves de esa enumeración</param>
+        /// <param name="t">EnumItem del que se quiere conocer la clave</param>
+        /// <returns>Clave asociada a ese EnumItem.
+        ///   Si ese EnumItem no tiene clave asociada devolverá " "
+        /// </returns>
+        public static string KeyFromEnumItem<TEnum>(string[] constantes, TEnum t) where TEnum : struct, IConvertible {
+            var retorno = " ";
+            if (!typeof(TEnum).IsEnum)
+                return retorno;
+            var num = Convert.ToInt32(t);
+            if (num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0))
+                return retorno;
+            return constantes[num];
+        }
+        #endregion
+
+        #region "Parseo de Enumeradores"
+        /// <summary>
+        /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración
+        /// </summary>
+        /// <typeparam name="TEnum">Enumeración a la que convertir. El tipo</typeparam>
+        /// <param name="value">Valor a convertir. no se diferencia entre mayúsculas y minúsculas</param>
+        /// <returns>Valor de la enumeración correspondiente</returns>
+        /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
+        /// <exception cref="ArgumentNullException">Si el valor a copnvertir es null</exception>
+        public static TEnum ParseEnum<TEnum>(string value) where TEnum : struct, IConvertible {
+            if (value == null)
+                throw new ArgumentNullException("value");
+            if (!Enum.TryParse(value, true, out TEnum retorno))
+                throw new ArgumentException("El valor no existe en la enumeración", "value");
+            return retorno;
+        }
+
+        /// <summary>
+        /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración. Admite valores nulos
+        /// </summary>
+        /// <typeparam name="TEnum">Enumeración a la que convertir. El tipo</typeparam>
+        /// <param name="value">Valor a convertir. no se diferencia entre mayúsculas y minúsculas y se admiten nulos</param>
+        /// <returns>Valor de la enumeración correspondiente o nada si el valor de entrada es null</returns>
+        /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
+        public static TEnum? ParseEnumNullable<TEnum>(string value) where TEnum : struct, IConvertible {
+            if (value == null)
+                return null;
+            if (!Enum.TryParse(value, true, out TEnum retorno))
+                return null;
+            return retorno;
+        }
+
+        /// <summary>
         /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración
         /// </summary>
         /// <typeparam name="TEnum">Enumeración a la que convertir. El tipo</typeparam>
@@ -204,11 +207,11 @@ namespace Core.Common.EnumHelper {
         public static TEnum ParseEnumValue<TEnum>(string value) where TEnum : struct, IConvertible {
             var retorno = default(TEnum);
             var tp = typeof(TEnum);
-            if (!tp.IsEnum) 
+            if (!tp.IsEnum)
                 return retorno;
-            if (!typeof(TEnum).IsEnum) 
+            if (!typeof(TEnum).IsEnum)
                 return retorno;
-            if (value == null) 
+            if (value == null)
                 throw new ArgumentNullException("value");
 
             // Si se ha pasado como parámetro un valor numérico (devuelto por la BD)
@@ -217,7 +220,7 @@ namespace Core.Common.EnumHelper {
                 foreach (TEnum obj in Enum.GetValues(tp)) {
                     var test = Enum.Parse(typeof(TEnum), obj.ToString()) as Enum;
                     var x = Convert.ToInt32(test); // x is the integer value of enum
-                    if (x.Equals(paramValue)) 
+                    if (x.Equals(paramValue))
                         return obj;
                 }
                 throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
@@ -227,5 +230,6 @@ namespace Core.Common.EnumHelper {
             }
             return retorno;
         }
+        #endregion
     }
 }
