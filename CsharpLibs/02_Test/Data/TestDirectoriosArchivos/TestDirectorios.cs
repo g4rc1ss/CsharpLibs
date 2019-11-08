@@ -1,4 +1,4 @@
-﻿using Core.Common.DirectoriosArchivos;
+﻿using Core.Data.DirectoriosArchivos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;

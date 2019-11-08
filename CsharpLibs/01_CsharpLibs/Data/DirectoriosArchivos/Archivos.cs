@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Common.DirectoriosArchivos {
+namespace Core.Data.DirectoriosArchivos {
     /// <summary>
     /// Clase con metodos utiles para la gestion de archivos que no estan
     /// disponibles en las librerias habituales

@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\02_Test\Common\TestDirectoriosArchivos\TestDirectoriosArchivos.csproj" />
+    <ProjectReference Include="..\..\..\02_Test\Data\TestDirectoriosArchivos\TestDirectoriosArchivos.csproj" />
   </ItemGroup>
 
 </Project>

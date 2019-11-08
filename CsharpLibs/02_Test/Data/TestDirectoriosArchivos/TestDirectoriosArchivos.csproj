@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Common\DirectoriosArchivos\Core.Common.DirectoriosArchivos.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\DirectoriosArchivos\Core.Data.DirectoriosArchivos.csproj" />
   </ItemGroup>
 
   <ItemGroup>
