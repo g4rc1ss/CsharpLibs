@@ -23,6 +23,11 @@ namespace Core.Common.Respuestas {
         /// <summary>
         /// Se usa para no retornar datos
         /// </summary>
+        /// <example>
+        /// <code>
+        /// Respuesta resp1 = new Respuesta();
+        /// </code>
+        /// </example>
         public Respuesta() {
             Mensaje = string.Empty;
             Resultado = 0;
@@ -33,6 +38,18 @@ namespace Core.Common.Respuestas {
         /// <param name="datos">va a contener un objeto con los datos que queremos retornar al controller</param>
         /// <param name="mensaje">va a contener un mensaje escrito por el usuario tipo informativo, sino no va a contener nada</param>
         /// <param name="resultado">va a contener el resultado de la aplicacion, si todo va bien sera 0</param>
+        /// <example>
+        /// <code>
+        /// resp2 = new Respuesta(new Datos() {
+        ///     Nombre = "Asier",
+        ///     Apellido = "garcia",
+        ///     Fecha = DateTime.Now,
+        ///     Direccion = "alguna",
+        ///     Edad = 22,
+        ///     Salario = 1000.00
+        /// });
+        /// </code>
+        /// </example>
         public Respuesta(object datos, string mensaje = "", int resultado = 0) {
             Datos = datos;
             Mensaje = mensaje;
@@ -43,6 +60,11 @@ namespace Core.Common.Respuestas {
         /// </summary>
         /// <param name="ex">contendra la excepcion</param>
         /// <param name="resultado">contendra un codigo encontrado en la estructura Errores</param>
+        /// <example>
+        /// <code>
+        /// Respuesta resp3 = new Respuesta(new DivideByZeroException(), 54645);
+        /// </code>
+        /// </example>
         public Respuesta(Exception ex, int resultado) {
             Mensaje = ex.Message;
             Resultado = resultado;

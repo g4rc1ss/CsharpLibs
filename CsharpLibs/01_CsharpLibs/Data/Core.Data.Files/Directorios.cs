@@ -13,6 +13,14 @@ namespace Core.Data.Files {
         /// </summary>
         /// <param name="origen">directorio origen</param>
         /// <param name="destino">directorio destino</param>
+        /// <example>
+        /// <code>
+        /// Directorios.Copy(
+        ///     new DirectoryInfo("prueba"),
+        ///     new DirectoryInfo("copia")
+        /// );
+        /// </code>
+        /// </example>
         public static void Copy(DirectoryInfo origen, DirectoryInfo destino) {
             new Directorios().CopyDirectory(origen, destino);
         }

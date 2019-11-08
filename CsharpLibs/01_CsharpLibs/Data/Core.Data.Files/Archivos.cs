@@ -15,6 +15,12 @@ namespace Core.Data.Files {
         /// Devolvemos una List de tipo string con los elementos ordenados
         /// </returns>
         /// <param name="listaDesordenada">Recibimos un array tipo string</param>
+        /// <example>
+        /// <code>
+        /// string[] archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
+        /// var listaOrdenada = Archivos.FicherosOrdenados(archivos);
+        /// </code>
+        /// </example>
         public static List<string> FicherosOrdenados(string[] listaDesordenada) {
             return new Archivos().OrdenarFicheros(listaDesordenada);
         }
