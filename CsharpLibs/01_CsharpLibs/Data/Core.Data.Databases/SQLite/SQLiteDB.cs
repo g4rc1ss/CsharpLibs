@@ -171,7 +171,7 @@ namespace Core.Data.Databases.SQLite {
         private int GetMaxCount(string columna, string table) {
             try {
                 using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}"))
-                    return countID.Rows[0].Field<int>($"{columna}") + 1;
+                    return Convert.ToInt32(countID.Rows[0].ItemArray[0]) + 1;
             } catch (Exception) {
                 return 1;
             }
