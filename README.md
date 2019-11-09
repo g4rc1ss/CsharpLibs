@@ -1,42 +1,73 @@
-# Introduction 
-Conjunto de librerías desarrolladas en .Net Standard o .Net CORE
+# C#
 
-Cuando se compile los proyectos en modo `Release` se almacenarán los paquetes Nuget en la carpeta `NugetPackages`
+![CSharp Icono](https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png)
 
-# Getting Started
-> Installation process
-1. Instalaremos Visual Studio con los paquetes de desarrollo .Net multiplataforma
-2. Instalaremos un cliente git como GitHub Desktop
+## CSharp
+CSharp es un [lenguaje de programación compilado](https://es.wikipedia.org/wiki/Lenguaje_de_programación_compilado) con la filosofía de hacer un código fácil de leer y programar, con una sintaxis sencilla
 
-> Software dependencies
-- **Databases.csproj** -> `System.Data.SQLite.Core`
+CSharp se usa en diferentes entornos todos basados en .NET Framework o .NET CORE
+- **.NET Framework** -> Es un conjunto de librerías que se usan con el fin de poder desarrollar aplicaciones rápidamente.
 
-# Build and Test
-Los proyectos tienen que ir ubicados en la carpeta `01_CsharpLibs`, en ella habrá dos carpetas
-1. **NetCore**: En esta carpeta se ubicarán todas las librerías desarrolladas en `.Net Core`
-2. **NetStandard**: En esta se ubicarán los desarrollados en `.NetStandard`
+- **.NET CORE** -> Es un framework de código abierto, basado en .Net framework. Esta realizado desde cero prácticamente y esta mas destinado a poder usar una plataforma como es ``.NET`` desde sistemas como MacOS y GNU_Linux
+---
+### Que framework usar?
 
-Se intentará usar siempre que se pueda .Net Standard puesto que es una librería portable
+Esta es una pregunta un poco mas complicada, yo personalmente apuesto por .NET CORE porque me gusta mas el rollo multiplataforma y que pueda crear una aplicación y distribuirla/usarla en mi mac, mi windows y mi linux.
 
-El uso y creación de Test es obligatorio, con ellos se demostrará y comprobará que las librerías funcionan y 
-realizan las acciones para las que están destinadas.
+.NET Framework esta mas centrado en windows y tiene librerías muy potentes que todavía no han sido migradas a .NET CORE como por ejemplo la librería WPF para el desarrollo de GUI etc. 
 
-Los Test se tendrán que ser fiables y deberán de llamarse igual que el proyecto con "Test" por delante.
-De tal manera que quedaría `TestNombreLibreria`.
+Si se desea hacer una aplicación Desktop con el fin de correrla solo en plataformas windows sera mejor usar .net Framework porque esta mas hecha
 
-# Pull Requests
+En cambio si deseamos crear una aplicación web (ASP) o aplicaciones en consola podríamos crear aplicaciones .``net CORE`` puesto que son aplicaciones multiplataforma y es algo que esta muy a futuro
 
-Para crear la Pull Requests la podemos crear desde el cliente git o desde la pagina de github
+---
+### Diferencias entre Frameworks
 
-Agregamos el Título y la descripción del Pull Requests y la creamos. Esta pasara por un proceso de validación
-automático que ejecutará los Test y compilará la solución. Si esos dos procesos no fallan  se subirán los paquetes
-NuGet generados automáticamente para poder ser descargados mas adelante.
+- **NET Core es nuevo, y escrito prácticamente desde cero** -> NET Core es, en muchos sentidos, un reboot de .NET Framework y ha tenido que ser reescrito desde cero
 
-# Distribución
+- **.NET Core es open source** -> .NET Core es un proyecto completamente open source desde sus orígenes
 
-La distribución de este software se realizará el paquetes NuGet.
+- **.NET Core es multiplataforma** -> De esta forma, ahora sería totalmente posible, por ejemplo, programar una aplicación en Windows y ejecutarla en un Mac, o desarrollarla en Mac y ejecutarla en una distribución Debian de Linux.
 
-La dirección del **repositorio Nuget** es: 
-```text
-    https://nuget.pkg.github.com/g4rc1ss/index.json
-```
+- **En .NET Core el rendimiento es algo prioritario** -> Desde sus orígenes, en .NET Core el rendimiento ha sido siempre una prioridad
+    >  Por dar algunas cifras, algo tan simple y recurrente como utilizar los métodos `IndexOf()` o `StartsWith()` sobre una cadena son un `200%` más rápidos en .NET Core que en .NET Framework. Un `ToString()` sobre el elemento de un enum gana un `600%` de rendimiento. `LINQ`es hasta un `300%` más eficiente en determinados puntos. `Lazy<T>` es un `500%` más rápido etc.
+
+---
+## Creación, compilación y ejecución
+
+````
+C:\Test>dotnet new console
+Preparándose...
+La plantilla "Console Application" se creó correctamente.
+
+Procesando acciones posteriores...
+Ejecutando "dotnet restore" en C:\Test\Test.csproj...
+  Restaurando paquetes para C:\Test\Test.csproj...
+  Generación de archivo MSBuild C:\Test\obj\Test.csproj.nuget.g.props.
+  Generación de archivo MSBuild C:\Test\obj\Test.csproj.nuget.g.targets.
+  Restauración realizada en 147,78 ms para C:\Test\Test.csproj.
+
+Restauración correcta.
+````
+
+````
+C:\Test>dotnet build
+Microsoft (R) Build Engine versión 15.9.20+g88f5fadfbe para .NET Core
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+  Restauración realizada en 23,44 ms para C:\Test\Test.csproj.
+  Test -> C:\Test\bin\Debug\netcoreapp2.2\Test.dll
+
+Compilación correcta.
+    0 Advertencia(s)
+    0 Errores
+
+Tiempo transcurrido 00:00:00.52
+````
+
+````
+C:\Test>dotnet run
+Hello World!
+
+C:\Test>_
+````
