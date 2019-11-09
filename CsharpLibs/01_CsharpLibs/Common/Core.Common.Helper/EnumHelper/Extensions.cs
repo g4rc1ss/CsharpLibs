@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.EnumHelper {
+namespace Core.Common.Helper.EnumHelper {
     /// <summary>
     /// Metodos extensores para enumeraciones
     /// </summary>

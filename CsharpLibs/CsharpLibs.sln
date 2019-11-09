@@ -54,6 +54,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.EnumHelper", "0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.TestEnumHelper", "02_Test\Common\Core.Common.TestEnumHelper\Core.Common.TestEnumHelper.csproj", "{6241BA91-7C12-4790-B011-48BA368C9775}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Helper", "01_CsharpLibs\Common\Core.Common.Helper\Core.Common.Helper.csproj", "{9694117F-4224-4B67-9CCF-DC60B0F95032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{6241BA91-7C12-4790-B011-48BA368C9775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6241BA91-7C12-4790-B011-48BA368C9775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6241BA91-7C12-4790-B011-48BA368C9775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9694117F-4224-4B67-9CCF-DC60B0F95032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9694117F-4224-4B67-9CCF-DC60B0F95032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9694117F-4224-4B67-9CCF-DC60B0F95032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9694117F-4224-4B67-9CCF-DC60B0F95032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +139,7 @@ Global
 		{05C57141-9DC5-4D62-A28F-D2E81CFAD25D} = {46AC2D9C-F286-4533-BAAE-FB71BFBD2B17}
 		{0769B850-B5D5-4C7C-BE79-F97195B59190} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 		{6241BA91-7C12-4790-B011-48BA368C9775} = {12628634-7A99-44A2-A873-69F9F754396A}
+		{9694117F-4224-4B67-9CCF-DC60B0F95032} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}
