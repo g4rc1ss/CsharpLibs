@@ -95,11 +95,11 @@ namespace Core.Data.Databases.SQLite {
         /// <code>
         /// using (var read = baseDatos.Select("SELECT * from EMPRESA")) {
         ///     foreach (DataRow row in read.Rows) {
-        ///         var id = row.Field<int>("ID");
-        ///         var nombre = row.Field<string>("NOMBRE");
-        ///         var edad = row.Field<int>("EDAD");
-        ///         var direccion = row.Field<string>("DIRECCION");
-        ///         var salario = row.Field<double>("SALARIO");
+        ///         var id = row.Field<int/>("ID");
+        ///         var nombre = row.Field<string/>("NOMBRE");
+        ///         var edad = row.Field<int/>("EDAD");
+        ///         var direccion = row.Field<string/>("DIRECCION");
+        ///         var salario = row.Field<double/>("SALARIO");
         ///     }
         /// }    
         /// </code>
