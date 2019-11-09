@@ -7,7 +7,7 @@ namespace Core.Libs.Encriptacion.Cryptography {
     /// Clase con metodos y atributos para facilitar el uso de la clase 
     /// [System.Security.Cryptography].Aes
     /// </summary>
-    public class AES {
+    public class AESHelper {
 
         /// <summary>
         /// Un array de bytes que contiene la contraseña con la que se encriptara

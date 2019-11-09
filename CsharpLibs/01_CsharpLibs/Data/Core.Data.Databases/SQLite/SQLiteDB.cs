@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 
@@ -7,7 +8,7 @@ namespace Core.Data.Databases.SQLite {
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
     public class SQLiteDB {
-        #region Propiedades & Variables
+
         /// <summary>
         /// Elegimos la base de datos, sino se llamara "Database.db"
         /// </summary>
@@ -15,10 +16,19 @@ namespace Core.Data.Databases.SQLite {
         /// devuelve el nombre de la base de datos
         /// </returns>
         public string DBName { get; set; } = $"Database.db";
-        #endregion
 
+        /// <summary>
+        /// Creamos una instancia de la conexion privada para ser usada siempre en cada consulta
+        /// De esta manera la propia libreria se asegura de cerrar las conexiones etc.
+        /// </summary>
+        private SQLiteConnection Conexion {
+            get {
+                return new SQLiteConnection(
+                    string.Format($"Data Source={DBName};Version=3;")
+                ).OpenAndReturn();
+            }
+        }
 
-        #region Metodos/Funciones
 
         /// <summary>
         /// Metodo para comprobar si existe la base de datos
@@ -51,7 +61,7 @@ namespace Core.Data.Databases.SQLite {
         ///         "ID          INT       PRIMARY KEY      NOT NULL," +
         ///         "NOMBRE      TEXT                       NOT NULL," +
         ///         "EDAD        INT                        NOT NULL," +
-        ///         "DIRECCION   INT                        NOT NULL," +
+        ///         "DIRECCION   TEXT                       NOT NULL," +
         ///         "SALARIO     REAL)"
         ///);
         ///     
@@ -62,71 +72,50 @@ namespace Core.Data.Databases.SQLite {
         }
 
         private void ExecuteCreateDatabase(string query) {
-            // Crea la base de datos y registra usuario solo una vez
+            // Crea la base de datos con la tabla
             if (!IsCreateDatabase()) {
                 SQLiteConnection.CreateFile(DBName);
-
-                using (var connect = ConnectionToDatabase())
-                using (var command = new SQLiteCommand(query, connect)) {
-                    command.ExecuteNonQuery();
+                using (var connect = Conexion) {
+                    using (var command = new SQLiteCommand(query, connect))
+                        command.ExecuteNonQuery();
                     connect.Close();
                 }
             }
         }
 
         /// <summary>
-        /// Establece la conexion con la base de datos
-        /// </summary>
-        /// <returns>
-        /// Retorna la conexion establecida con la base de datos
-        /// </returns>
-        /// <example>
-        /// <code>
-        /// using (var connect = baseDatos.Conexion()){
-        /// 
-        /// }
-        /// </code>
-        /// </example>
-        public SQLiteConnection Conexion() {
-            return ConnectionToDatabase();
-        }
-
-        private SQLiteConnection ConnectionToDatabase() {
-            return new SQLiteConnection(
-                string.Format($"Data Source={DBName};Version=3;")
-            ).OpenAndReturn();
-        }
-
-        /// <summary>
         /// Ejecuta la sentencia SELECT
         /// </summary>
         /// <returns>
-        /// Retorna en un objeto la consulta SELECT que se leera como un array
-        /// ej: nombreObjeto["nombreColumna"];
+        /// Retorna un DataTable que podra ser leido de diferentes formas, 
+        /// Hay un ejemplo de lectura
         /// </returns>
         /// <param name="query">Consulta SQL en formato cadena</param>
-        /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         /// <example>
         /// <code>
-        /// using (var resultadoSelect = baseDatos.Select("SELECT * from EMPRESA", connect)) {
-        ///     while (resultadoSelect.Read())
-        ///         Console.WriteLine(
-        ///             $"{resultadoSelect["ID"]} \n" +
-        ///             $"{resultadoSelect["NOMBRE"]} \n" +
-        ///             $"{resultadoSelect["EDAD"]} \n" +
-        ///             $"{resultadoSelect["DIRECCION"]} \n" +
-        ///             $"{resultadoSelect["SALARIO"]} \n"
-        ///         );                
-        /// }
+        /// using (var read = baseDatos.Select("SELECT * from EMPRESA")) {
+        ///     foreach (DataRow row in read.Rows) {
+        ///         var id = row.Field<int>("ID");
+        ///         var nombre = row.Field<string>("NOMBRE");
+        ///         var edad = row.Field<int>("EDAD");
+        ///         var direccion = row.Field<string>("DIRECCION");
+        ///         var salario = row.Field<double>("SALARIO");
+        ///     }
+        /// }    
         /// </code>
         /// </example>
-        public SQLiteDataReader Select(string query, SQLiteConnection connect) {
-            return ExecuteSelect(query: query, connect: connect);
+        public DataTable Select(string query) {
+            return ExecuteSelect(query: query);
         }
 
-        private SQLiteDataReader ExecuteSelect(string query, SQLiteConnection connect) {
-            using (var command = new SQLiteCommand(query, connect))
-                return command.ExecuteReader();
+        private DataTable ExecuteSelect(string query) {
+            using (var connect = Conexion) {
+                using (var command = new SQLiteCommand(query, connect)) {
+                    var tabla = new DataTable();
+                    tabla.Load(command.ExecuteReader());
+                    return tabla;
+                }
+            }
         }
 
         /// <summary>
@@ -136,30 +125,29 @@ namespace Core.Data.Databases.SQLite {
         /// Retorna el numero de elementos que ha sido retocado
         /// </returns>
         /// <param name="query">Consulta SQL en formato cadena</param>
-        /// <param name="connect">Se envia la informacion de la conexion de la base de datos</param>
         /// <example>
         /// <code>
         /// using (var conexion = baseDatos.Conexion()) {
         ///     baseDatos.UpdateOrInsert(
         ///         query: "INSERT INTO EMPRESA (ID, NOMBRE, EDAD, DIRECCION, SALARIO) " +
-        ///                $"VALUES ({id}, '{nombre}', {edad}, '{direccion}', {salario})",
-        ///         connect: conexion
+        ///                $"VALUES ({id}, '{nombre}', {edad}, '{direccion}', {salario})"
         ///     );
         ///
         ///     baseDatos.UpdateOrInsert(
-        ///         query: "UPDATE EMPRESA set SALARIO = 4500.00 where ID=1",
-        ///         connect: conexion
+        ///         query: "UPDATE EMPRESA set SALARIO = 4500.00 where ID=1"
         ///     );            
         /// }
         /// </code>
         /// </example>
-        public int UpdateOrInsert(string query, SQLiteConnection connect) {
-            return ExecuteUpdateOrInsert(query: query, connect: connect);
+        public int UpdateOrInsert(string query) {
+            return ExecuteUpdateOrInsert(query: query);
         }
 
-        private int ExecuteUpdateOrInsert(string query, SQLiteConnection connect) {
-            using (var command = new SQLiteCommand(query, connect))
-                return command.ExecuteNonQuery();
+        private int ExecuteUpdateOrInsert(string query) {
+            using (var connect = Conexion) {
+                using (var command = new SQLiteCommand(query, connect))
+                    return command.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -167,7 +155,7 @@ namespace Core.Data.Databases.SQLite {
         /// Su intencion es usarlo para hacer la insercion de datos autonumérica
         /// </summary>
         /// <returns>
-        /// Retorna el numero de elementos que ha sido retocado
+        /// Retorna el numero de elementos que contiene la tabla consultada +1
         /// </returns>
         /// <param name="columna">El nombre de la columna con el que vamos a obtener el max</param>
         /// <param name="table">El nombre de la tabla para realizar la consulta</param>
@@ -182,20 +170,11 @@ namespace Core.Data.Databases.SQLite {
 
         private int GetMaxCount(string columna, string table) {
             try {
-                int cont;
-                using (var conexion = ConnectionToDatabase()) {
-                    using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}", conexion)) {
-                        countID.Read();
-                        cont = int.Parse(countID[0].ToString()) + 1;
-                        countID.Close();
-                    }
-                    conexion.Close();
-                }
-                return cont;
+                using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}"))
+                    return countID.Rows[0].Field<int>($"{columna}") + 1;
             } catch (Exception) {
                 return 1;
             }
         }
-        #endregion
     }
 }

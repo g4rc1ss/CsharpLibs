@@ -3,21 +3,16 @@
   <metadata>
     <id>CsharpLibs</id>
     <title>CSharp Libs</title>
-    <version>1.1</version>
+    <version>1.1.5</version>
     <authors>Asier Garcia</authors>
     <owners>Asier Garcia</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Librerias creadas para futuros proyectos o usos</description>
     <repository url="https://github.com/g4rc1ss/CsharpLibs" />
-    <dependencies>
-      <group targetFramework=".NETStandard2.0">
-        <dependency id="System.Data.SQLite.Core" version="1.0.111" exclude="Build,Analyzers" />
-      </group>
-    </dependencies>
   </metadata>
   <files>
-    <file src="..\PackagesCompilaciones\netstandard*\*.dll" target="lib\netStandard2.0\" />
-    <file src="..\PackagesCompilaciones\netstandard*\*.pdb" target="lib\netStandard2.0\" />
-    <file src="..\PackagesCompilaciones\netstandard*\*.xml" target="lib\netStandard2.0\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.dll" target="lib\netStandard2.1\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.pdb" target="lib\netStandard2.1\" />
+    <file src="..\PackagesCompilaciones\netstandard*\*.xml" target="lib\netStandard2.1\" />
   </files>
 </package>
