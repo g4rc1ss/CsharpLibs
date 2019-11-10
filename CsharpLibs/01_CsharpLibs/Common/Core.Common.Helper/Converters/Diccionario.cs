@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
-using System.IO;
-using System.Xml;
 using System.Linq;
-using System;
 
 namespace Core.Common.Helper.Converters {
     public partial class Converter {
@@ -47,7 +45,7 @@ namespace Core.Common.Helper.Converters {
         }
 
         /// <summary>
-        /// 
+        /// convierte un NameValueCollection a un Dictionary<string, string/>
         /// </summary>
         /// <param name="dict"></param>
         /// <param name="nameValue"></param>
@@ -86,8 +84,8 @@ namespace Core.Common.Helper.Converters {
                     break;
                 }
                 case var tipoArrayObject when tipoArrayObject == typeof(object[]): {
-                    string cadenaAux = string.Empty;
-                    for (int i = 0; i <= (((object[])objeto).Length - 1); i++)
+                    var cadenaAux = string.Empty;
+                    for (var i = 0; i <= (((object[])objeto).Length - 1); i++)
                         cadenaAux += ((object[])objeto)[i].ToString();
                     dict.Add(name, cadenaAux);
                     break;
@@ -105,24 +103,114 @@ namespace Core.Common.Helper.Converters {
         }
         #endregion
 
+        /// <summary>
+        /// Convierte una clase cualquiera a un objeto Dictionary<string, string>
+        /// </summary>
+        /// <param name="objeto"></param>
+        /// <returns></returns>
         public static Dictionary<string, string> ObjToDictionary(object objeto) {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            if (objeto is null)
+            if (objeto == null)
                 return dict;
+
             switch (objeto.GetType()) {
                 case var tipoArray when tipoArray.GetType().IsArray: {
                     dict.Add("LENGHT", ((object[])objeto).Length.ToString());
-                    for (int i = 0; i < ((object[])objeto).Length; i++)
+                    for (var i = 0; i < ((object[])objeto).Length; i++)
                         MergeObject(ref dict, ref ((object[])objeto)[i], string.Format($"[{i}]"));
                     break;
                 }
                 // Si es String suponemos que es o un JSON o un XML
                 case var tipoString when tipoString == typeof(string): {
-
+                    var jsonXml = (string)objeto;
+                    if (string.IsNullOrEmpty(jsonXml))
+                        dict.Add("BUFFERDATA", jsonXml);
+                    else
+                        switch (jsonXml.Trim().Substring(0, 1)) {
+                            case "{": // JSON
+                            return JsonToDictionary(jsonXml);
+                            case "<": // XML
+                            return JsonToDictionary((string)XMLStringToJson(jsonXml));
+                            default: {
+                                dict.Add("BUFFERDATA", jsonXml);
+                                break;
+                            }
+                        }
+                    break;
+                }
+                case var tipoNameValueCollection when tipoNameValueCollection == typeof(NameValueCollection): {
+                    NameValueCollectionToDictionary((NameValueCollection)objeto);
+                    break;
+                }
+                case var tipoDiccionarioString when tipoDiccionarioString == typeof(Dictionary<string, string>): {
+                    return (Dictionary<string, string>)objeto;
+                }
+                case var tipoDiccionarioObject when tipoDiccionarioObject == typeof(Dictionary<string, object>): {
+                    foreach (var k in (Dictionary<string, object>)objeto) {
+                        var value = k.Value;
+                        MergeObject(ref dict, ref value, k.Key);
+                    }
+                    break;
+                }
+                default: {
+                    foreach (var p in objeto.GetType().GetProperties()) {
+                        if (p.CanRead) {
+                            var name = p.Name.Trim().ToUpper();
+                            var value = p.GetValue(objeto);
+                            if (value != null) {
+                                switch (value.GetType()) {
+                                    case var tipoValueDecimal when tipoValueDecimal == typeof(decimal): {
+                                        var numero = (decimal)value;
+                                        var numberFormat = new NumberFormatInfo {
+                                            NumberDecimalSeparator = ".",
+                                            NumberGroupSeparator = string.Empty
+                                        };
+                                        var valor = numero.ToString(numberFormat);
+                                        dict.Add(name, valor);
+                                        break;
+                                    }
+                                    case var tipoValueString when tipoValueString == typeof(string): {
+                                        dict.Add(name, (string)value);
+                                        break;
+                                    }
+                                    case var tipoValueCollection when tipoValueCollection == typeof(NameValueCollection): {
+                                        var valor = (NameValueCollection)value;
+                                        MergeNameValueCollection(ref dict, ref valor, name);
+                                        break;
+                                    }
+                                    case var tipoValueDictString when tipoValueDictString == typeof(Dictionary<string, string>): {
+                                        var diccionarioValueString = (Dictionary<string, string>)value;
+                                        MergeDictString(ref dict, ref diccionarioValueString, name);
+                                        break;
+                                    }
+                                    case var tipoValueDictObject when tipoValueDictObject == typeof(Dictionary<string, object>): {
+                                        var diccionarioValueObject = (Dictionary<string, object>)value;
+                                        MergeDictObject(ref dict, ref diccionarioValueObject, name);
+                                        break;
+                                    }
+                                    default: {
+                                        if (value.GetType().IsArray) {
+                                            var valorArray = ObjToDictionary(value);
+                                            MergeDictString(ref dict, ref valorArray, name);
+                                        } else {
+                                            if (value.GetType().Namespace.Equals("System"))
+                                                dict.Add(name, value.ToString());
+                                            else {
+                                                var valorDiccionarioString = ObjToDictionary(value);
+                                                MergeDictString(ref dict, ref valorDiccionarioString, name);
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 }
             }
             return dict;
         }
+
     }
 }

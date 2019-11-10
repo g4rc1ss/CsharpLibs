@@ -21,7 +21,7 @@ namespace Core.Common.TestRespuesta {
                     Edad = 22,
                     Salario = 1000.00
                 });
-                int x = 0; int y = 1; int z = y / x;
+                var x = 0; var y = 1; var z = y / x;
             } catch (Exception e) {
                 resp3 = new Respuesta(e, Errores.ZERODIVISION);
                 ex = e;

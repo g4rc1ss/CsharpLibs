@@ -29,7 +29,7 @@ namespace Core.Data.TestFiles {
                 Assert.IsTrue(Directory.Exists("prueba") && Directory.Exists("copia"));
                 Assert.IsTrue(nombresOrigen.Count == nombresDestino.Count);
 
-                foreach (string origen in nombresOrigen)
+                foreach (var origen in nombresOrigen)
                     Assert.IsTrue(nombresOrigen.Contains(origen));
 
             } finally {

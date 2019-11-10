@@ -9,15 +9,15 @@ namespace Core.Data.TestLogs {
 
         [TestMethod]
         public void Logs() {
-            string fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
+            var fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
 
             try {
                 Log.CrearLogs(this, Modos.DEBUG);
                 Log.CrearLogs(this, Modos.LOGGING, mensaje: "Hola, este es un mensaje del logging");
 
                 try {
-                    int x = 0; int y = 1;
-                    int z = y / x;
+                    var x = 0; var y = 1;
+                    var z = y / x;
                 } catch (DivideByZeroException e) {
                     Log.CrearLogs(this, Modos.ERROR, e);
                 }
@@ -26,7 +26,7 @@ namespace Core.Data.TestLogs {
                 using (var read = new StreamReader($"{fecha}.log")) {
                     string[] modosParaComprobar = { "[DEBUG]", "[LOGGING]", "[ERROR]" };
 
-                    string linea = read.ReadToEnd();
+                    var linea = read.ReadToEnd();
                     Assert.IsTrue(
                         linea.Contains("[DEBUG]") &&
                         linea.Contains("[LOGGING]") &&
