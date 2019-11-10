@@ -1,4 +1,4 @@
-﻿using Core.Common.EnumHelper;
+﻿using Core.Common.Helper.EnumHelper;
 
 namespace Core.Common.TestEnumHelper {
     public enum EnumTestFake {
