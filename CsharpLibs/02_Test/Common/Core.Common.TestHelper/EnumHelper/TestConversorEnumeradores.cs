@@ -1,4 +1,4 @@
-﻿using Core.Common.EnumHelper;
+﻿using Core.Common.Helper.EnumHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Common.TestEnumHelper {
