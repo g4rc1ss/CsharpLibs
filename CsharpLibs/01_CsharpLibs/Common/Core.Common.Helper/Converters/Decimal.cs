@@ -2,7 +2,7 @@
 using System.Globalization;
 
 namespace Core.Common.Helper.Converters {
-    public partial class Converter {
+    public partial class ConvertHelper {
         /// <summary>
         /// Convertimos a decimal
         /// </summary>

@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 
 namespace Core.Common.Helper.Converters {
-    public partial class Converter {
+    public partial class ConvertHelper {
         #region "Funciones Privadas"
         /// <summary>
         /// Convierte un objeto tipo NameValueCollection a Dictoionary<string, string/>
@@ -112,14 +112,16 @@ namespace Core.Common.Helper.Converters {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             if (objeto == null)
                 return dict;
+            if (objeto.GetType().IsArray) {
+                dict.Add("LENGHT", ((object[])objeto).Length.ToString());
+                for (var i = 0; i < ((object[])objeto).Length; i++) {
+                    var obj = ((object[])objeto)[i];
+                    MergeObject(ref dict, ref obj, $"[{i}]");
+                }
+                return dict;
+            }
 
             switch (objeto.GetType()) {
-                case var tipoArray when tipoArray.GetType().IsArray: {
-                    dict.Add("LENGHT", ((object[])objeto).Length.ToString());
-                    for (var i = 0; i < ((object[])objeto).Length; i++)
-                        MergeObject(ref dict, ref ((object[])objeto)[i], string.Format($"[{i}]"));
-                    break;
-                }
                 // Si es String suponemos que es o un JSON o un XML
                 case var tipoString when tipoString == typeof(string): {
                     var jsonXml = (string)objeto;
@@ -190,7 +192,7 @@ namespace Core.Common.Helper.Converters {
                                     }
                                     default: {
                                         if (value.GetType().IsArray) {
-                                            var valorArray = ObjToDictionary(value);
+                                            var valorArray = ObjToDictionary((object[])value);
                                             MergeDictString(ref dict, ref valorArray, name);
                                         } else {
                                             if (value.GetType().Namespace.Equals("System"))

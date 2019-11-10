@@ -1,7 +1,7 @@
 ﻿using Core.Common.Helper.EnumHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Common.TestEnumHelper {
+namespace Core.Common.TestEnumHelper.EnumHelper {
     [TestClass]
     public class TestConversorEnumeradores {
         [TestMethod]

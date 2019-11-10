@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 
 namespace Core.Common.Helper.Converters {
-    public partial class Converter {
+    public partial class ConvertHelper {
         /// <summary>
         /// Convierte un json a un Dictionary<string, string>
         /// </summary>

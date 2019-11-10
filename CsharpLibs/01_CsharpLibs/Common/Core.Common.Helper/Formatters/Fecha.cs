@@ -15,15 +15,5 @@ namespace Core.Common.Helper.Formatters {
             return valor.Value.ToString(formato);
         }
 
-        /// <summary>
-        /// Cambia el formato de la fecha DateTime introducida
-        /// </summary>
-        /// <param name="dateToChange"></param>
-        /// <param name="formato"></param>
-        /// <returns></returns>
-        public static DateTime? CambiarFormatoFecha(ref DateTime dateToChange, string formato = "dd/MM/yyy") {
-
-            return null;
-        }
     }
 }

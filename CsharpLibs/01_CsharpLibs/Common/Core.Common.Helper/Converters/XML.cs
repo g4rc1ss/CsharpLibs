@@ -6,7 +6,7 @@ using System.IO;
 using System.Xml;
 
 namespace Core.Common.Helper.Converters {
-    public partial class Converter {
+    public partial class ConvertHelper {
         /// <summary>
         /// Convierte un xml a un Json
         /// </summary>

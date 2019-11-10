@@ -1,6 +1,6 @@
 ﻿using Core.Common.Helper.EnumHelper;
 
-namespace Core.Common.TestEnumHelper {
+namespace Core.Common.TestEnumHelper.EnumHelper {
     public enum EnumTestFake {
         unknow = -1,
         [EnumDescription(@"00")]
