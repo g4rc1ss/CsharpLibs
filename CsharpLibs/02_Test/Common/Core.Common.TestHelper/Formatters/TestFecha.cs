@@ -17,5 +17,21 @@ namespace Core.Common.TestHelper.Formatters {
                 fechaFormateadaSinBarra.Substring(4, 4) == DateTime.Now.Year.ToString()
             );
         }
+
+        [TestMethod]
+        public void FormatFechaJuliana() {
+            var fecha = new DateTime(2019, 11, 10);
+            var fechaFormateada = Format.FormatToFechaJuliana(fecha);
+            Assert.AreEqual("9314", fechaFormateada);
+        }
+
+        [TestMethod]
+        public void ObtenerMilisegundosDiferenciaDates() {
+            var fechaDesde = new DateTime(2016, 11, 10);
+            var fechaHasta = new DateTime(2019, 11, 10);
+            var milisegundosFechaDesdeHasta = Format.DateDiffMilliSecond(fechaDesde, fechaHasta);
+            _ = Format.DateDiffMilliSecond(fechaDesde);
+            Assert.IsTrue(94608000000 == milisegundosFechaDesdeHasta);
+        }
     }
 }
