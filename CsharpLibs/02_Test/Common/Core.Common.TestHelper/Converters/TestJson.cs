@@ -44,10 +44,10 @@ namespace Core.Common.TestHelper.Converters {
         [TestMethod]
         public void TestJsonToObjectWitihSettings() {
             var json = @"{""Nombre"":""namememememe"",""Edad"":22,""Date"":""10/11/2019""}";
-            var clase = ConvertHelper.JsonToObject<ClaseParaDeserializar>(json, 
-                new Newtonsoft.Json.JsonSerializerSettings { 
+            var clase = ConvertHelper.JsonToObject<ClaseParaDeserializar>(json,
+                new Newtonsoft.Json.JsonSerializerSettings {
                     DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat
-            });
+                });
             Assert.IsTrue(
                 clase.Nombre == "namememememe" &&
                 clase.Edad == 22 &&

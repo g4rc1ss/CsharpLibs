@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Specialized;
-using System.Data;
+﻿using System.Data;
 using System.IO;
-using System.Xml;
 
 namespace Core.Common.Helper.Converters {
     public partial class ConvertHelper {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Common.TestHelper.Converters.Fake {
     public class ClaseParaDeserializar {
