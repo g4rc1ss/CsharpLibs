@@ -50,9 +50,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Data.TestLogs", "02_Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Libs.TestEncriptacion", "02_Test\Libs\Core.Libs.TestEncriptacion\Core.Libs.TestEncriptacion.csproj", "{05C57141-9DC5-4D62-A28F-D2E81CFAD25D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Helper", "01_CsharpLibs\Common\Core.Common.Helper\Core.Common.Helper.csproj", "{9694117F-4224-4B67-9CCF-DC60B0F95032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.Helper", "01_CsharpLibs\Common\Core.Common.Helper\Core.Common.Helper.csproj", "{9694117F-4224-4B67-9CCF-DC60B0F95032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.TestHelper", "02_Test\Common\Core.Common.TestHelper\Core.Common.TestHelper.csproj", "{B3890000-9CC1-4BBF-8A4F-50CC700E494D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Common.TestHelper", "02_Test\Common\Core.Common.TestHelper\Core.Common.TestHelper.csproj", "{B3890000-9CC1-4BBF-8A4F-50CC700E494D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

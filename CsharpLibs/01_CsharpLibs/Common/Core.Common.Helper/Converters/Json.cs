@@ -1,33 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Core.Common.Helper.Converters {
     public partial class ConvertHelper {
-        /// <summary>
-        /// Convierte un json a un Dictionary<string, string>
-        /// </summary>
-        /// <param name="json">json a convertir</param>
-        /// <returns></returns>
-        public static Dictionary<string, string> JsonToDictionary(string json) {
-            try {
-                if (string.IsNullOrEmpty(json))
-                    return null;
-                return JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            } catch (Exception) {
-                return ObjToDictionary(JsonConvert.DeserializeObject<object>(json));
-            }
-        }
-
-        /// <summary>
-        /// Se convierte un dataset a un json con la libreria Newtonsoft
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string DataSetToJson(DataSet data) {
-            return JsonConvert.SerializeObject(data);
-        }
 
         /// <summary>
         /// Convierte un objeto a Json con la lib Newtonsoft
@@ -66,7 +44,7 @@ namespace Core.Common.Helper.Converters {
         /// <param name="json"></param>
         /// <param name="converters"></param>
         /// <returns></returns>
-        public static T JsonToObject<T>(string json, JsonConverter[] converters) {
+        public static T JsonToObject<T>(string json, params JsonConverter[] converters) {
             return JsonConvert.DeserializeObject<T>(json, converters);
         }
     }

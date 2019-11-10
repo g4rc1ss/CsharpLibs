@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace Core.Common.TestHelper.Converters {
+namespace Core.Common.TestHelper.Converters.Fake {
     public class ClaseParaConvertirToDictionary {
         public string Nombre { get; set; }
         public decimal Salario { get; set; }
@@ -11,5 +11,6 @@ namespace Core.Common.TestHelper.Converters {
         public Dictionary<string, string> Diccionario { get; set; }
         public string[] ArrayString { get; set; }
         public NameValueCollection NameValue { get; set; }
+        //public List<string> ListaValores { get; set; }
     }
 }

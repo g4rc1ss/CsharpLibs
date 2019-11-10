@@ -130,9 +130,9 @@ namespace Core.Common.Helper.Converters {
                     else
                         switch (jsonXml.Trim().Substring(0, 1)) {
                             case "{": // JSON
-                            return JsonToDictionary(jsonXml);
+                            return JsonToObject<Dictionary<string, string>>(jsonXml);
                             case "<": // XML
-                            return JsonToDictionary((string)XMLStringToJson(jsonXml));
+                            return JsonToObject<Dictionary<string, string>>((string)XMLStringToJson(jsonXml));
                             default: {
                                 dict.Add("BUFFERDATA", jsonXml);
                                 break;

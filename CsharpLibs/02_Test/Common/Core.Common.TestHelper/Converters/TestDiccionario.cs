@@ -1,4 +1,5 @@
 ﻿using Core.Common.Helper.Converters;
+using Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -35,7 +36,7 @@ namespace Core.Common.TestHelper.Converters {
                 diccionario["ARRAYSTRING.[0]"] == "1" &&
                 diccionario["ARRAYSTRING.[1]"] == "2" &&
                 diccionario["ARRAYSTRING.[2]"] == "3" &&
-                diccionario["NAMEVALUE.NOMBRE"] == "Valor" 
+                diccionario["NAMEVALUE.NOMBRE"] == "Valor"
             );
         }
     }

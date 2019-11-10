@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Formatters\" />
+    <None Update="Converters\Fake\TestXml.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
