@@ -35,7 +35,7 @@ namespace Core.Common.TestHelper.Converters {
             var json = @"{""Nombre"":""namememememe"",""Edad"":22,""Date"":""10112019""}";
             var clase = ConvertHelper.JsonToObject<ClaseParaDeserializar>(json, new IsoDateTimeConverter { DateTimeFormat = "ddMMyyyy" });
             Assert.IsTrue(
-                clase.Nombre == "namememememe" &&
+                clase.Nombre.Equals("namememememe") &&
                 clase.Edad == 22 &&
                 clase.Date == Convert.ToDateTime("10/11/2019")
             );
