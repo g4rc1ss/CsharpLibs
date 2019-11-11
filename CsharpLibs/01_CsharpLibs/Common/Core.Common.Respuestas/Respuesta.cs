@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Core.Data.Databases.SQLite;
+using System;
 using System.Diagnostics;
 using System.IO;
-using Core.Data.Databases.SQLite;
 
 namespace Core.Common.Respuestas {
     /// <summary>
@@ -115,7 +115,7 @@ namespace Core.Common.Respuestas {
                     "ID             INT       PRIMARY KEY      NOT NULL," +
                     "CODIGOERROR    TEXT                       NOT NULL," +
                     "MENSAJE        TEXT                       NOT NULL)");
-            sqlite.UpdateOrInsert($"INSERT INTO LOG (ID, CODIGOERROR, MENSAJE) " + 
+            sqlite.UpdateOrInsert($"INSERT INTO LOG (ID, CODIGOERROR, MENSAJE) " +
                 $"VALUES ({sqlite.MaxID("ID", "LOG")}, '{Resultado.ToString()}', '{Mensaje}')");
         }
 

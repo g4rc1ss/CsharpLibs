@@ -2,7 +2,6 @@
 using Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Converters;
-using System;
 using System.Collections.Generic;
 
 namespace Core.Common.TestHelper.Converters {
