@@ -21,7 +21,22 @@ namespace Core.Common.TestHelper.Converters {
                     { "Nombre", "Valor" }
                 },
                 Nombre = "Test de conversion",
-                Salario = 2000.00m
+                Salario = 2000.00m,
+                ListaValoresInt = new System.Collections.Generic.List<int> {
+                    1,
+                    2
+                },
+                ListaValoresString = new System.Collections.Generic.List<string> {
+                    "ListaValoresString1",
+                    "ListaValoresString2"
+                },
+                ListaValoresOtroObj = new System.Collections.Generic.List<ClaseParaDeserializar> {
+                    new ClaseParaDeserializar {
+                        Nombre = "Prueba Test",
+                        Date = new DateTime(2016, 12, 22).Date,
+                        Edad = 22
+                    }
+                }
             };
             var diccionario = ConvertHelper.ObjToDictionary(claseToConvert);
 
@@ -32,11 +47,21 @@ namespace Core.Common.TestHelper.Converters {
                 diccionario["DATE"] == DateTime.Now.Date.ToString() &&
                 diccionario["DICCIONARIO.CLAVE01"] == "Valor01" &&
                 diccionario["DICCIONARIO.CLAVE02"] == "Valor02" &&
-                diccionario["ARRAYSTRING.LENGHT"] == "3" &&
+                diccionario["ARRAYSTRING.LENGTH"] == "3" &&
                 diccionario["ARRAYSTRING.[0]"] == "1" &&
                 diccionario["ARRAYSTRING.[1]"] == "2" &&
                 diccionario["ARRAYSTRING.[2]"] == "3" &&
-                diccionario["NAMEVALUE.NOMBRE"] == "Valor"
+                diccionario["NAMEVALUE.NOMBRE"] == "Valor" &&
+                diccionario["LISTAVALORESINT.LENGTH"] == "2" &&
+                diccionario["LISTAVALORESINT.[0]"] == "1" &&
+                diccionario["LISTAVALORESINT.[1]"] == "2" &&
+                diccionario["LISTAVALORESSTRING.LENGTH"] == "2" &&
+                diccionario["LISTAVALORESSTRING.[0]"] == "ListaValoresString1" &&
+                diccionario["LISTAVALORESSTRING.[1]"] == "ListaValoresString2" &&
+                diccionario["LISTAVALORESOTROOBJ.LENGTH"] == "1" &&
+                diccionario["LISTAVALORESOTROOBJ.NOMBRE"] == "Prueba Test" &&
+                diccionario["LISTAVALORESOTROOBJ.EDAD"] == "22" &&
+                diccionario["LISTAVALORESOTROOBJ.DATE"].Substring(0, 10) == "22/12/2016"
             );
         }
     }

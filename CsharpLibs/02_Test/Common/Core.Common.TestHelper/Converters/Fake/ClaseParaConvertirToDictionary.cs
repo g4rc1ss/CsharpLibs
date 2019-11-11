@@ -11,6 +11,8 @@ namespace Core.Common.TestHelper.Converters.Fake {
         public Dictionary<string, string> Diccionario { get; set; }
         public string[] ArrayString { get; set; }
         public NameValueCollection NameValue { get; set; }
-        //public List<string> ListaValores { get; set; }
+        public List<int> ListaValoresInt { get; set; }
+        public List<string> ListaValoresString { get; set; }
+        public List<ClaseParaDeserializar> ListaValoresOtroObj { get; set; }
     }
 }

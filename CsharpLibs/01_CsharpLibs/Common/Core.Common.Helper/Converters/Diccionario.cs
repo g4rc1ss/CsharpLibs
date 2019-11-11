@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
@@ -54,6 +55,27 @@ namespace Core.Common.Helper.Converters {
             prefijo = prefijo.Trim().ToUpper() + ".";
             foreach (var k in nameValue)
                 dict.Add(prefijo + k.ToString().Trim().ToUpper(), nameValue[(string)k]);
+        }
+
+        /// <summary>
+        /// Convierte una lista a un diccionario
+        /// </summary>
+        /// <param name="dict"></param>
+        /// <param name="listaToConvert"></param>
+        /// <param name="prefijo"></param>
+        private static void MergeListToDictionary(ref Dictionary<string, string> dict, ref object listaToConvert, string prefijo) {
+            prefijo = prefijo.Trim().ToUpper();
+            var lista = ((IEnumerable)listaToConvert).Cast<object>().ToList();
+
+            dict.Add(prefijo + ".LENGTH", lista.Count.ToString());
+            for (var i = 0; i < lista.Count; i++) {
+                if (lista[i].GetType().Namespace.Equals("System"))
+                    dict.Add(prefijo + $".[{i}]", lista[i].ToString());
+                else {
+                    var objeto = ObjToDictionary(lista[i]);
+                    MergeDictString(ref dict, ref objeto, prefijo);
+                }
+            }
         }
 
         /// <summary>
@@ -113,7 +135,7 @@ namespace Core.Common.Helper.Converters {
             if (objeto == null)
                 return dict;
             if (objeto.GetType().IsArray) {
-                dict.Add("LENGHT", ((object[])objeto).Length.ToString());
+                dict.Add("LENGTH", ((object[])objeto).Length.ToString());
                 for (var i = 0; i < ((object[])objeto).Length; i++) {
                     var obj = ((object[])objeto)[i];
                     MergeObject(ref dict, ref obj, $"[{i}]");
@@ -169,6 +191,10 @@ namespace Core.Common.Helper.Converters {
                                         };
                                         var valor = numero.ToString(numberFormat);
                                         dict.Add(name, valor);
+                                        break;
+                                    }
+                                    case var tipoList when tipoList.Name.Contains("List") && tipoList.Namespace.Equals("System.Collections.Generic"): {
+                                        MergeListToDictionary(ref dict, ref value, name);
                                         break;
                                     }
                                     case var tipoValueString when tipoValueString == typeof(string): {
