@@ -8,7 +8,7 @@ namespace Core.Data.TestFiles {
 
         [TestMethod]
         public void Ordenar() {
-            string[] archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
+            var archivos = Directory.GetDirectories("prueba", "", SearchOption.AllDirectories);
 
             var listaOrdenada = Archivos.FicherosOrdenados(archivos);
 

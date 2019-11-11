@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.EnumHelper {
+namespace Core.Common.Helper.EnumHelper {
     /// <summary>
     /// Para evitar tener un array de claves o constantes asociado a una enumeración,
     /// se puede optar por asignar un atributo a cada elemento de la enumeración, de
@@ -53,24 +53,6 @@ namespace Core.Common.EnumHelper {
     public static class EnumFactory {
 
         #region "Obtencion enumerador a traves de clave"
-        /// <summary>
-        /// Devuelve el EnumItem correspondiente a una Clave
-        /// </summary>
-        /// <typeparam name="TEnum">Enumeración</typeparam>
-        /// <param name="constates">Array que contiene las claves de esa enumeración</param>
-        /// <param name="clave">Clave</param>
-        /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave. 
-        ///    (Si la clave NO ESTÁ dentro del array de constantes, entoneces devuelve -1 que
-        ///    corresponde con el valor Unkwown de la enumeración.)
-        /// </returns>
-        public static TEnum EnumItemFromKey<TEnum>(string[] constates, string clave) where TEnum : struct, IConvertible {
-            var posicion = Array.IndexOf(constates, clave);
-            if (posicion < 0)
-                posicion = -1;
-            Enum.TryParse(posicion.ToString(), out TEnum retorno);
-            return retorno;
-        }
-
         /// <example> Métodos sin Array de constantes
         /// <code>
         /// public enum SiNo {
@@ -114,6 +96,24 @@ namespace Core.Common.EnumHelper {
                 }
             }
             return (TEnum)Enum.Parse(enumToTranslate, "-1");
+        }
+
+        /// <summary>
+        /// Devuelve el EnumItem correspondiente a una Clave
+        /// </summary>
+        /// <typeparam name="TEnum">Enumeración</typeparam>
+        /// <param name="constates">Array que contiene las claves de esa enumeración</param>
+        /// <param name="clave">Clave</param>
+        /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave. 
+        ///    (Si la clave NO ESTÁ dentro del array de constantes, entoneces devuelve -1 que
+        ///    corresponde con el valor Unkwown de la enumeración.)
+        /// </returns>
+        public static TEnum EnumItemFromKey<TEnum>(string[] constates, string clave) where TEnum : struct, IConvertible {
+            var posicion = Array.IndexOf(constates, clave);
+            if (posicion < 0)
+                posicion = -1;
+            Enum.TryParse(posicion.ToString(), out TEnum retorno);
+            return retorno;
         }
         #endregion
 

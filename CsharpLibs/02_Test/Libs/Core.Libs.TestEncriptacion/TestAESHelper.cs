@@ -12,17 +12,17 @@ namespace Core.Libs.TestEncriptacion {
         public void CifradoTexto() {
             //----------------------CON CLAVE ALEATORIA------------------\\
             var cifrarTextoClaveRandom = new AESHelper();
-            byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
+            var textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
 
             File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
             File.WriteAllBytes("IV.aes", cifrarTextoClaveRandom.IV);
             File.WriteAllBytes("TextoCifradoClaveRandom.aes", textoCifrado);
 
 
-            for (int x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++)
+            for (var x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++)
                 Assert.IsTrue(File.ReadAllBytes("Key.aes")[x] == cifrarTextoClaveRandom.Key[x]);
 
-            for (int x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++)
+            for (var x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++)
                 Assert.IsTrue(File.ReadAllBytes("IV.aes")[x] == cifrarTextoClaveRandom.IV[x]);
 
             Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
@@ -30,7 +30,7 @@ namespace Core.Libs.TestEncriptacion {
             //----------------------CON CLAVE PROPIA---------------------\\
             var cifrarTextoClavePropia = new AESHelper();
             using (HashAlgorithm hash = SHA256.Create()) {
-                byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                 textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
 
@@ -41,7 +41,7 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllBytes("TextoCifradoClavePropia.aes", textoCifrado);
                 File.WriteAllBytes("IVpropia.aes", cifrarTextoClavePropia.IV);
 
-                for (int x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++)
                     Assert.IsTrue(File.ReadAllBytes("IVpropia.aes")[x] == cifrarTextoClavePropia.IV[x]);
 
                 Assert.IsTrue(
@@ -58,7 +58,7 @@ namespace Core.Libs.TestEncriptacion {
             CifradoTexto();
             //----------------------CON CLAVE ALEATORIA------------------\\
             var descifrarTextoClaveRandom = new AESHelper();
-            string textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
+            var textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
                 cipherText: File.ReadAllBytes("TextoCifradoClaveRandom.aes"),
                 keyParameter: File.ReadAllBytes("Key.aes"),
                 iVparameter: File.ReadAllBytes("IV.aes")
@@ -76,9 +76,9 @@ namespace Core.Libs.TestEncriptacion {
             //----------------------CON CLAVE PROPIA---------------------\\
             var descifrarTextoClavePropia = new AESHelper();
             using (HashAlgorithm hash = SHA256.Create()) {
-                byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
-                string textoDescifradoPropio = descifrarTextoClavePropia.DesencriptarTexto(
+                var textoDescifradoPropio = descifrarTextoClavePropia.DesencriptarTexto(
                     cipherText: File.ReadAllBytes("TextoCifradoClavePropia.aes"),
                     keyParameter: keyHashByte,
                     iVparameter: File.ReadAllBytes("IVpropia.aes")
@@ -98,9 +98,9 @@ namespace Core.Libs.TestEncriptacion {
         [TestMethod]
         public void CifradoArchivos() {
             //----------------------CON CLAVE ALEATORIA------------------\\
-            string archivoAES_TXT = "archivo.txt"; string archivoAES_TXT_Propia = "archivoPropia.txt";
-            string archivoKeyRandom = "KeyArchivos.aes"; string archivoIVRandom = "IVarchivos.aes";
-            string archivoIVPropia = "IVarchivosPropia.aes";
+            var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
+            var archivoKeyRandom = "KeyArchivos.aes"; var archivoIVRandom = "IVarchivos.aes";
+            var archivoIVPropia = "IVarchivosPropia.aes";
             try {
                 File.WriteAllText(archivoAES_TXT, TEXTOPLANO);
                 File.WriteAllText(archivoAES_TXT_Propia, TEXTOPLANO);
@@ -111,10 +111,10 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllBytes(archivoIVRandom, encriptarFicheroClaveRandom.IV);
                 //-------------------------------------------------------
 
-                for (int x = 0; x < File.ReadAllBytes(archivoKeyRandom).Length && x < encriptarFicheroClaveRandom.Key.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes(archivoKeyRandom).Length && x < encriptarFicheroClaveRandom.Key.Length; x++)
                     Assert.IsTrue(encriptarFicheroClaveRandom.Key[x] == File.ReadAllBytes(archivoKeyRandom)[x]);
 
-                for (int x = 0; x < File.ReadAllBytes(archivoIVRandom).Length && x < encriptarFicheroClaveRandom.IV.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes(archivoIVRandom).Length && x < encriptarFicheroClaveRandom.IV.Length; x++)
                     Assert.IsTrue(File.ReadAllBytes(archivoIVRandom)[x] == encriptarFicheroClaveRandom.IV[x]);
 
                 Assert.IsTrue(
@@ -124,7 +124,7 @@ namespace Core.Libs.TestEncriptacion {
                 //----------------------CON CLAVE PROPIA---------------------\\
                 var encriptarArchivoClavePropia = new AESHelper();
                 using (HashAlgorithm hash = SHA256.Create()) {
-                    byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                    var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     encriptarArchivoClavePropia.CriptografiaFicheros(
                         path: archivoAES_TXT_Propia,
@@ -136,7 +136,7 @@ namespace Core.Libs.TestEncriptacion {
                     //---------------------------------------------------------
 
 
-                    for (int x = 0; x < File.ReadAllBytes(archivoIVPropia).Length && x < encriptarArchivoClavePropia.IV.Length; x++)
+                    for (var x = 0; x < File.ReadAllBytes(archivoIVPropia).Length && x < encriptarArchivoClavePropia.IV.Length; x++)
                         Assert.IsTrue(File.ReadAllBytes(archivoIVPropia)[x] == encriptarArchivoClavePropia.IV[x]);
 
                     Assert.IsTrue(
@@ -153,9 +153,9 @@ namespace Core.Libs.TestEncriptacion {
 
         [TestMethod]
         public void DecifradoArchivos() {
-            string archivoAES_TXT = "archivo.txt"; string archivoAES_TXT_Propia = "archivoPropia.txt";
-            string archivoKeyRandom = "KeyArchivos.aes"; string archivoIVRandom = "IVarchivos.aes";
-            string archivoIVPropia = "IVarchivosPropia.aes";
+            var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
+            var archivoKeyRandom = "KeyArchivos.aes"; var archivoIVRandom = "IVarchivos.aes";
+            var archivoIVPropia = "IVarchivosPropia.aes";
             CifradoArchivos();
             try {
                 var desencriptarFicheroClaveRandom = new AESHelper();
@@ -179,7 +179,7 @@ namespace Core.Libs.TestEncriptacion {
                 //----------------------CON CLAVE PROPIA---------------------\\
                 var desencriptarArchivoClavePropia = new AESHelper();
                 using (HashAlgorithm hash = SHA256.Create()) {
-                    byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+                    var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     desencriptarArchivoClavePropia.CriptografiaFicheros(
                         path: $"{archivoAES_TXT_Propia}.crypt",

@@ -13,7 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Common\Core.Common.EnumHelper\Core.Common.EnumHelper.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Common\Core.Common.Helper\Core.Common.Helper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Converters\Fake\TestXml.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

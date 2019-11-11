@@ -33,8 +33,8 @@ namespace Core.Data.Logs {
         }
         private bool Save(object obj, Modos modo, Exception ex, string mensaje) {
             try {
-                string fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
-                string hora = System.DateTime.Now.ToString("HH:mm:ss");
+                var fecha = System.DateTime.Now.ToString("yyyy-MM-dd");
+                var hora = System.DateTime.Now.ToString("HH:mm:ss");
                 string contenido = null;
                 StreamWriter escribir;
                 StreamReader leer;

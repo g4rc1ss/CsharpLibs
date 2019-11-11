@@ -38,7 +38,7 @@ namespace Core.Data.Files {
             // Procesamiento recursivo de subdirectorios:
             Parallel.ForEach(origen.EnumerateDirectories(), (directorio) => {
                 // Obtención de directorio de destino:
-                string directorioDestino = Path.Combine(destino.FullName, directorio.Name);
+                var directorioDestino = Path.Combine(destino.FullName, directorio.Name);
 
                 // Invocación recursiva del método `CopiarDirectorio`:
                 CopyDirectory(directorio, new DirectoryInfo(directorioDestino));
