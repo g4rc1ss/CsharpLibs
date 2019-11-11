@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using Core.Data.Databases.SQLite;
 
 namespace Core.Common.Respuestas {
     /// <summary>
@@ -7,18 +10,22 @@ namespace Core.Common.Respuestas {
     /// resultados en un formato parecido o igual
     /// </summary>
     public class Respuesta {
-        /// <summary>
-        /// propiedad que va a contener un objeto
-        /// </summary>
-        public object Datos { get; private set; } = null;
-        /// <summary>
-        /// Propiedad para enseñar un mensaje de error, advertencia, etc
-        /// </summary>
-        public string Mensaje { get; private set; } = string.Empty;
+
+        public int OK { get; } = 0;
         /// <summary>
         /// Propiedad que contiene el codigo de un error
         /// </summary>
-        public int Resultado { get; private set; } = 0;
+        public int Resultado { get; private set; }
+
+        /// <summary>
+        /// Propiedad para enseñar un mensaje de error, advertencia, etc
+        /// </summary>
+        public string Mensaje { get; private set; }
+
+        /// <summary>
+        /// Propiedad para señalizar la funcionalidad
+        /// </summary>
+        public string Funcionalidad { get; private set; }
 
         /// <summary>
         /// Se usa para no retornar datos
@@ -29,45 +36,98 @@ namespace Core.Common.Respuestas {
         /// </code>
         /// </example>
         public Respuesta() {
-            Mensaje = string.Empty;
             Resultado = 0;
+            Mensaje = string.Empty;
+            Funcionalidad = string.Empty;
         }
+
         /// <summary>
-        /// Tipo de salida cuando "se supone" que hay datos
+        /// Se inicializa la respuesta con un resultado, mensaje y quiza, funcionalidad
         /// </summary>
-        /// <param name="datos">va a contener un objeto con los datos que queremos retornar al controller</param>
-        /// <param name="mensaje">va a contener un mensaje escrito por el usuario tipo informativo, sino no va a contener nada</param>
-        /// <param name="resultado">va a contener el resultado de la aplicacion, si todo va bien sera 0</param>
-        /// <example>
-        /// <code>
-        /// resp2 = new Respuesta(new Datos() {
-        ///     Nombre = "Asier",
-        ///     Apellido = "garcia",
-        ///     Fecha = DateTime.Now,
-        ///     Direccion = "alguna",
-        ///     Edad = 22,
-        ///     Salario = 1000.00
-        /// });
-        /// </code>
-        /// </example>
-        public Respuesta(object datos, string mensaje = "", int resultado = 0) {
-            Datos = datos;
+        /// <param name="resultado"></param>
+        /// <param name="mensaje"></param>
+        /// <param name="funcionalidad"></param>
+        public Respuesta(int resultado, string mensaje, string funcionalidad = "") {
+            Resultado = resultado;
             Mensaje = mensaje;
-            Resultado = resultado;
+            Funcionalidad = funcionalidad;
         }
+
         /// <summary>
-        /// usado para retornar una excepcion
+        /// Se agrega una excepcion y se retorna
         /// </summary>
-        /// <param name="ex">contendra la excepcion</param>
-        /// <param name="resultado">contendra un codigo encontrado en la estructura Errores</param>
-        /// <example>
-        /// <code>
-        /// Respuesta resp3 = new Respuesta(new DivideByZeroException(), 54645);
-        /// </code>
-        /// </example>
-        public Respuesta(Exception ex, int resultado) {
+        /// <param name="ex"></param>
+        /// <param name="funcionalidad"></param>
+        /// <param name="guardarLog"></param>
+        public Respuesta(Exception ex, string funcionalidad = "", bool guardarLog = true, DondeGuardar donde = DondeGuardar.ArchivoTexto) {
+            var stackTrace = new StackTrace(2, true);
+
+            Resultado = ex.HResult;
             Mensaje = ex.Message;
-            Resultado = resultado;
+            Funcionalidad = funcionalidad;
+
+            if (guardarLog) {
+                switch (donde) {
+                    case DondeGuardar.ArchivoTexto: {
+                        GuardarTrazaArchivoTexto(ex, stackTrace);
+                        break;
+                    }
+                    case DondeGuardar.BaseDatosLocal: {
+                        GuardarTrazaBaseDatosLocal(ex, stackTrace);
+                        break;
+                    }
+                    case DondeGuardar.BaseDatosMSSQL: {
+                        GuardarTrazaMSSQL();
+                        break;
+                    }
+                }
+            }
         }
+
+        private void GuardarTrazaArchivoTexto(Exception ex, StackTrace stackTrace) {
+            try {
+                var fecha = DateTime.Now.ToString("yyyy-MM-dd");
+                var hora = DateTime.Now.ToString("HH:mm:ss");
+                var nombreFichero = $"{fecha}.log";
+                var contenido = string.Empty;
+
+                if (File.Exists(nombreFichero)) {
+                    using (var leer = File.OpenText(nombreFichero)) {
+                        contenido = leer.ReadToEnd();
+                    }
+                }
+                using (var escribir = File.CreateText(nombreFichero)) {
+                    escribir.Write($"{contenido} \n" +
+                        $"[{fecha}] ~ [{hora}] {stackTrace.GetFrame(1).GetMethod().Name} - {Mensaje} \n");
+                }
+            } catch (Exception) {
+                try {
+                    GuardarTrazaBaseDatosLocal(ex, stackTrace);
+                } catch (Exception) {
+                    throw new Exception("Se ha producido un error al guardar el log en un archivo de texto y en una base de datos local");
+                }
+            }
+        }
+
+        private void GuardarTrazaBaseDatosLocal(Exception ex, StackTrace stackTrace) {
+            var sqlite = new SQLiteDB() { DBName = $"Log-{DateTime.Now.ToString("ddMMyyy")}.db" };
+            sqlite.CreateDatabase("CREATE TABLE LOG(" +
+                    "ID             INT       PRIMARY KEY      NOT NULL," +
+                    "CODIGOERROR    TEXT                       NOT NULL," +
+                    "MENSAJE        TEXT                       NOT NULL)");
+            sqlite.UpdateOrInsert($"INSERT INTO LOG (ID, CODIGOERROR, MENSAJE) " + 
+                $"VALUES ({sqlite.MaxID("ID", "LOG")}, '{Resultado.ToString()}', '{Mensaje}')");
+        }
+
+        private void GuardarTrazaMSSQL() {
+            //TODO
+        }
+    }
+
+    public enum DondeGuardar {
+        Desconocido = -1,
+        ArchivoTexto = 0,
+        BaseDatosLocal = 1,
+        BaseDatosMSSQL = 2
     }
 }
