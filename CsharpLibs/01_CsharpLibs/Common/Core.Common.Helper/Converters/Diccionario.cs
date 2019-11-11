@@ -8,7 +8,7 @@ namespace Core.Common.Helper.Converters {
     public partial class ConvertHelper {
         #region "Funciones Privadas"
         /// <summary>
-        /// Convierte un objeto tipo NameValueCollection a Dictoionary<string, string/>
+        /// Convierte un objeto tipo NameValueCollection a Dictionary -> string, string
         /// </summary>
         /// <param name="nameValue"></param>
         /// <returns>objecto Dictionary<string, string/></returns>
@@ -36,16 +36,16 @@ namespace Core.Common.Helper.Converters {
         /// <param name="mergeDict">Diccionario que se va a modificar, sera el resultado</param>
         /// <param name="dictToMerge">Diccionario que se recibe para ser fusionado</param>
         /// <param name="prefijo">Clave de la que proviene el diccionario a juntar</param>
-        private static void MergeDictObject(ref Dictionary<string, string> dictA, ref Dictionary<string, object> dictB, string prefijo) {
+        private static void MergeDictObject(ref Dictionary<string, string> mergeDict, ref Dictionary<string, object> dictToMerge, string prefijo) {
             prefijo = prefijo.Trim().ToUpper() + ".";
-            foreach (var k in dictB) {
+            foreach (var k in dictToMerge) {
                 var value = k.Value;
-                MergeObject(ref dictA, ref value, prefijo + k.Key.Trim().ToUpper());
+                MergeObject(ref mergeDict, ref value, prefijo + k.Key.Trim().ToUpper());
             }
         }
 
         /// <summary>
-        /// convierte un NameValueCollection a un Dictionary<string, string/>
+        /// convierte un NameValueCollection a un Dictionary -> string, string
         /// </summary>
         /// <param name="dict"></param>
         /// <param name="nameValue"></param>
@@ -104,7 +104,7 @@ namespace Core.Common.Helper.Converters {
         #endregion
 
         /// <summary>
-        /// Convierte una clase cualquiera a un objeto Dictionary<string, string>
+        /// Convierte una clase cualquiera a un objeto Dictionary -> string, string
         /// </summary>
         /// <param name="objeto"></param>
         /// <returns></returns>

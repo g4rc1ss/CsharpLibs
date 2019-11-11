@@ -16,6 +16,7 @@ namespace Core.Common.Helper.Formatters {
             if (longitudNombre < 3)
                 return string.Concat("***", correo);
             else
+                // Se escriben tantos * como la longitud del nombre del correo menos 2, Right devuelve los ultimos 2 caracteres y ya se escribe lo demas
                 return string.Concat(new string('*', longitudNombre - 2), Extensions.Extensions.Right(direccionCorreo, 2), "@", dividirCorreo[1]);
         }
 

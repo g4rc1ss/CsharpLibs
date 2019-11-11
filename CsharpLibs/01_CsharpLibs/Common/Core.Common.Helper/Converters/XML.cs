@@ -2,6 +2,10 @@
 using System.IO;
 
 namespace Core.Common.Helper.Converters {
+    /// <summary>
+    /// Clase estatica en la que se ubican metodos para realizar conversiones y tratamiento de objetos
+    /// Como por ejemlo: Convertir una clase a un diccionario, un XML a un Json, etc
+    /// </summary>
     public partial class ConvertHelper {
         /// <summary>
         /// Convierte un xml a un Json
