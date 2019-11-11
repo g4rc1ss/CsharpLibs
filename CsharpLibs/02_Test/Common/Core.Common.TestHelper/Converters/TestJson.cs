@@ -33,7 +33,7 @@ namespace Core.Common.TestHelper.Converters {
         [TestMethod]
         public void TestJsonToObjectWithIsoDateTimeConverter() {
             var json = @"{""Nombre"":""namememememe"",""Edad"":22,""Date"":""10112019""}";
-            var clase = ConvertHelper.JsonToObject<ClaseParaDeserializar>(json, new IsoDateTimeConverter { DateTimeFormat = "ddMMyyyy" });
+            var clase = ConvertHelper.JsonToObject<OtherClass>(json, new IsoDateTimeConverter { DateTimeFormat = "ddMMyyyy" });
             Assert.IsTrue(
                 clase.Nombre.Equals("namememememe") &&
                 clase.Edad == 22 &&
@@ -44,7 +44,7 @@ namespace Core.Common.TestHelper.Converters {
         [TestMethod]
         public void TestJsonToObjectWitihSettings() {
             var json = @"{""Nombre"":""namememememe"",""Edad"":22,""Date"":""10/11/2019""}";
-            var clase = ConvertHelper.JsonToObject<ClaseParaDeserializar>(json,
+            var clase = ConvertHelper.JsonToObject<OtherClass>(json,
                 new Newtonsoft.Json.JsonSerializerSettings {
                     DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat
                 });

@@ -13,6 +13,6 @@ namespace Core.Common.TestHelper.Converters.Fake {
         public NameValueCollection NameValue { get; set; }
         public List<int> ListaValoresInt { get; set; }
         public List<string> ListaValoresString { get; set; }
-        public List<ClaseParaDeserializar> ListaValoresOtroObj { get; set; }
+        public List<OtherClass> ListaValoresOtroObj { get; set; }
     }
 }

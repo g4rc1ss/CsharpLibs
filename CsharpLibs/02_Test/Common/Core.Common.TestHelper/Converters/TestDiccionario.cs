@@ -30,8 +30,8 @@ namespace Core.Common.TestHelper.Converters {
                     "ListaValoresString1",
                     "ListaValoresString2"
                 },
-                ListaValoresOtroObj = new System.Collections.Generic.List<ClaseParaDeserializar> {
-                    new ClaseParaDeserializar {
+                ListaValoresOtroObj = new System.Collections.Generic.List<OtherClass> {
+                    new OtherClass {
                         Nombre = "Prueba Test",
                         Date = new DateTime(2016, 12, 22).Date,
                         Edad = 22
