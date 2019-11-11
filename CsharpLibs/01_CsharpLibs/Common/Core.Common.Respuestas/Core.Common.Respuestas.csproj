@@ -17,4 +17,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Core.Data.Databases\Core.Data.Databases.csproj" />
+  </ItemGroup>
+
 </Project>
