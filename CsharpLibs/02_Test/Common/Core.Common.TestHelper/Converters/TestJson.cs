@@ -37,7 +37,7 @@ namespace Core.Common.TestHelper.Converters {
             Assert.IsTrue(
                 clase.Nombre.Equals("namememememe") &&
                 clase.Edad == 22 &&
-                clase.Date == Convert.ToDateTime("10/11/2019")
+                clase.Date.ToString().Contains("10")
             );
         }
 
@@ -51,7 +51,7 @@ namespace Core.Common.TestHelper.Converters {
             Assert.IsTrue(
                 clase.Nombre == "namememememe" &&
                 clase.Edad == 22 &&
-                clase.Date == Convert.ToDateTime("11/10/2019")
+                clase.Date.ToString().Contains("10")
             );
         }
     }

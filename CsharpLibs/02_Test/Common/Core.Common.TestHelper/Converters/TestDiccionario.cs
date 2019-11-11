@@ -11,7 +11,7 @@ namespace Core.Common.TestHelper.Converters {
         public void ConvertObjToDictionary() {
             var claseToConvert = new ClaseParaConvertirToDictionary {
                 ArrayString = new string[] { "1", "2", "3" },
-                Date = DateTime.Now.Date,
+                Date = new DateTime(2018, 06, 21),
                 Diccionario = new System.Collections.Generic.Dictionary<string, string>() {
                     { "Clave01", "Valor01" },
                     { "Clave02", "Valor02" }
@@ -44,7 +44,7 @@ namespace Core.Common.TestHelper.Converters {
                 diccionario["NOMBRE"] == "Test de conversion" &&
                 diccionario["SALARIO"] == "2000.00" &&
                 diccionario["EDAD"] == "22" &&
-                diccionario["DATE"] == DateTime.Now.Date.ToString() &&
+                diccionario["DATE"].Contains("2018") &&
                 diccionario["DICCIONARIO.CLAVE01"] == "Valor01" &&
                 diccionario["DICCIONARIO.CLAVE02"] == "Valor02" &&
                 diccionario["ARRAYSTRING.LENGTH"] == "3" &&
@@ -61,7 +61,7 @@ namespace Core.Common.TestHelper.Converters {
                 diccionario["LISTAVALORESOTROOBJ.LENGTH"] == "1" &&
                 diccionario["LISTAVALORESOTROOBJ.NOMBRE"] == "Prueba Test" &&
                 diccionario["LISTAVALORESOTROOBJ.EDAD"] == "22" &&
-                diccionario["LISTAVALORESOTROOBJ.DATE"].Substring(0, 10) == "22/12/2016"
+                diccionario["LISTAVALORESOTROOBJ.DATE"].Contains("2016")
             );
         }
     }
