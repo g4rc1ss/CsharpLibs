@@ -11,12 +11,12 @@ $versionNuget = 1.3
 # Nombre del archivo a generar 
 $rutaNuspec = Convert-Path .
 
-$rutaNuspec += '\garciss.libs.nuspec'
+$rutaNuspec += '/garciss.libs.nuspec'
 
 # Ruta raiz donde localizar los archivos .csproj
-$rutaCSProj = '..\..\CsharpLibs\01_CsharpLibs\'
+$rutaCSProj = '../../CsharpLibs/01_CsharpLibs/'
 # ruta de la ubicacion de las dll, xml y pdb, se han de configurar los proyectos para que se generen en otras ubicaciones
-$rutaDLL = "..\PackagesCompilaciones\" 
+$rutaDLL = "../PackagesCompilaciones/" 
 
 
 # Declaracion de variables para el entorno de generacion
@@ -62,9 +62,9 @@ try {
     $nombreProyecto = $nombreProyecto.Replace(".csproj", "")
     if ($versionEntornoCarpeta -ne "") {
       $files += "
-<file src=""" + $rutaDLL + $versionEntornoCarpeta + "\" + $nombreProyecto + ".dll"" target=""lib\$versionEntornoCarpeta\"" />
-<file src=""" + $rutaDLL + $versionEntornoCarpeta + "\" + $nombreProyecto + ".pdb"" target=""lib\$versionEntornoCarpeta\"" />
-<file src=""" + $rutaDLL + $versionEntornoCarpeta + "\" + $nombreProyecto + ".xml"" target=""lib\$versionEntornoCarpeta\"" />"
+<file src=""" + $rutaDLL + $versionEntornoCarpeta + "/" + $nombreProyecto + ".dll"" target=""lib/$versionEntornoCarpeta/"" />
+<file src=""" + $rutaDLL + $versionEntornoCarpeta + "/" + $nombreProyecto + ".pdb"" target=""lib/$versionEntornoCarpeta/"" />
+<file src=""" + $rutaDLL + $versionEntornoCarpeta + "/" + $nombreProyecto + ".xml"" target=""lib/$versionEntornoCarpeta/"" />"
     }
   }
 
