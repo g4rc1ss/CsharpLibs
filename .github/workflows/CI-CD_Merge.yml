@@ -15,6 +15,12 @@ jobs:
     - name: Dotnet Build
       run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
 
+    - uses: actions/checkout@v1
+    - name: Install NuGet client
+      run: |
+        cd NugetPackages/NugetConfig/
+        .\nuspecGeneratorNetCoreNetStandard.ps1
+      shell: powershell
     
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
