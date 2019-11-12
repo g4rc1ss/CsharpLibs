@@ -18,6 +18,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Generar nuspec
       run: |
+        ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
         .\nuspecGeneratorNetCoreNetStandard.ps1
       shell: powershell
@@ -30,6 +31,7 @@ jobs:
 
     - name: Nuget Pack para preparar el paquete
       run: |
+        ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
         nuget pack garciss.Libs.nuspec -Verbosity Detail
         
