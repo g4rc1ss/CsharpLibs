@@ -2,19 +2,16 @@
 #  Generador Archivos nuspec a traves de proyectos netstandard y netcore  #
 ###########################################################################
 
-$rutaFicheroConfig = "nuspecGenerator.csv"
-$cargaFicheroConfig = Import-Csv -Path $rutaFicheroConfig -Delimiter "`n"
-
+#Version del paquete nuget a generar
+$versionNuget = 1.3
 
 # Lectura de variables de configuracion
 # _________________________________________
 
 # Nombre del archivo a generar 
-$rutaNuspec = '.\xmlPrueba.nuspec'
+$rutaNuspec = '.\garciss.libs.nuspec'
 # Ruta raiz donde localizar los archivos .csproj
 $rutaCSProj = '..\..\CsharpLibs\01_CsharpLibs\'
-#Version del paquete nuget a generar
-$versionNuget = 3.0
 # ruta de la ubicacion de las dll, xml y pdb, se han de configurar los proyectos para que se generen en otras ubicaciones
 $rutaDLL = "..\PackagesCompilaciones\" 
 
@@ -94,12 +91,20 @@ $files
 
   $DocumentoNuspec > $rutaNuspec
 
-  if ($DocumentoNuspec.Contains($dependencias) -and $DocumentoNuspec.Contains($files)) {
-    Write-Host "Se ha generado el documento correctamente"
+  $archivoSalidaLeido = [IO.File]::ReadAllText($rutaNuspec) -replace '\s+\r\n+', "`r`n"
+  $archivoSalidaLeido > $rutaNuspec
+
+  foreach ($leerDependencias in $dependencias.Split("`n")) {
+    if (!$archivoSalidaLeido.Contains($leerDependencias)) {
+      Write-Error "No se ha generado el documento correctamente" -ErrorAction Stop
+    }
   }
-  else {
-    Write-Host "No se ha generado el documento correctamente"
+  foreach ($leerFiles in $files.Split("`n")) {
+    if (!$archivoSalidaLeido.Contains($leerFiles)) {
+      Write-Error "No se ha generado el documento correctamente" -ErrorAction Stop
+    }
   }
+  Write-Host "El documento se ha generado correctamente"
 }
 catch {
   Write-Error $_.Exception.Message
