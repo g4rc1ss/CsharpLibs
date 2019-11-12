@@ -108,6 +108,7 @@ $files
     }
   }
   Write-Host "El documento se ha generado correctamente"
+  Write-Host $archivoSalidaLeido
 }
 catch {
   Write-Error $_.Exception.Message

@@ -12,7 +12,7 @@ namespace Core.Common.Helper.Converters {
         /// Convierte un objeto tipo NameValueCollection a Dictionary -> string, string
         /// </summary>
         /// <param name="nameValue"></param>
-        /// <returns>objecto Dictionary<string, string/></returns>
+        /// <returns>objecto Dictionary -> string, string</returns>
         private static Dictionary<string, string> NameValueCollectionToDictionary(NameValueCollection nameValue) {
             return nameValue.Cast<string>().ToDictionary(key => key, valor => nameValue[valor]);
         }
