@@ -10,8 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configs", "_Configs", "{407CBADE-DFE9-4AFE-9BBE-65272625EF22}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		..\NugetPackages\NugetConfig\garciss.Libs.nuspec = ..\NugetPackages\NugetConfig\garciss.Libs.nuspec
 		nuget.config = nuget.config
+		..\NugetPackages\NugetConfig\nuspecGeneratorNetCoreNetStandard.ps1 = ..\NugetPackages\NugetConfig\nuspecGeneratorNetCoreNetStandard.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{960296EC-C66D-45FC-B6B6-D363C90EE15D}"
