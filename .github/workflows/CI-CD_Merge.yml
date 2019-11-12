@@ -15,7 +15,6 @@ jobs:
     - name: Dotnet Build
       run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
 
-    - uses: actions/checkout@v1
     - name: Generar nuspec
       run: |
         ls NugetPackages/PackagesCompilaciones/netstandard2.1
