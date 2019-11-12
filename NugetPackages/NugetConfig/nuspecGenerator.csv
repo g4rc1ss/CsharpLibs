@@ -1,0 +1,21 @@
+
+RutaArchivoNuspec = .\xmlPrueba.nuspec
+
+RutaRaizArchivosCSProjToRead = ..\..\CsharpLibs\01_CsharpLibs\
+
+VersionPaqueteNugget = 3.0
+rutaDLL = ..\PackagesCompilaciones\
+
+identificador = CsharpLibs
+
+tituloProyecto = CSharp Libs
+
+autor = Asier Garcia
+
+participantes = Asier Garcia
+
+licencia = false
+
+descripcion = Librerias creadas para futuros proyectos o usos
+
+repositorio = https://github.com/g4rc1ss/CsharpLibs
