@@ -15,9 +15,8 @@ jobs:
     - name: Dotnet Build
       run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
 
-    steps:
-    -uses: actions/checkout@v1
-    -name: Generar archivo nuspec
+    - uses: actions/checkout@v1
+    - name: Install NuGet client
       run: |
         cd NugetPackages/NugetConfig/
         .\nuspecGeneratorNetCoreNetStandard.ps1
