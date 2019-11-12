@@ -10,7 +10,9 @@ namespace Core.Common.Respuestas {
     /// resultados en un formato parecido o igual
     /// </summary>
     public class Respuesta {
-
+        /// <summary>
+        /// Para comparar, OK es 0
+        /// </summary>
         public int OK { get; } = 0;
         /// <summary>
         /// Propiedad que contiene el codigo de un error
@@ -59,6 +61,7 @@ namespace Core.Common.Respuestas {
         /// <param name="ex"></param>
         /// <param name="funcionalidad"></param>
         /// <param name="guardarLog"></param>
+        /// <param name="donde"></param>
         public Respuesta(Exception ex, string funcionalidad = "", bool guardarLog = true, DondeGuardar donde = DondeGuardar.ArchivoTexto) {
             var stackTrace = new StackTrace(2, true);
 
@@ -124,10 +127,25 @@ namespace Core.Common.Respuestas {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum DondeGuardar {
+        /// <summary>
+        /// 
+        /// </summary>
         Desconocido = -1,
+        /// <summary>
+        /// 
+        /// </summary>
         ArchivoTexto = 0,
+        /// <summary>
+        /// 
+        /// </summary>
         BaseDatosLocal = 1,
+        /// <summary>
+        /// 
+        /// </summary>
         BaseDatosMSSQL = 2
     }
 }

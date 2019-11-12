@@ -1,6 +1,9 @@
 ﻿using System;
 
 namespace Core.Common.Helper.Formatters {
+    /// <summary>
+    /// Clase para formartear objetos
+    /// </summary>
     public partial class Format {
 
         /// <summary>
@@ -28,7 +31,6 @@ namespace Core.Common.Helper.Formatters {
         /// Funcion que calcula la diferencia en milisegundos entre dos fechas
         /// </summary>
         /// <param name="fechaDesde"></param>
-        /// <param name="fechaHasta"></param>
         /// <returns></returns>
         public static double DateDiffMilliSecond(DateTime fechaDesde) {
             try {
