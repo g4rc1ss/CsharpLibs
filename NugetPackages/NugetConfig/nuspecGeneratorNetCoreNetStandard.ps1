@@ -9,7 +9,10 @@ $versionNuget = 1.3
 # _________________________________________
 
 # Nombre del archivo a generar 
-$rutaNuspec = '.\garciss.libs.nuspec'
+$rutaNuspec = Convert-Path .
+
+$rutaNuspec += '\garciss.libs.nuspec'
+
 # Ruta raiz donde localizar los archivos .csproj
 $rutaCSProj = '..\..\CsharpLibs\01_CsharpLibs\'
 # ruta de la ubicacion de las dll, xml y pdb, se han de configurar los proyectos para que se generen en otras ubicaciones
