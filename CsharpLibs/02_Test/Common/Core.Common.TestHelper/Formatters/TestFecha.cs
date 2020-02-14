@@ -12,9 +12,9 @@ namespace Core.Common.TestHelper.Formatters {
             var fechaFormateadaSinBarra = Format.FormatearFecha(DateTime.Now.Date, "ddMMyyyy");
             Assert.IsTrue(
                 !fechaFormateadaSinBarra.Contains("/") &&
-                fechaFormateadaSinBarra.Substring(0, 2) == DateTime.Now.Day.ToString() &&
-                fechaFormateadaSinBarra.Substring(2, 2) == DateTime.Now.Month.ToString() &&
-                fechaFormateadaSinBarra.Substring(4, 4) == DateTime.Now.Year.ToString()
+                fechaFormateadaSinBarra.Substring(0, 2).Contains(DateTime.Now.Day.ToString()) &&
+                fechaFormateadaSinBarra.Substring(2, 2).Contains(DateTime.Now.Month.ToString()) &&
+                fechaFormateadaSinBarra.Substring(4, 4).Contains(DateTime.Now.Year.ToString())
             );
         }
 
