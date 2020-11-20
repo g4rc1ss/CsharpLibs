@@ -82,7 +82,7 @@ try {
 <owners>" + $owners + "</owners>
 <requireLicenseAcceptance>" + $requireLicenseAcceptance + "</requireLicenseAcceptance>
 <description>" + $description + "</description>
-<repository url=""" + $repository + """ />
+<repository type=""git"" url=""" + $repository + """ />
 <dependencies>
 $dependencias
 </dependencies>
