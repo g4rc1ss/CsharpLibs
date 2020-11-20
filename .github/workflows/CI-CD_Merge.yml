@@ -24,7 +24,7 @@ jobs:
     
 
     - name: Add private GitHub registry to NuGet
-      run: nuget sources add -n "PackagesGitHub" -Source https://nuget.pkg.github.com/${{ secrets.USERNAME_GITHUB }}/index.json -u ${{ secrets.USERNAME_GITHUB }} -p ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
+      run: dotnet nuget add source -n "PackagesGitHub" -Source https://nuget.pkg.github.com/${{ secrets.USERNAME_GITHUB }}/index.json -u ${{ secrets.USERNAME_GITHUB }} -p ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
 
     - name: Nuget Pack para preparar el paquete
       run: |
@@ -35,5 +35,5 @@ jobs:
     - name: Push generated package to GitHub registry
       run: |
         cd NugetPackages/NugetConfig/
-        nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
+        dotnet nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
         
