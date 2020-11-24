@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Core.Common.Respuestas {
     /// <summary>
@@ -15,13 +16,13 @@ namespace Core.Common.Respuestas {
         /// <summary>
         /// Contructor sin nada
         /// </summary>
-        public Respuesta() : base() { }
+        public Respuesta(ILogger logger = null) : base(logger) { }
 
         /// <summary>
         /// Se inserta un objeto de cualquier tipop para retornar
         /// </summary>
         /// <param name="datos"></param>
-        public Respuesta(T datos) : base() {
+        public Respuesta(T datos, ILogger logger = null) : base(logger) {
             Datos = datos;
         }
 
@@ -31,8 +32,8 @@ namespace Core.Common.Respuestas {
         /// <param name="resultado"></param>
         /// <param name="mensaje"></param>
         /// <param name="funcionalidad"></param>
-        public Respuesta(int resultado, string mensaje, string funcionalidad)
-            : base(resultado, mensaje, funcionalidad) {
+        public Respuesta(int resultado, string mensaje, string funcionalidad, ILogger logger = null)
+            : base(resultado, mensaje, funcionalidad, logger) {
         }
 
         /// <summary>
@@ -41,10 +42,8 @@ namespace Core.Common.Respuestas {
         /// <param name="ex"></param>
         /// <param name="funcionalidad"></param>
         /// <param name="guardarLog"></param>
-        /// <param name="donde"></param>
-        public Respuesta(Exception ex, string funcionalidad = "", bool guardarLog = true, DondeGuardar donde = DondeGuardar.ArchivoTexto)
-            : base(ex, funcionalidad, guardarLog, donde) {
-
+        public Respuesta(Exception ex, string funcionalidad = "", ILogger logger = null)
+            : base(ex, funcionalidad, logger) {
         }
     }
 }

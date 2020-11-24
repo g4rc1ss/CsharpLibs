@@ -1,7 +1,5 @@
-﻿using Core.Data.Databases.SQLite;
+﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics;
-using System.IO;
 
 namespace Core.Common.Respuestas {
     /// <summary>
@@ -13,7 +11,7 @@ namespace Core.Common.Respuestas {
         /// <summary>
         /// Para comparar, OK es 0
         /// </summary>
-        public int OK { get; } = 0;
+        public int OK { get { return 0; } }
         /// <summary>
         /// Propiedad que contiene el codigo de un error
         /// </summary>
@@ -30,17 +28,20 @@ namespace Core.Common.Respuestas {
         public string Funcionalidad { get; private set; }
 
         /// <summary>
-        /// Se usa para no retornar datos
+        /// Propiedad para agregar la excepcion pasada
         /// </summary>
-        /// <example>
-        /// <code>
-        /// Respuesta resp1 = new Respuesta();
-        /// </code>
-        /// </example>
-        public Respuesta() {
+        private Exception Excepcion { get; set; }
+
+        /// <summary>
+        /// Constructor devolviendo una respuesta con codigo 0
+        /// Se le pasará un logger para ser registrado este evento
+        /// </summary>
+        /// <param name="logger">Interfaz generica de Microsoft.Extensions.Logging</param>
+        public Respuesta(ILogger logger = null) {
             Resultado = 0;
             Mensaje = string.Empty;
             Funcionalidad = string.Empty;
+            EjecutarLogger(logger, TipoLogger.Information);
         }
 
         /// <summary>
@@ -49,10 +50,12 @@ namespace Core.Common.Respuestas {
         /// <param name="resultado"></param>
         /// <param name="mensaje"></param>
         /// <param name="funcionalidad"></param>
-        public Respuesta(int resultado, string mensaje, string funcionalidad = "") {
+        /// <param name="logger"></param>
+        public Respuesta(int resultado, string mensaje, string funcionalidad = "", ILogger logger = null) {
             Resultado = resultado;
             Mensaje = mensaje;
             Funcionalidad = funcionalidad;
+            EjecutarLogger(logger, TipoLogger.Error);
         }
 
         /// <summary>
@@ -61,91 +64,38 @@ namespace Core.Common.Respuestas {
         /// <param name="ex"></param>
         /// <param name="funcionalidad"></param>
         /// <param name="guardarLog"></param>
-        /// <param name="donde"></param>
-        public Respuesta(Exception ex, string funcionalidad = "", bool guardarLog = true, DondeGuardar donde = DondeGuardar.ArchivoTexto) {
-            var stackTrace = new StackTrace(2, true);
-
+        /// <param name="logger"></param>
+        public Respuesta(Exception ex, string funcionalidad = "", ILogger logger = null) {
+            Excepcion = ex;
             Resultado = ex.HResult;
             Mensaje = ex.Message;
             Funcionalidad = funcionalidad;
+            EjecutarLogger(logger, TipoLogger.Fatal);
+        }
 
-            if (guardarLog) {
-                switch (donde) {
-                    case DondeGuardar.ArchivoTexto: {
-                        GuardarTrazaArchivoTexto(ex, stackTrace);
-                        break;
-                    }
-                    case DondeGuardar.BaseDatosLocal: {
-                        GuardarTrazaBaseDatosLocal(ex, stackTrace);
-                        break;
-                    }
-                    case DondeGuardar.BaseDatosMSSQL: {
-                        GuardarTrazaMSSQL();
-                        break;
-                    }
+        private void EjecutarLogger(ILogger logger, TipoLogger tipoLogger) {
+            if (logger != null) {
+                switch (tipoLogger) {
+                    case TipoLogger.Information:
+                    logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                        Resultado, Funcionalidad, Mensaje);
+                    break;
+                    case TipoLogger.Error:
+                    logger.LogError("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                        Resultado, Funcionalidad, Mensaje);
+                    break;
+                    case TipoLogger.Fatal:
+                    logger.LogCritical(Excepcion, "Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                        Resultado, Funcionalidad, Mensaje);
+                    break;
                 }
             }
-        }
-
-        private void GuardarTrazaArchivoTexto(Exception ex, StackTrace stackTrace) {
-            try {
-                var fecha = DateTime.Now.ToString("yyyy-MM-dd");
-                var hora = DateTime.Now.ToString("HH:mm:ss");
-                var nombreFichero = $"{fecha}.log";
-                var contenido = string.Empty;
-
-                if (File.Exists(nombreFichero)) {
-                    using (var leer = File.OpenText(nombreFichero)) {
-                        contenido = leer.ReadToEnd();
-                    }
-                }
-                using (var escribir = File.CreateText(nombreFichero)) {
-                    escribir.Write($"{contenido} \n" +
-                        $"[{fecha}] ~ [{hora}] {stackTrace.GetFrame(1).GetMethod().Name} - {Mensaje} \n");
-                }
-            } catch (Exception) {
-                try {
-                    GuardarTrazaBaseDatosLocal(ex, stackTrace);
-                } catch (Exception) {
-                    throw new Exception("Se ha producido un error al guardar el log en un archivo de texto y en una base de datos local");
-                }
-            }
-        }
-
-        private void GuardarTrazaBaseDatosLocal(Exception ex, StackTrace stackTrace) {
-            var sqlite = new SQLiteDB() { DBName = $"Log-{DateTime.Now.ToString("ddMMyyy")}.db" };
-            sqlite.CreateDatabase("CREATE TABLE LOG(" +
-                    "ID             INT       PRIMARY KEY      NOT NULL," +
-                    "CODIGOERROR    TEXT                       NOT NULL," +
-                    "MENSAJE        TEXT                       NOT NULL)");
-            sqlite.UpdateOrInsert($"INSERT INTO LOG (ID, CODIGOERROR, MENSAJE) " +
-                $"VALUES ({sqlite.MaxID("ID", "LOG")}, '{Resultado.ToString()}', '{Mensaje}')");
-        }
-
-        private void GuardarTrazaMSSQL() {
-            //TODO
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum DondeGuardar {
-        /// <summary>
-        /// 
-        /// </summary>
-        Desconocido = -1,
-        /// <summary>
-        /// 
-        /// </summary>
-        ArchivoTexto = 0,
-        /// <summary>
-        /// 
-        /// </summary>
-        BaseDatosLocal = 1,
-        /// <summary>
-        /// 
-        /// </summary>
-        BaseDatosMSSQL = 2
+    internal enum TipoLogger {
+        Information,
+        Error,
+        Fatal
     }
 }
