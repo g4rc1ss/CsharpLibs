@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\Core.Data.Databases\Core.Data.Databases.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.10" />
   </ItemGroup>
 
 </Project>
