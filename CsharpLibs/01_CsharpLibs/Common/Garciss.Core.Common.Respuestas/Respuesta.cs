@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace Core.Common.Respuestas {
+namespace Garciss.Core.Common.Respuestas {
     /// <summary>
     /// Clase que contiene un objeto para gestionar resultados y excepciones
     /// principalemente en aplicaciones Web, hace que se devuelva los
@@ -74,8 +74,7 @@ namespace Core.Common.Respuestas {
         }
 
         private void EjecutarLogger(ILogger logger, TipoLogger tipoLogger) {
-            if (logger != null) {
-                switch (tipoLogger) {
+            if (logger != null) switch (tipoLogger) {
                     case TipoLogger.Information:
                     logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
                         Resultado, Funcionalidad, Mensaje);
@@ -89,7 +88,6 @@ namespace Core.Common.Respuestas {
                         Resultado, Funcionalidad, Mensaje);
                     break;
                 }
-            }
         }
     }
 

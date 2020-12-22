@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Files\Core.Data.Files.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Files\Garciss.Core.Data.Files.csproj" />
   </ItemGroup>
 
   <ItemGroup>

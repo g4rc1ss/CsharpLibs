@@ -13,8 +13,4 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Core.Common.Respuestas\Core.Common.Respuestas.csproj" />
-  </ItemGroup>
-
 </Project>

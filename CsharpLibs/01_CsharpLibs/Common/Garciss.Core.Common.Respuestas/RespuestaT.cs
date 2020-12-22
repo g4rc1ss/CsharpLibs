@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace Core.Common.Respuestas {
+namespace Garciss.Core.Common.Respuestas {
     /// <summary>
     /// Clase respuesta, para generalizar la devolucion de objetos etc y tracear
     /// </summary>

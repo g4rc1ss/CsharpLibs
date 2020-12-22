@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -13,8 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Common\Core.Common.Respuestas\Core.Common.Respuestas.csproj" />
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Databases\Core.Data.Databases.csproj" />
+    <None Update="Converters\Fake\TestXml.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

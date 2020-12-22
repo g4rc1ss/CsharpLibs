@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Libs\Core.Libs.Encriptacion\Core.Libs.Encriptacion.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Databases\Garciss.Core.Data.Databases.csproj" />
   </ItemGroup>
 
 </Project>
