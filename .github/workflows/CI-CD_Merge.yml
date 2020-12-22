@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Dotnet Build
-      run: dotnet build --configuration Release ./CsharpLibs/CsharpLibs.sln
+      run: dotnet build --configuration Release ./CsharpLibs/Garciss.Csharp.Libs.sln
 
     - name: Generar nuspec
       run: |

@@ -3,7 +3,7 @@
 ###########################################################################
 
 #Version del paquete nuget a generar
-$versionNuget = 2.1
+$versionNuget = 3.0
 
 # Lectura de variables de configuracion
 # _________________________________________
@@ -11,7 +11,7 @@ $versionNuget = 2.1
 # Nombre del archivo a generar 
 $rutaNuspec = Convert-Path .
 
-$rutaNuspec += '/garciss.libs.nuspec'
+$rutaNuspec += '/Garciss.Csharp.libs.nuspec'
 
 # Ruta raiz donde localizar los archivos .csproj
 $rutaCSProj = '../../CsharpLibs/01_CsharpLibs/'
@@ -23,7 +23,7 @@ $rutaDLL = "../PackagesCompilaciones/"
 # ___________________________________________________________
 
 ## Datos del paquete Nuget
-$id = "CsharpLibs"
+$id = "Garciss.Csharp.Libs"
 $title = "CSharp Libs"
 $authors = "Asier Garcia"
 $owners = "Asier Garcia"
