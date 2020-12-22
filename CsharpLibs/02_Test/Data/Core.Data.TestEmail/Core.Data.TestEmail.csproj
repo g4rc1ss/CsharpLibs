@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,6 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Email\Core.Data.Email.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Plantillas\EmailResponsiveTemplate.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

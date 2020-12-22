@@ -5,25 +5,28 @@ using System.Net.Mail;
 
 namespace Core.Data.Email.SMTP {
     public class EmailSmtp :Email {
-        public EmailSmtp(string usuario, string password, string rutaUbicacionPlantilla = "") : base(usuario, password, rutaUbicacionPlantilla) {
+        public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
+            : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }
 
         public override Respuesta Enviar() {
             InicializarEnvioEmail();
-            using (var cliente = new SmtpClient(ServidorEnvio)) {
-                cliente.EnableSsl = true;
-                cliente.Credentials = new NetworkCredential(Usuario, Password);
-                var mensaje = new MailMessage(Remitente, Destinatario) {
-                    IsBodyHtml = true,
-                    Subject = Asunto,
-                    Body = Cuerpo,
-                };
+            using (var cliente = new SmtpClient(servidorEnvio)) {
+                using (var stream = new MemoryStream()) {
+                    cliente.EnableSsl = true;
+                    cliente.Credentials = new NetworkCredential(usuario, password);
+                    var mensaje = new MailMessage(Remitente, Destinatario) {
+                        IsBodyHtml = true,
+                        Subject = Asunto,
+                        Body = Cuerpo,
+                    };
 
-                if (ArchivosAdjuntos == null || ArchivosAdjuntos.Count > 0)
-                    using (var stream = new MemoryStream()) for (var x = 0; x < ArchivosAdjuntos.Count; x++)
+                    if (ArchivosAdjuntos != null && ArchivosAdjuntos?.Count > 0)
+                        for (var x = 0; x < ArchivosAdjuntos.Count; x++) {
                             mensaje.Attachments.Add(new Attachment(stream, NombreArchivosAdjunto[x]));
-
-                cliente.Send(mensaje);
+                        }
+                    cliente.Send(mensaje);
+                }
             }
             return new Respuesta();
         }
