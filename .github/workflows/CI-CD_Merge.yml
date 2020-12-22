@@ -30,7 +30,7 @@ jobs:
       run: |
         ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
-        nuget pack garciss.Libs.nuspec -Verbosity Detail
+        nuget pack Garciss.Csharp.libs.nuspec -Verbosity Detail
         
     - name: Push generated package to GitHub registry
       run: |
