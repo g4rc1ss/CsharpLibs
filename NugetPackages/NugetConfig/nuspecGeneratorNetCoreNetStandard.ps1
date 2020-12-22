@@ -24,7 +24,7 @@ $rutaDLL = "../PackagesCompilaciones/"
 
 ## Datos del paquete Nuget
 $id = "Garciss.Csharp.Libs"
-$title = "CSharp Libs"
+$title = "Garciss Csharp Libs"
 $authors = "Asier Garcia"
 $owners = "Asier Garcia"
 $requireLicenseAcceptance = "false"
