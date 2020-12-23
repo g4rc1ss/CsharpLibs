@@ -16,6 +16,7 @@ namespace Garciss.Core.Data.Email {
         public string Destinatario { get; set; }
         public string Asunto { get; set; }
         public string NombrePlantilla { get; set; }
+        public bool SSL { get; set; } = true;
         public List<string> BodyPersonalizado { get; set; }
         public List<byte[]> ArchivosAdjuntos { get; set; }
         public List<string> NombreArchivosAdjunto { get; set; }

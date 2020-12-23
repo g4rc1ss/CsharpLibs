@@ -36,7 +36,7 @@ namespace Garciss.Core.Data.Email.SMTP {
         public override Respuesta Enviar() {
             InicializarEnvioEmail();
             using (var cliente = new SmtpClient(servidorEnvio)) using (var stream = new MemoryStream()) {
-                cliente.EnableSsl = true;
+                cliente.EnableSsl = SSL;
                 cliente.Credentials = new NetworkCredential(usuario, password);
                 var mensaje = new MailMessage(Remitente, Destinatario) {
                     IsBodyHtml = true,
