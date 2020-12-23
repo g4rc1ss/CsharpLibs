@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Core.Common.Helper.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Common.Helper.xml</DocumentationFile>
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
