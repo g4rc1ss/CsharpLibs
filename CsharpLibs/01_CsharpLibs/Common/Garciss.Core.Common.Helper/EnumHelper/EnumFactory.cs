@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.Helper.EnumHelper {
+namespace Garciss.Core.Common.Helper.EnumHelper {
     /// <summary>
     /// Para evitar tener un array de claves o constantes asociado a una enumeración,
     /// se puede optar por asignar un atributo a cada elemento de la enumeración, de
@@ -86,15 +86,13 @@ namespace Core.Common.Helper.EnumHelper {
         /// </returns>
         public static TEnum EnumItemFromKey<TEnum>(string clave) where TEnum : struct, IConvertible {
             var enumToTranslate = typeof(TEnum);
-            if (enumToTranslate.IsEnum) {
-                foreach (var valor in Enum.GetValues(enumToTranslate)) {
+            if (enumToTranslate.IsEnum) foreach (var valor in Enum.GetValues(enumToTranslate)) {
                     var miembro = enumToTranslate.GetMember(valor.ToString());
                     var attrs = miembro[0].GetCustomAttributes(typeof(EnumDescription), false);
-                    var nombre = (attrs.Length > 0) ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
+                    var nombre = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
                     if (nombre == clave)
                         return (TEnum)valor;
                 }
-            }
             return (TEnum)Enum.Parse(enumToTranslate, "-1");
         }
 
@@ -133,14 +131,12 @@ namespace Core.Common.Helper.EnumHelper {
                 return retorno;
             var enumToSearch = typeof(TEnum);
 
-            foreach (var value in Enum.GetValues(enumToSearch)) {
-                if (enumItem.Equals(value)) {
+            foreach (var value in Enum.GetValues(enumToSearch)) if (enumItem.Equals(value)) {
                     var m = enumToSearch.GetMember(value.ToString());
                     var attrs = m[0].GetCustomAttributes(typeof(EnumDescription), false);
-                    var key = (attrs.Length > 0) ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToSearch, value);
-                    return (key == "desconocido") ? retorno : key;
+                    var key = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToSearch, value);
+                    return key == "desconocido" ? retorno : key;
                 }
-            }
             return retorno;
         }
 
@@ -224,10 +220,8 @@ namespace Core.Common.Helper.EnumHelper {
                         return obj;
                 }
                 throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
-            } else {
-                if (!Enum.TryParse<TEnum>(value, true, out retorno))
-                    throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
-            }
+            } else if (!Enum.TryParse(value, true, out retorno))
+                throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
             return retorno;
         }
         #endregion

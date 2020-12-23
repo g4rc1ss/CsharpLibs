@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.Helper.EnumHelper {
+namespace Garciss.Core.Common.Helper.EnumHelper {
     /// <summary>
     /// Metodos extensores para enumeraciones
     /// </summary>
@@ -18,7 +18,7 @@ namespace Core.Common.Helper.EnumHelper {
                 throw new ArgumentException("Argument_EnumtypeDoesNotMatch", $"{enumeracion.GetType().ToString()} /" +
                     $" {flag.GetType().ToString()}");
 
-            return (Convert.ToInt64(enumeracion) < 0)
+            return Convert.ToInt64(enumeracion) < 0
                 ? Convert.ToInt64(enumeracion) == Convert.ToInt64(flag)
                 : enumeracion.HasFlag(flag);
         }

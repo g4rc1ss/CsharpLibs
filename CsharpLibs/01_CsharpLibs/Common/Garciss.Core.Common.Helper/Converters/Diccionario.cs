@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 
-namespace Core.Common.Helper.Converters {
+namespace Garciss.Core.Common.Helper.Converters {
     public partial class ConvertHelper {
         #region "Funciones Privadas"
         /// <summary>

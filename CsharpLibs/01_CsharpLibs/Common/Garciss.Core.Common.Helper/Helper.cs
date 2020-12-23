@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Common.Helper {
+namespace Garciss.Core.Common.Helper {
     public static class Helper {
         public static bool IsDevelopment {
             get {

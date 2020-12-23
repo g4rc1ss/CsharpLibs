@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.IO;
 
-namespace Core.Common.Helper.Converters {
+namespace Garciss.Core.Common.Helper.Converters {
     /// <summary>
     /// Clase estatica en la que se ubican metodos para realizar conversiones y tratamiento de objetos
     /// Como por ejemlo: Convertir una clase a un diccionario, un XML a un Json, etc

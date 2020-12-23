@@ -1,7 +1,7 @@
-﻿using Core.Common.Helper.Formatters;
+﻿using Garciss.Core.Common.Helper.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Common.TestHelper.Formatters {
+namespace Garciss.Core.Common.TestHelper.Formatters {
     [TestClass]
     public class TestOfuscacion {
         [TestMethod]

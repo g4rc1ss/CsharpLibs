@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace Core.Common.TestHelper.Converters.Fake {
+namespace Garciss.Core.Common.TestHelper.Converters.Fake {
     public class ClaseParaConvertirToDictionary {
         public string Nombre { get; set; }
         public decimal Salario { get; set; }

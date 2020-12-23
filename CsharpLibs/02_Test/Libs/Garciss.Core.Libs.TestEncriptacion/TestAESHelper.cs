@@ -1,4 +1,4 @@
-﻿using Core.Libs.Encriptacion.Cryptography;
+﻿using Garciss.Core.Libs.Encriptacion.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Security.Cryptography;
@@ -106,7 +106,7 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllText(archivoAES_TXT_Propia, TEXTOPLANO);
 
                 var encriptarFicheroClaveRandom = new AESHelper();
-                encriptarFicheroClaveRandom.CriptografiaFicheros(path: archivoAES_TXT, modo: CifrarDescifrar.cifrar);
+                encriptarFicheroClaveRandom.EncriptarFichero(path: archivoAES_TXT);
                 File.WriteAllBytes(archivoKeyRandom, encriptarFicheroClaveRandom.Key);
                 File.WriteAllBytes(archivoIVRandom, encriptarFicheroClaveRandom.IV);
                 //-------------------------------------------------------
@@ -126,9 +126,8 @@ namespace Core.Libs.TestEncriptacion {
                 using (HashAlgorithm hash = SHA256.Create()) {
                     var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
-                    encriptarArchivoClavePropia.CriptografiaFicheros(
+                    encriptarArchivoClavePropia.EncriptarFichero(
                         path: archivoAES_TXT_Propia,
-                        modo: CifrarDescifrar.cifrar,
                         keyParameter: keyHashByte,
                         iVparameter: encriptarArchivoClavePropia.IV
                     );
@@ -159,9 +158,8 @@ namespace Core.Libs.TestEncriptacion {
             CifradoArchivos();
             try {
                 var desencriptarFicheroClaveRandom = new AESHelper();
-                desencriptarFicheroClaveRandom.CriptografiaFicheros(
+                desencriptarFicheroClaveRandom.DesencriptarFichero(
                     path: archivoAES_TXT,
-                    modo: CifrarDescifrar.descifrar,
                     keyParameter: File.ReadAllBytes(archivoKeyRandom),
                     iVparameter: File.ReadAllBytes(archivoIVRandom)
                 );
@@ -181,9 +179,8 @@ namespace Core.Libs.TestEncriptacion {
                 using (HashAlgorithm hash = SHA256.Create()) {
                     var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
-                    desencriptarArchivoClavePropia.CriptografiaFicheros(
+                    desencriptarArchivoClavePropia.DesencriptarFichero(
                         path: $"{archivoAES_TXT_Propia}.crypt",
-                        modo: CifrarDescifrar.descifrar,
                         keyParameter: keyHashByte,
                         iVparameter: File.ReadAllBytes(archivoIVPropia)
                     );

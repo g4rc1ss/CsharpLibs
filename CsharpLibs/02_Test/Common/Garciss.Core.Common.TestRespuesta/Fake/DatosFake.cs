@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.TestRespuesta.Fake {
+namespace Garciss.Core.Common.TestRespuesta.Fake {
     public class DatosFake {
         public string Nombre { get; set; }
         public string Apellido { get; set; }

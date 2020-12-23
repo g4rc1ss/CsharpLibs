@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Core.Common.Helper.Converters {
+namespace Garciss.Core.Common.Helper.Converters {
     public partial class ConvertHelper {
 
         /// <summary>

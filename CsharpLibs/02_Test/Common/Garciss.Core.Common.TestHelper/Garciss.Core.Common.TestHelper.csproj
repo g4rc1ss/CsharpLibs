@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Common\Garciss.Core.Common.Helper\Garciss.Core.Common.Helper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Converters\Fake\TestXml.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

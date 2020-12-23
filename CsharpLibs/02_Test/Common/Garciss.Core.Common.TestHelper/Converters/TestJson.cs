@@ -1,10 +1,10 @@
-﻿using Core.Common.Helper.Converters;
-using Core.Common.TestHelper.Converters.Fake;
+﻿using Garciss.Core.Common.Helper.Converters;
+using Garciss.Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 
-namespace Core.Common.TestHelper.Converters {
+namespace Garciss.Core.Common.TestHelper.Converters {
     [TestClass]
     public class TestJson {
         [TestMethod]

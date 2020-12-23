@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Core.Data.Files {
+namespace Garciss.Core.Data.Files {
     /// <summary>
     /// Clase para tratamiento de directorios que no estan disponibles en las
     /// librerias habituales
@@ -26,9 +26,7 @@ namespace Core.Data.Files {
         }
         private void CopyDirectory(DirectoryInfo origen, DirectoryInfo destino) {
             // Comprueba que el destino exista:
-            if (!destino.Exists) {
-                destino.Create();
-            }
+            if (!destino.Exists) destino.Create();
 
             // Copia todos los archivos del directorio actual:
             Parallel.ForEach(origen.EnumerateFiles(), (archivo) => {

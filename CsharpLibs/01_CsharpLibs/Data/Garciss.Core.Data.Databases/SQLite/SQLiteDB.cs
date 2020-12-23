@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 
-namespace Core.Data.Databases.SQLite {
+namespace Garciss.Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
@@ -111,12 +111,10 @@ namespace Core.Data.Databases.SQLite {
 
         private DataTable ExecuteSelect(string query) {
             ValidarSentencia(query, TiposSentenciaSql.Select);
-            using (var connect = Conexion) {
-                using (var command = new SQLiteCommand(query, connect)) {
-                    var tabla = new DataTable();
-                    tabla.Load(command.ExecuteReader());
-                    return tabla;
-                }
+            using (var connect = Conexion) using (var command = new SQLiteCommand(query, connect)) {
+                var tabla = new DataTable();
+                tabla.Load(command.ExecuteReader());
+                return tabla;
             }
         }
 
@@ -152,10 +150,8 @@ namespace Core.Data.Databases.SQLite {
                 ValidarSentencia(query, TiposSentenciaSql.Insert);
             else
                 ValidarSentencia(query, TiposSentenciaSql.Delete);
-            using (var connect = Conexion) {
-                using (var command = new SQLiteCommand(query, connect))
-                    return command.ExecuteNonQuery();
-            }
+            using (var connect = Conexion) using (var command = new SQLiteCommand(query, connect))
+                return command.ExecuteNonQuery();
         }
 
         /// <summary>

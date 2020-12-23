@@ -1,7 +1,7 @@
-﻿using Core.Common.Helper.Converters;
+﻿using Garciss.Core.Common.Helper.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Common.TestHelper.Converters {
+namespace Garciss.Core.Common.TestHelper.Converters {
     [TestClass]
     public class TestDecimal {
         [TestMethod]

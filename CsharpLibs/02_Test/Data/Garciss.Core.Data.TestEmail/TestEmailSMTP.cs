@@ -1,4 +1,4 @@
-﻿using Core.Data.Email.SMTP;
+﻿using Garciss.Core.Data.Email.SMTP;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 

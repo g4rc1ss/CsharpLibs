@@ -1,4 +1,4 @@
-﻿using Core.Data.Databases.SQLite;
+﻿using Garciss.Core.Data.Databases.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Data;

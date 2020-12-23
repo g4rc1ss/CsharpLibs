@@ -1,4 +1,4 @@
-﻿using Core.Data.Files;
+﻿using Garciss.Core.Data.Files;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 

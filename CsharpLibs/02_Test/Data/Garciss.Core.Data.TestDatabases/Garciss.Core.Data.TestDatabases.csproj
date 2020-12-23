@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Core.Data.Databases\Garciss.Core.Data.Databases.csproj" />
+    <ProjectReference Include="..\..\..\01_CsharpLibs\Data\Garciss.Core.Data.Databases\Garciss.Core.Data.Databases.csproj" />
   </ItemGroup>
 
 </Project>

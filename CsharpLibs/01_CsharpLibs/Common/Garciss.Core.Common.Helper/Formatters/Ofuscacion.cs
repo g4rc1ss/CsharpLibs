@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.Helper.Formatters {
+namespace Garciss.Core.Common.Helper.Formatters {
     public partial class Format {
         /// <summary>
         /// Oculta la parte del correo electronico

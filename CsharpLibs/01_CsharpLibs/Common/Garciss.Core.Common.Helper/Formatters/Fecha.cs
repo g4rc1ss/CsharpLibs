@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Common.Helper.Formatters {
+namespace Garciss.Core.Common.Helper.Formatters {
     /// <summary>
     /// Clase para formartear objetos
     /// </summary>

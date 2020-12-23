@@ -1,8 +1,8 @@
-﻿using Core.Common.Helper.Formatters;
+﻿using Garciss.Core.Common.Helper.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Core.Common.TestHelper.Formatters {
+namespace Garciss.Core.Common.TestHelper.Formatters {
     [TestClass]
     public class TestFecha {
         [TestMethod]

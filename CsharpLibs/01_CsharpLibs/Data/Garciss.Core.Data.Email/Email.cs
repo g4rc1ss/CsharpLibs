@@ -1,9 +1,9 @@
-﻿using Core.Common.Respuestas;
+﻿using Garciss.Core.Common.Respuestas;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Core.Data.Email {
+namespace Garciss.Core.Data.Email {
     public abstract class Email {
         private readonly string regexCuerpoVariables = "¬V\\d+";
         private readonly string rutaUbicacionPlantillasHtml;
@@ -55,9 +55,7 @@ namespace Core.Data.Email {
             var regex = new System.Text.RegularExpressions.Regex(regexCuerpoVariables);
             var cuerpo = ObtenerTextoDesdeRepositorio();
 
-            foreach (var param in BodyPersonalizado) {
-                cuerpo = regex.Replace(cuerpo, param, 1);
-            }
+            foreach (var param in BodyPersonalizado) cuerpo = regex.Replace(cuerpo, param, 1);
             Cuerpo = cuerpo;
         }
 

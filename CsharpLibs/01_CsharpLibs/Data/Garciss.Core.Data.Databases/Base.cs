@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Core.Data.Databases {
+namespace Garciss.Core.Data.Databases {
     /// <summary>
     /// Clase base de la que hay que heredar para realizar validaciones de sentencias SQL etc.
     /// Se usara principalmente para prevenir SQL Injection
@@ -125,13 +125,10 @@ namespace Core.Data.Databases {
                     //Continue - Not an error.
                 } else if (value.StartsWith("'") && value.EndsWith("'")) {
                     //Continue - Text Block
-                } else if (value.Trim() == ";") {
-                    throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
-                } else {
-                    throw new UnauthorizedAccessException(
-                      string.Concat(value.Substring(0, 1).ToUpper(), value.Substring(1).ToLower(),
-                                    " statements not authorized:", Environment.NewLine, sentencia));
-                }
+                } else if (value.Trim() == ";") throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
+                else throw new UnauthorizedAccessException(
+                  string.Concat(value.Substring(0, 1).ToUpper(), value.Substring(1).ToLower(),
+                                " statements not authorized:", Environment.NewLine, sentencia));
             }
         }
 
@@ -160,11 +157,10 @@ namespace Core.Data.Databases {
             int i;
             var sParametros = "";
 
-            if (file.ToUpper().IndexOf("SELECT ") >= 0 & file.ToUpper().IndexOf("FROM") >= 0) {
-                strSQL = file;
-            } else {
+            if (file.ToUpper().IndexOf("SELECT ") >= 0 & file.ToUpper().IndexOf("FROM") >= 0) strSQL = file;
+            else {
                 if (file.IndexOf(@"\\") < 0) {
-                    var unidad = (server == string.Empty) ? @"C:" : string.Concat(@"\\", server);
+                    var unidad = server == string.Empty ? @"C:" : string.Concat(@"\\", server);
                     file = string.Concat(unidad, @"\accesoBaseDatos", file);
                 }
 
@@ -174,12 +170,10 @@ namespace Core.Data.Databases {
                 }
             }
 
-            if (!(parametros == null)) {
-                for (i = 0; i <= parametros.Length - 1; i++) {
+            if (!(parametros == null)) for (i = 0; i <= parametros.Length - 1; i++) {
                     sParametros += (sParametros.Length > 0 ? "," : "") + parametros[i];
                     strSQL = strSQL.Replace("@" + i.ToString() + "@", parametros[i]);
                 }
-            }
             ValidarSentencia(sParametros, TiposSentenciaSql.None);
             return strSQL;
         }

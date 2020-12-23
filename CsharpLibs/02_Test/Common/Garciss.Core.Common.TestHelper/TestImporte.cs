@@ -1,12 +1,7 @@
-﻿using Core.Common.Helper;
+﻿using Garciss.Core.Common.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Core.Common.TestHelper {
+namespace Garciss.Core.Common.TestHelper {
     [TestClass]
     public class TestImporte {
         [TestMethod]

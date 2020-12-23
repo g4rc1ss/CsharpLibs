@@ -1,12 +1,9 @@
-﻿using Core.Common.Respuestas;
-using Core.Common.TestRespuesta.Fake;
-using Core.Data.Databases.SQLite;
+﻿using Garciss.Core.Common.Respuestas;
+using Garciss.Core.Common.TestRespuesta.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Data;
-using System.IO;
 
-namespace Core.Common.TestRespuesta {
+namespace Garciss.Core.Common.TestRespuesta {
     [TestClass]
     // respuesta es una clase que recibe un objeto y lugo se trata para extraer los resultados
     // de un modo especifico

@@ -13,4 +13,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
+  </ItemGroup>
+
 </Project>
