@@ -8,7 +8,31 @@ namespace Garciss.Core.Data.Email.SMTP {
         public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
             : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }
-
+        /// <summary>
+        /// Despues de inicializar los datos se podra usar el metodo Enviar que preparará el envio del email
+        /// </summary>
+        /// <returns>Devuelve un objeto Respuesta para validar si la operacion es correcta</returns>
+        /// <example>
+        /// <code>
+        /// var email = new EmailSmtp("servidor", "usuario", "contraseña", "carpeta de los html") {
+        ///    Remitente = "remitente@remitente.com",
+        ///    Destinatario = "desinatario@destinatario.com",
+        ///    NombrePlantilla = "plantilla.html",
+        ///    Asunto = "Es el asunto",
+        ///    BodyPersonalizado = new System.Collections.Generic.List<string>() {
+        ///           "titulo",
+        ///           "variables en texto",
+        ///       },
+        ///    ArchivosAdjuntos = new System.Collections.Generic.List<byte[]> {
+        ///            File.ReadAllBytes(@"Plantillas\EmailResponsiveTemplate.html")
+        ///        },
+        ///    NombreArchivosAdjunto = new System.Collections.Generic.List<string> {
+        ///           "EmailResponsiveTemplate.html"
+        ///       }
+        /// };
+        /// email.Enviar();
+        /// </code>
+        /// </example>
         public override Respuesta Enviar() {
             InicializarEnvioEmail();
             using (var cliente = new SmtpClient(servidorEnvio)) using (var stream = new MemoryStream()) {
