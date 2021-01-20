@@ -12,9 +12,9 @@ namespace Core.Data.TestEmail {
                 Remitente = "emailtemporalparaenvio@gmail.com",
                 Destinatarios = new List<string>() {
                     "emailtemporalparaenvio@gmail.com",
-                    "ga15asiergarcia@gmail.com",
-                    "garciss@protonmail.com",
-                    "litxu71@hotmail.com"
+                    "emailtemporalparaenvio@gmail.com",
+                    "emailtemporalparaenvio@gmail.com",
+                    "emailtemporalparaenvio@gmail.com",
                 },
                 NombrePlantilla = "EmailResponsiveTemplate.html",
                 Asunto = "Es el asunto",
