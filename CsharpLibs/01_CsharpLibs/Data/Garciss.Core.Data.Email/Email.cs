@@ -13,10 +13,10 @@ namespace Garciss.Core.Data.Email {
         internal string Cuerpo { get; set; }
 
         public string Remitente { get; set; }
-        public string Destinatario { get; set; }
         public string Asunto { get; set; }
         public string NombrePlantilla { get; set; }
         public bool SSL { get; set; } = true;
+        public List<string> Destinatarios { get; set; }
         public List<string> BodyPersonalizado { get; set; }
         public List<byte[]> ArchivosAdjuntos { get; set; }
         public List<string> NombreArchivosAdjunto { get; set; }
@@ -38,8 +38,8 @@ namespace Garciss.Core.Data.Email {
         private void ValidarCampos() {
             if (string.IsNullOrEmpty(Remitente))
                 throw new Exception($"Campo {nameof(Remitente)} vacio");
-            if (string.IsNullOrEmpty(Destinatario))
-                throw new Exception($"Campo {nameof(Destinatario)} vacio");
+            if (Destinatarios == null || Destinatarios.Count <= 0)
+                throw new Exception($"Campo {nameof(Destinatarios)} vacio");
             if (string.IsNullOrEmpty(usuario))
                 throw new Exception($"Campo {nameof(usuario)} vacio");
             if (string.IsNullOrEmpty(password))

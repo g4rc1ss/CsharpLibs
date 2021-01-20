@@ -1,5 +1,6 @@
 ﻿using Garciss.Core.Data.Email.SMTP;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core.Data.TestEmail {
@@ -9,17 +10,22 @@ namespace Core.Data.TestEmail {
         public void SendEmail() {
             var email = new EmailSmtp("smtp.gmail.com", "emailtemporalparaenvio@gmail.com", "EmailTemporal", "Plantillas") {
                 Remitente = "emailtemporalparaenvio@gmail.com",
-                Destinatario = "emailtemporalparaenvio@gmail.com",
+                Destinatarios = new List<string>() {
+                    "emailtemporalparaenvio@gmail.com",
+                    "emailtemporalparaenvio@gmail.com",
+                    "emailtemporalparaenvio@gmail.com",
+                    "emailtemporalparaenvio@gmail.com",
+                },
                 NombrePlantilla = "EmailResponsiveTemplate.html",
                 Asunto = "Es el asunto",
-                BodyPersonalizado = new System.Collections.Generic.List<string>() {
+                BodyPersonalizado = new List<string>() {
                     "titulo",
                     "variables en texto",
                 },
-                ArchivosAdjuntos = new System.Collections.Generic.List<byte[]> {
+                ArchivosAdjuntos = new List<byte[]> {
                     File.ReadAllBytes(@"Plantillas\EmailResponsiveTemplate.html")
                 },
-                NombreArchivosAdjunto = new System.Collections.Generic.List<string> {
+                NombreArchivosAdjunto = new List<string> {
                     "EmailResponsiveTemplate.html"
                 }
             };

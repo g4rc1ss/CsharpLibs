@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
-    internal class DecryptAESHelper {
+    internal sealed class DecryptAESHelper {
         internal bool DecryptFile(string path, byte[] keyParameter, byte[] iVparameter) {
             // Create an Aes object
             // with the specified key and IV.

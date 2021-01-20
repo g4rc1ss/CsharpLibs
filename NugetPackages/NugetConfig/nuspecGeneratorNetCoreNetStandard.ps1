@@ -3,7 +3,7 @@
 ###########################################################################
 
 #Version del paquete nuget a generar
-$versionNuget = 3.3
+$versionNuget = 3.4
 
 # Lectura de variables de configuracion
 # _________________________________________

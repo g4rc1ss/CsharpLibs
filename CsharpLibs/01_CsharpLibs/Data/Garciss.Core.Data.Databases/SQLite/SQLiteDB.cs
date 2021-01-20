@@ -7,7 +7,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
-    public class SQLiteDB :Base {
+    public sealed class SQLiteDB :Base {
 
         /// <summary>
         /// Elegimos la base de datos, sino se llamara "Database.db"
