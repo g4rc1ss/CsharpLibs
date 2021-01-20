@@ -5,7 +5,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Garciss.Core.Data.Email.SMTP {
-    public class EmailSmtp :Email {
+    public sealed class EmailSmtp :Email {
         public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
             : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }

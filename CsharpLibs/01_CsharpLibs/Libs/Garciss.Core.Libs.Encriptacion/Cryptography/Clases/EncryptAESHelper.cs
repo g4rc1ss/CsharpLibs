@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
-    internal class EncryptAESHelper {
+    internal sealed class EncryptAESHelper {
 
         internal byte[] EncryptStringToBytesAes(string text, byte[] keyParameter, byte[] iVparameter) {
             // Create an Aes object

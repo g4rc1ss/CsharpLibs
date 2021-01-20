@@ -2,7 +2,7 @@
 using System;
 
 namespace Garciss.Core.Common.Helper {
-    public class Importe {
+    public sealed class Importe {
         private string moneda = "EUR";
         public string Moneda {
             get { return moneda; }
@@ -41,6 +41,10 @@ namespace Garciss.Core.Common.Helper {
 
         public override bool Equals(object importe) {
             return ((Importe)importe).Cantidad.Equals(Cantidad);
+        }
+
+        public override int GetHashCode() {
+            return base.GetHashCode();
         }
 
         public static Importe operator +(Importe a, Importe b) {
