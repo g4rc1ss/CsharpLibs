@@ -23,9 +23,6 @@ jobs:
       shell: powershell
     
 
-    - name: Add private GitHub registry to NuGet
-      run: nuget source Add -Name "PackagesGitHub" -Source "https://api.nuget.org/v3/index.json" -UserName ${{ secrets.USERNAME_GITHUB }} -Password ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
-
     - name: Nuget Pack para preparar el paquete
       run: |
         ls NugetPackages/PackagesCompilaciones/netstandard2.1
@@ -35,5 +32,5 @@ jobs:
     - name: Push generated package to GitHub registry
       run: |
         cd NugetPackages/NugetConfig/
-        nuget push *.nupkg -Source "PackagesGitHub" -SkipDuplicate
+        nuget push *.nupkg ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
         
