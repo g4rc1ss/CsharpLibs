@@ -24,7 +24,7 @@ jobs:
     
 
     - name: Add private GitHub registry to NuGet
-      run: nuget source Add -Name "PackagesGitHub" -Source "https://nuget.pkg.github.com/${{ secrets.USERNAME_GITHUB }}/index.json" -UserName ${{ secrets.USERNAME_GITHUB }} -Password ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
+      run: nuget source Add -Name "PackagesGitHub" -Source "https://api.nuget.org/v3/index.json" -UserName ${{ secrets.USERNAME_GITHUB }} -Password ${{ secrets.USER_TOKEN_GITHUB_PACKAGE }}
 
     - name: Nuget Pack para preparar el paquete
       run: |
