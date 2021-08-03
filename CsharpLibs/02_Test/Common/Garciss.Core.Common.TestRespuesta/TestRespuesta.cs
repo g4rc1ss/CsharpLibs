@@ -22,9 +22,9 @@ namespace Garciss.Core.Common.TestRespuesta {
             });
 
             Assert.IsTrue(
-                resp1.Datos == null && resp1.Mensaje == "" && resp1.Resultado == 0 &&
+                resp1.Datos == null && resp1.Mensaje == "" && resp1.Resultado == Respuesta.OK &&
                 object.ReferenceEquals(resp2.Datos.GetType(), new DatosFake().GetType()) &&
-                resp2.Mensaje == string.Empty && resp2.Resultado == resp2.OK
+                resp2.Mensaje == string.Empty && resp2.Resultado == Respuesta.OK
             );
         }
     }

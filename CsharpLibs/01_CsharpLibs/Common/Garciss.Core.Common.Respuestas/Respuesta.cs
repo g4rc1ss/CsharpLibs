@@ -11,7 +11,7 @@ namespace Garciss.Core.Common.Respuestas {
         /// <summary>
         /// Para comparar, OK es 0
         /// </summary>
-        public int OK { get { return 0; } }
+        public static int OK => 0;
         /// <summary>
         /// Propiedad que contiene el codigo de un error
         /// </summary>
