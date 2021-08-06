@@ -15,7 +15,8 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
                 aesAlg.IV = iVparameter;
                 // Create an encryptor to perform the stream transform.
                 using (var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))                     // Create the streams used for encryption.
-                using (var msEncrypt = new MemoryStream()) using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) {
+                using (var msEncrypt = new MemoryStream())
+                using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write)) {
                     using (var swEncrypt = new StreamWriter(csEncrypt)) {
                         //Write all data to the stream.
                         swEncrypt.Write(text);
@@ -27,16 +28,16 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
             // Return the encrypted bytes from the memory stream.
         }
 
-        internal bool EncryptFile(string path, byte[] keyParameter, byte[] iVparameter) {
+        internal bool EncryptFile(string pathFileToEncrypt, string pathEncryptedFile, byte[] keyParameter, byte[] iVparameter) {
             try {
                 using (var aesAlg = Aes.Create()) {
                     aesAlg.Key = keyParameter;
                     aesAlg.IV = iVparameter;
 
                     using (var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
-                    using (var fileStreamOutput = new FileStream($"{path}.crypt", FileMode.Create, FileAccess.Write))
+                    using (var fileStreamOutput = new FileStream(pathEncryptedFile, FileMode.OpenOrCreate, FileAccess.Write))
                     using (var cryptStream = new CryptoStream(fileStreamOutput, encryptor, CryptoStreamMode.Write))
-                    using (var fileStreamInput = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    using (var fileStreamInput = new FileStream(pathFileToEncrypt, FileMode.Open, FileAccess.Read))
                         for (int data; (data = fileStreamInput.ReadByte()) != -1;)
                             cryptStream.WriteByte((byte)data);
                 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class DecryptAESHelper {
-        internal bool DecryptFile(string path, byte[] keyParameter, byte[] iVparameter) {
+        internal bool DecryptFile(string cryptFilePath, string decryptFilePath, byte[] keyParameter, byte[] iVparameter) {
             // Create an Aes object
             // with the specified key and IV.
             try {
@@ -16,8 +16,8 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
 
                     // Create an encryptor to perform the stream transform.
                     using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
-                    using (var fileStreamCrypt = new FileStream(path.Contains(".crypt") ? path : $"{path}.crypt", FileMode.Open, FileAccess.Read))
-                    using (var fileStreamOut = new FileStream(path.Contains(".crypt") ? path.Replace(".crypt", "") : $"{path}", FileMode.Create, FileAccess.Write))
+                    using (var fileStreamCrypt = new FileStream(cryptFilePath, FileMode.Open, FileAccess.Read))
+                    using (var fileStreamOut = new FileStream(decryptFilePath, FileMode.OpenOrCreate, FileAccess.Write))
                     using (var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read))
                         for (int data; (data = decryptStream.ReadByte()) != -1;)
                             fileStreamOut.WriteByte((byte)data);

@@ -85,7 +85,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </example>
         public bool EncriptarFichero(string path, byte[] keyParameter = null, byte[] iVparameter = null) {
             ValidarCampos(path, keyParameter, iVparameter);
-            return new EncryptAESHelper().EncryptFile(path: path, keyParameter: Key, iVparameter: IV);
+            return new EncryptAESHelper().EncryptFile(pathFileToEncrypt: path, keyParameter: Key, iVparameter: IV);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </example>
         public bool DesencriptarFichero(string path, byte[] keyParameter = null, byte[] iVparameter = null) {
             ValidarCampos(path, keyParameter, iVparameter);
-            return new DecryptAESHelper().DecryptFile(path: path, keyParameter: Key, iVparameter: IV);
+            return new DecryptAESHelper().DecryptFile(cryptFilePath: path, keyParameter: Key, iVparameter: IV);
         }
 
         /// <summary>

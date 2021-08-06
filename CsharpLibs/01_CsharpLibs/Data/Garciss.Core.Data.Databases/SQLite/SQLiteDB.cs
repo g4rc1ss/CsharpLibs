@@ -44,7 +44,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// </code>
         /// </example>
         public bool IsCreateDatabase() {
-            if (!File.Exists(DBName) && !File.Exists($"{DBName}.crypt"))
+            if (!File.Exists(DBName))
                 return false;
             return true;
         }
@@ -111,7 +111,8 @@ namespace Garciss.Core.Data.Databases.SQLite {
 
         private DataTable ExecuteSelect(string query) {
             ValidarSentencia(query, TiposSentenciaSql.Select);
-            using (var connect = Conexion) using (var command = new SQLiteCommand(query, connect)) {
+            using (var connect = Conexion)
+            using (var command = new SQLiteCommand(query, connect)) {
                 var tabla = new DataTable();
                 tabla.Load(command.ExecuteReader());
                 return tabla;
@@ -150,7 +151,8 @@ namespace Garciss.Core.Data.Databases.SQLite {
                 ValidarSentencia(query, TiposSentenciaSql.Insert);
             else
                 ValidarSentencia(query, TiposSentenciaSql.Delete);
-            using (var connect = Conexion) using (var command = new SQLiteCommand(query, connect))
+            using (var connect = Conexion)
+            using (var command = new SQLiteCommand(query, connect))
                 return command.ExecuteNonQuery();
         }
 
