@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Garciss.Core.Common.Helper {
     public static class Helper {
@@ -18,8 +17,9 @@ namespace Garciss.Core.Common.Helper {
                 };
                 foreach (var variableEntorno in variablesEntorno) {
                     var env = System.Environment.GetEnvironmentVariable(variableEntorno);
-                    if (env == "Development")
+                    if (env == "Development") {
                         return true;
+                    }
                 }
                 return false;
             }

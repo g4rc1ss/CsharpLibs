@@ -1,8 +1,8 @@
-﻿using Garciss.Core.Libs.Encriptacion.Cryptography;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Garciss.Core.Libs.Encriptacion.Cryptography;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Libs.TestEncriptacion {
     [TestClass]
@@ -19,11 +19,13 @@ namespace Core.Libs.TestEncriptacion {
             File.WriteAllBytes("TextoCifradoClaveRandom.aes", textoCifrado);
 
 
-            for (var x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++)
+            for (var x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++) {
                 Assert.IsTrue(File.ReadAllBytes("Key.aes")[x] == cifrarTextoClaveRandom.Key[x]);
+            }
 
-            for (var x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++)
+            for (var x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++) {
                 Assert.IsTrue(File.ReadAllBytes("IV.aes")[x] == cifrarTextoClaveRandom.IV[x]);
+            }
 
             Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
 
@@ -41,8 +43,9 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllBytes("TextoCifradoClavePropia.aes", textoCifrado);
                 File.WriteAllBytes("IVpropia.aes", cifrarTextoClavePropia.IV);
 
-                for (var x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++) {
                     Assert.IsTrue(File.ReadAllBytes("IVpropia.aes")[x] == cifrarTextoClavePropia.IV[x]);
+                }
 
                 Assert.IsTrue(
                     cifrarTextoClavePropia.Key == keyHashByte &&
@@ -111,11 +114,13 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllBytes(archivoIVRandom, encriptarFicheroClaveRandom.IV);
                 //-------------------------------------------------------
 
-                for (var x = 0; x < File.ReadAllBytes(archivoKeyRandom).Length && x < encriptarFicheroClaveRandom.Key.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes(archivoKeyRandom).Length && x < encriptarFicheroClaveRandom.Key.Length; x++) {
                     Assert.IsTrue(encriptarFicheroClaveRandom.Key[x] == File.ReadAllBytes(archivoKeyRandom)[x]);
+                }
 
-                for (var x = 0; x < File.ReadAllBytes(archivoIVRandom).Length && x < encriptarFicheroClaveRandom.IV.Length; x++)
+                for (var x = 0; x < File.ReadAllBytes(archivoIVRandom).Length && x < encriptarFicheroClaveRandom.IV.Length; x++) {
                     Assert.IsTrue(File.ReadAllBytes(archivoIVRandom)[x] == encriptarFicheroClaveRandom.IV[x]);
+                }
 
                 Assert.IsTrue(
                     File.Exists($"{archivoAES_TXT}.crypt") &&
@@ -135,8 +140,9 @@ namespace Core.Libs.TestEncriptacion {
                     //---------------------------------------------------------
 
 
-                    for (var x = 0; x < File.ReadAllBytes(archivoIVPropia).Length && x < encriptarArchivoClavePropia.IV.Length; x++)
+                    for (var x = 0; x < File.ReadAllBytes(archivoIVPropia).Length && x < encriptarArchivoClavePropia.IV.Length; x++) {
                         Assert.IsTrue(File.ReadAllBytes(archivoIVPropia)[x] == encriptarArchivoClavePropia.IV[x]);
+                    }
 
                     Assert.IsTrue(
                         encriptarArchivoClavePropia.Key == keyHashByte &&

@@ -81,32 +81,57 @@ namespace Garciss.Core.Data.Databases {
             var regExText = "('(''|[^'])*')|(;)|(--)|(\\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|SELECT|UPDATE|UNION( +ALL){0,1})\\b)";
 
             //Remove Authorized Options
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Batch) == TiposSentenciaSql.Batch)
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Batch) == TiposSentenciaSql.Batch) {
                 regExText = regExText.Replace("(;)", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Alter) == TiposSentenciaSql.Alter)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Alter) == TiposSentenciaSql.Alter) {
                 regExText = regExText.Replace("ALTER", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Create) == TiposSentenciaSql.Create)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Create) == TiposSentenciaSql.Create) {
                 regExText = regExText.Replace("CREATE", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete) {
                 regExText = regExText.Replace("DELETE", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete) {
                 regExText = regExText.Replace("DELETETREE", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Drop) == TiposSentenciaSql.Drop)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Drop) == TiposSentenciaSql.Drop) {
                 regExText = regExText.Replace("DROP", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Execute) == TiposSentenciaSql.Execute)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Execute) == TiposSentenciaSql.Execute) {
                 regExText = regExText.Replace("EXEC(UTE){0,1}", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Insert) == TiposSentenciaSql.Insert)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Insert) == TiposSentenciaSql.Insert) {
                 regExText = regExText.Replace("INSERT( +INTO){0,1}", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Merge) == TiposSentenciaSql.Merge)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Merge) == TiposSentenciaSql.Merge) {
                 regExText = regExText.Replace("MERGE", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Select) == TiposSentenciaSql.Select)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Select) == TiposSentenciaSql.Select) {
                 regExText = regExText.Replace("SELECT", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Union) == TiposSentenciaSql.Union)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Union) == TiposSentenciaSql.Union) {
                 regExText = regExText.Replace("UNION", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Update) == TiposSentenciaSql.Update)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Update) == TiposSentenciaSql.Update) {
                 regExText = regExText.Replace("UPDATE", string.Empty);
-            if ((sentenciasAutorizadas & TiposSentenciaSql.Comment) == TiposSentenciaSql.Comment)
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Comment) == TiposSentenciaSql.Comment) {
                 regExText = regExText.Replace("(--)", string.Empty);
+            }
 
 
             //Remove extra separators
@@ -116,8 +141,10 @@ namespace Garciss.Core.Data.Databases {
             regExText = Regex.Replace(regExText, "\\|\\)", ")", regExOptions);
 
             //Check for errors
-            if (string.IsNullOrEmpty(sentencia))
+            if (string.IsNullOrEmpty(sentencia)) {
                 return;
+            }
+
             var patternMatchList = Regex.Matches(sentencia, regExText, regExOptions);
             for (var patternIndex = patternMatchList.Count - 1; patternIndex >= 0; patternIndex += -1) {
                 var value = patternMatchList[patternIndex].Value.Trim();
@@ -125,10 +152,13 @@ namespace Garciss.Core.Data.Databases {
                     //Continue - Not an error.
                 } else if (value.StartsWith("'") && value.EndsWith("'")) {
                     //Continue - Text Block
-                } else if (value.Trim() == ";") throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
-                else throw new UnauthorizedAccessException(
+                } else if (value.Trim() == ";") {
+                    throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
+                } else {
+                    throw new UnauthorizedAccessException(
                   string.Concat(value.Substring(0, 1).ToUpper(), value.Substring(1).ToLower(),
                                 " statements not authorized:", Environment.NewLine, sentencia));
+                }
             }
         }
 
@@ -140,7 +170,10 @@ namespace Garciss.Core.Data.Databases {
         public static string LimpiarParametrosSql(string sentencia) {
             var regExText = "\\W";
 
-            if (string.IsNullOrEmpty(sentencia)) return string.Empty;
+            if (string.IsNullOrEmpty(sentencia)) {
+                return string.Empty;
+            }
+
             return Regex.Replace(sentencia, regExText, string.Empty);
         }
 
@@ -157,8 +190,9 @@ namespace Garciss.Core.Data.Databases {
             int i;
             var sParametros = "";
 
-            if (file.ToUpper().IndexOf("SELECT ") >= 0 & file.ToUpper().IndexOf("FROM") >= 0) strSQL = file;
-            else {
+            if (file.ToUpper().IndexOf("SELECT ") >= 0 & file.ToUpper().IndexOf("FROM") >= 0) {
+                strSQL = file;
+            } else {
                 if (file.IndexOf(@"\\") < 0) {
                     var unidad = server == string.Empty ? @"C:" : string.Concat(@"\\", server);
                     file = string.Concat(unidad, @"\accesoBaseDatos", file);
@@ -170,10 +204,13 @@ namespace Garciss.Core.Data.Databases {
                 }
             }
 
-            if (!(parametros == null)) for (i = 0; i <= parametros.Length - 1; i++) {
+            if (!(parametros == null)) {
+                for (i = 0; i <= parametros.Length - 1; i++) {
                     sParametros += (sParametros.Length > 0 ? "," : "") + parametros[i];
                     strSQL = strSQL.Replace("@" + i.ToString() + "@", parametros[i]);
                 }
+            }
+
             ValidarSentencia(sParametros, TiposSentenciaSql.None);
             return strSQL;
         }

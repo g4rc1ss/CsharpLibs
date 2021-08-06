@@ -1,7 +1,7 @@
-﻿using Garciss.Core.Common.Helper.Converters;
+﻿using System;
+using Garciss.Core.Common.Helper.Converters;
 using Garciss.Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Garciss.Core.Common.TestHelper.Converters {
     [TestClass]

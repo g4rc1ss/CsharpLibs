@@ -1,7 +1,7 @@
-﻿using Garciss.Core.Common.Respuestas;
+﻿using System;
+using Garciss.Core.Common.Respuestas;
 using Garciss.Core.Common.TestRespuesta.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Garciss.Core.Common.TestRespuesta {
     [TestClass]

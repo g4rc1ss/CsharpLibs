@@ -7,7 +7,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
-    public sealed class SQLiteDB :Base {
+    public sealed class SQLiteDB : Base {
 
         /// <summary>
         /// Elegimos la base de datos, sino se llamara "Database.db"
@@ -21,13 +21,9 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// Creamos una instancia de la conexion privada para ser usada siempre en cada consulta
         /// De esta manera la propia libreria se asegura de cerrar las conexiones etc.
         /// </summary>
-        private SQLiteConnection Conexion {
-            get {
-                return new SQLiteConnection(
+        private SQLiteConnection Conexion => new SQLiteConnection(
                     string.Format($"Data Source={DBName};Version=3;")
                 ).OpenAndReturn();
-            }
-        }
 
 
         /// <summary>
@@ -44,8 +40,10 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// </code>
         /// </example>
         public bool IsCreateDatabase() {
-            if (!File.Exists(DBName))
+            if (!File.Exists(DBName)) {
                 return false;
+            }
+
             return true;
         }
 
@@ -77,8 +75,10 @@ namespace Garciss.Core.Data.Databases.SQLite {
             if (!IsCreateDatabase()) {
                 SQLiteConnection.CreateFile(DBName);
                 using (var connect = Conexion) {
-                    using (var command = new SQLiteCommand(query, connect))
+                    using (var command = new SQLiteCommand(query, connect)) {
                         command.ExecuteNonQuery();
+                    }
+
                     connect.Close();
                 }
             }
@@ -145,15 +145,18 @@ namespace Garciss.Core.Data.Databases.SQLite {
         }
 
         private int ExecuteUpdateOrInsert(string query) {
-            if (query.ToUpper().Contains("UPDATE"))
+            if (query.ToUpper().Contains("UPDATE")) {
                 ValidarSentencia(query, TiposSentenciaSql.Update);
-            else if (query.ToUpper().Contains("INSERT INTO"))
+            } else if (query.ToUpper().Contains("INSERT INTO")) {
                 ValidarSentencia(query, TiposSentenciaSql.Insert);
-            else
+            } else {
                 ValidarSentencia(query, TiposSentenciaSql.Delete);
+            }
+
             using (var connect = Conexion)
-            using (var command = new SQLiteCommand(query, connect))
+            using (var command = new SQLiteCommand(query, connect)) {
                 return command.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -176,8 +179,9 @@ namespace Garciss.Core.Data.Databases.SQLite {
 
         private int GetMaxCount(string columna, string table) {
             try {
-                using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}"))
+                using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}")) {
                     return Convert.ToInt32(countID.Rows[0].ItemArray[0]) + 1;
+                }
             } catch (Exception) {
                 return 1;
             }

@@ -6,7 +6,7 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
     /// se puede optar por asignar un atributo a cada elemento de la enumeración, de
     /// forma que toda la información se encuentra en un único lugar
     /// </summary>
-    public class EnumDescription :Attribute {
+    public class EnumDescription : Attribute {
         /// <summary>
         /// Texto que se asocia como clave a un elemento de la enumeración
         /// </summary>
@@ -86,13 +86,17 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// </returns>
         public static TEnum EnumItemFromKey<TEnum>(string clave) where TEnum : struct, IConvertible {
             var enumToTranslate = typeof(TEnum);
-            if (enumToTranslate.IsEnum) foreach (var valor in Enum.GetValues(enumToTranslate)) {
+            if (enumToTranslate.IsEnum) {
+                foreach (var valor in Enum.GetValues(enumToTranslate)) {
                     var miembro = enumToTranslate.GetMember(valor.ToString());
                     var attrs = miembro[0].GetCustomAttributes(typeof(EnumDescription), false);
                     var nombre = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
-                    if (nombre == clave)
+                    if (nombre == clave) {
                         return (TEnum)valor;
+                    }
                 }
+            }
+
             return (TEnum)Enum.Parse(enumToTranslate, "-1");
         }
 
@@ -108,8 +112,10 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// </returns>
         public static TEnum EnumItemFromKey<TEnum>(string[] constates, string clave) where TEnum : struct, IConvertible {
             var posicion = Array.IndexOf(constates, clave);
-            if (posicion < 0)
+            if (posicion < 0) {
                 posicion = -1;
+            }
+
             Enum.TryParse(posicion.ToString(), out TEnum retorno);
             return retorno;
         }
@@ -127,16 +133,21 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// </returns>
         public static string KeyFromEnumItem<TEnum>(TEnum enumItem) where TEnum : struct, IConvertible {
             var retorno = string.Empty;
-            if (!typeof(TEnum).IsEnum)
+            if (!typeof(TEnum).IsEnum) {
                 return retorno;
+            }
+
             var enumToSearch = typeof(TEnum);
 
-            foreach (var value in Enum.GetValues(enumToSearch)) if (enumItem.Equals(value)) {
+            foreach (var value in Enum.GetValues(enumToSearch)) {
+                if (enumItem.Equals(value)) {
                     var m = enumToSearch.GetMember(value.ToString());
                     var attrs = m[0].GetCustomAttributes(typeof(EnumDescription), false);
                     var key = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToSearch, value);
                     return key == "desconocido" ? retorno : key;
                 }
+            }
+
             return retorno;
         }
 
@@ -151,11 +162,15 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// </returns>
         public static string KeyFromEnumItem<TEnum>(string[] constantes, TEnum t) where TEnum : struct, IConvertible {
             var retorno = " ";
-            if (!typeof(TEnum).IsEnum)
+            if (!typeof(TEnum).IsEnum) {
                 return retorno;
+            }
+
             var num = Convert.ToInt32(t);
-            if (num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0))
+            if (num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0)) {
                 return retorno;
+            }
+
             return constantes[num];
         }
         #endregion
@@ -170,10 +185,14 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
         /// <exception cref="ArgumentNullException">Si el valor a copnvertir es null</exception>
         public static TEnum ParseEnum<TEnum>(string value) where TEnum : struct, IConvertible {
-            if (value == null)
+            if (value == null) {
                 throw new ArgumentNullException("value");
-            if (!Enum.TryParse(value, true, out TEnum retorno))
+            }
+
+            if (!Enum.TryParse(value, true, out TEnum retorno)) {
                 throw new ArgumentException("El valor no existe en la enumeración", "value");
+            }
+
             return retorno;
         }
 
@@ -185,10 +204,14 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         /// <returns>Valor de la enumeración correspondiente o nada si el valor de entrada es null</returns>
         /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
         public static TEnum? ParseEnumNullable<TEnum>(string value) where TEnum : struct, IConvertible {
-            if (value == null)
+            if (value == null) {
                 return null;
-            if (!Enum.TryParse(value, true, out TEnum retorno))
+            }
+
+            if (!Enum.TryParse(value, true, out TEnum retorno)) {
                 return null;
+            }
+
             return retorno;
         }
 
@@ -203,12 +226,17 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
         public static TEnum ParseEnumValue<TEnum>(string value) where TEnum : struct, IConvertible {
             var retorno = default(TEnum);
             var tp = typeof(TEnum);
-            if (!tp.IsEnum)
+            if (!tp.IsEnum) {
                 return retorno;
-            if (!typeof(TEnum).IsEnum)
+            }
+
+            if (!typeof(TEnum).IsEnum) {
                 return retorno;
-            if (value == null)
+            }
+
+            if (value == null) {
                 throw new ArgumentNullException("value");
+            }
 
             // out _ (Se utiliza el discard de Csharp, porque no se necesita ese parametro)
             if (int.TryParse(value.Trim(), out _)) {
@@ -216,12 +244,15 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
                 foreach (TEnum obj in Enum.GetValues(tp)) {
                     var test = Enum.Parse(typeof(TEnum), obj.ToString()) as Enum;
                     var x = Convert.ToInt32(test); // x is the integer value of enum
-                    if (x.Equals(paramValue))
+                    if (x.Equals(paramValue)) {
                         return obj;
+                    }
                 }
                 throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
-            } else if (!Enum.TryParse(value, true, out retorno))
+            } else if (!Enum.TryParse(value, true, out retorno)) {
                 throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
+            }
+
             return retorno;
         }
         #endregion

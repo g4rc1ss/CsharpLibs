@@ -1,7 +1,6 @@
-﻿using Garciss.Core.Libs.Encriptacion.Cryptography.Clases;
-using System;
-using System.IO;
+﻿using System;
 using System.Security.Cryptography;
+using Garciss.Core.Libs.Encriptacion.Cryptography.Clases;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography {
     /// <summary>
@@ -165,8 +164,10 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
             try {
                 using (var crear = Aes.Create()) {
                     crear.KeySize = 256;
-                    using (HashAlgorithm hash = SHA256.Create())
+                    using (HashAlgorithm hash = SHA256.Create()) {
                         Key = hash.ComputeHash(crear.Key);
+                    }
+
                     IV = crear.IV;
                 }
                 return true;
@@ -184,12 +185,17 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
                 Key = keyParameter;
                 IV = iVparameter;
             }
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text)) {
                 throw new ArgumentNullException("plainText");
-            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0))
+            }
+
+            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0)) {
                 throw new ArgumentNullException("Key");
-            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0))
+            }
+
+            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0)) {
                 throw new ArgumentNullException("IV");
+            }
         }
     }
 }

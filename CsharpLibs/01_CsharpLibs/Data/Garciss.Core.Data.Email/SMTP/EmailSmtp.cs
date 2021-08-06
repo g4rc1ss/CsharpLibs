@@ -1,11 +1,11 @@
-﻿using Garciss.Core.Common.Respuestas;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Garciss.Core.Common.Respuestas;
 
 namespace Garciss.Core.Data.Email.SMTP {
-    public sealed class EmailSmtp :Email {
+    public sealed class EmailSmtp : Email {
         public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
             : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }
@@ -38,12 +38,13 @@ namespace Garciss.Core.Data.Email.SMTP {
         public override Respuesta Enviar() {
             InicializarEnvioEmail();
 
-            if (Destinatarios.Count == 1)
+            if (Destinatarios.Count == 1) {
                 EnviarMensaje(Destinatarios[0]);
-            else
+            } else {
                 Parallel.ForEach(Destinatarios, destinatario => {
                     EnviarMensaje(destinatario);
                 });
+            }
 
             return new Respuesta();
         }
@@ -60,10 +61,12 @@ namespace Garciss.Core.Data.Email.SMTP {
                         Body = Cuerpo,
                     };
 
-                    if (ArchivosAdjuntos != null && ArchivosAdjuntos?.Count > 0)
+                    if (ArchivosAdjuntos != null && ArchivosAdjuntos?.Count > 0) {
                         for (var x = 0; x < ArchivosAdjuntos.Count; x++) {
                             mensaje.Attachments.Add(new Attachment(stream, NombreArchivosAdjunto[x]));
                         }
+                    }
+
                     cliente.Send(mensaje);
                 }
             }

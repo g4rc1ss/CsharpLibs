@@ -13,8 +13,10 @@ namespace Garciss.Core.Common.Helper.Formatters {
         /// <param name="formato">Formato de la fecha enviada a Host, por defecto dia mes año (ddMMyyyy)</param>
         /// <returns>Texto con la fecha válida para Host. Si el valor de entrada es nulo se devuelven ceros</returns>
         public static string FormatearFecha(DateTime? valor, string formato = "dd/MM/yyyy") {
-            if (valor == null)
+            if (valor == null) {
                 return "00000000";
+            }
+
             return valor.Value.ToString(formato);
         }
 

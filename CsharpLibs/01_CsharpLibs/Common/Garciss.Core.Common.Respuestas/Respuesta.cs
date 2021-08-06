@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
 namespace Garciss.Core.Common.Respuestas {
     /// <summary>
@@ -74,20 +74,22 @@ namespace Garciss.Core.Common.Respuestas {
         }
 
         private void EjecutarLogger(ILogger logger, TipoLogger tipoLogger) {
-            if (logger != null) switch (tipoLogger) {
+            if (logger != null) {
+                switch (tipoLogger) {
                     case TipoLogger.Information:
-                    logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                            Resultado, Funcionalidad, Mensaje);
+                        break;
                     case TipoLogger.Error:
-                    logger.LogError("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogError("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                            Resultado, Funcionalidad, Mensaje);
+                        break;
                     case TipoLogger.Fatal:
-                    logger.LogCritical(Excepcion, "Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogCritical(Excepcion, "Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
+                            Resultado, Funcionalidad, Mensaje);
+                        break;
                 }
+            }
         }
     }
 

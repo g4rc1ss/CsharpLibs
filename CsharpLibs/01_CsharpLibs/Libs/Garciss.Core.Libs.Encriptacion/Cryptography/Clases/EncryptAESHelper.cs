@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class EncryptAESHelper {
@@ -37,9 +35,11 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
                     using (var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
                     using (var fileStreamOutput = new FileStream(pathEncryptedFile, FileMode.OpenOrCreate, FileAccess.Write))
                     using (var cryptStream = new CryptoStream(fileStreamOutput, encryptor, CryptoStreamMode.Write))
-                    using (var fileStreamInput = new FileStream(pathFileToEncrypt, FileMode.Open, FileAccess.Read))
-                        for (int data; (data = fileStreamInput.ReadByte()) != -1;)
+                    using (var fileStreamInput = new FileStream(pathFileToEncrypt, FileMode.Open, FileAccess.Read)) {
+                        for (int data; (data = fileStreamInput.ReadByte()) != -1;) {
                             cryptStream.WriteByte((byte)data);
+                        }
+                    }
                 }
                 return true;
             } catch (Exception) {

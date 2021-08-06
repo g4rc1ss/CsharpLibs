@@ -1,7 +1,7 @@
-﻿using Garciss.Core.Common.Respuestas;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Garciss.Core.Common.Respuestas;
 
 namespace Garciss.Core.Data.Email {
     public abstract class Email {
@@ -36,27 +36,43 @@ namespace Garciss.Core.Data.Email {
         }
 
         private void ValidarCampos() {
-            if (string.IsNullOrEmpty(Remitente))
+            if (string.IsNullOrEmpty(Remitente)) {
                 throw new Exception($"Campo {nameof(Remitente)} vacio");
-            if (Destinatarios == null || Destinatarios.Count <= 0)
+            }
+
+            if (Destinatarios == null || Destinatarios.Count <= 0) {
                 throw new Exception($"Campo {nameof(Destinatarios)} vacio");
-            if (string.IsNullOrEmpty(usuario))
+            }
+
+            if (string.IsNullOrEmpty(usuario)) {
                 throw new Exception($"Campo {nameof(usuario)} vacio");
-            if (string.IsNullOrEmpty(password))
+            }
+
+            if (string.IsNullOrEmpty(password)) {
                 throw new Exception($"Campo {nameof(password)} vacio");
-            if (string.IsNullOrEmpty(servidorEnvio))
+            }
+
+            if (string.IsNullOrEmpty(servidorEnvio)) {
                 throw new Exception($"Campo {nameof(servidorEnvio)} vacio");
-            if (ArchivosAdjuntos?.Count != NombreArchivosAdjunto?.Count)
+            }
+
+            if (ArchivosAdjuntos?.Count != NombreArchivosAdjunto?.Count) {
                 throw new Exception("Los archivos tienen que tener su nombre correspondiente");
-            if (string.IsNullOrEmpty(rutaUbicacionPlantillasHtml))
+            }
+
+            if (string.IsNullOrEmpty(rutaUbicacionPlantillasHtml)) {
                 throw new Exception("Es obligatorio el uso de plantillas Html para el envio del Mail");
+            }
         }
 
         private void SustituirTokens() {
             var regex = new System.Text.RegularExpressions.Regex(regexCuerpoVariables);
             var cuerpo = ObtenerTextoDesdeRepositorio();
 
-            foreach (var param in BodyPersonalizado) cuerpo = regex.Replace(cuerpo, param, 1);
+            foreach (var param in BodyPersonalizado) {
+                cuerpo = regex.Replace(cuerpo, param, 1);
+            }
+
             Cuerpo = cuerpo;
         }
 

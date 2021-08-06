@@ -1,8 +1,8 @@
-﻿using Garciss.Core.Data.Databases.SQLite;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Data;
 using System.IO;
+using Garciss.Core.Data.Databases.SQLite;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Data.TestDatabases {
     [TestClass]

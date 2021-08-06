@@ -1,13 +1,16 @@
-﻿using Garciss.Core.Common.Helper.Converters;
-using System;
+﻿using System;
+using Garciss.Core.Common.Helper.Converters;
 
 namespace Garciss.Core.Common.Helper {
     public sealed class Importe {
         private string moneda = "EUR";
         public string Moneda {
-            get { return moneda; }
+            get => moneda;
             set {
-                if (!string.IsNullOrEmpty(value) && value.Length != 3) throw new ArgumentOutOfRangeException(nameof(Moneda), "La abreviatura no cumple el estandar ISO 4217");
+                if (!string.IsNullOrEmpty(value) && value.Length != 3) {
+                    throw new ArgumentOutOfRangeException(nameof(Moneda), "La abreviatura no cumple el estandar ISO 4217");
+                }
+
                 moneda = value;
             }
         }

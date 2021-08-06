@@ -17,8 +17,9 @@ namespace Garciss.Core.Common.Helper.Converters {
                 number = Convert.ToDecimal(valor, esCulture);
                 try {
                     var numberUS = Convert.ToDecimal(valor, usCulture);
-                    if (numberUS < number)
+                    if (numberUS < number) {
                         number = numberUS;
+                    }
                 } catch (Exception) { }
             } catch (Exception) {
                 number = Convert.ToDecimal(valor, usCulture);

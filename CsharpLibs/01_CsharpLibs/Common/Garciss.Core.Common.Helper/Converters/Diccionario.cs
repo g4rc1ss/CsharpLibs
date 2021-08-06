@@ -27,8 +27,9 @@ namespace Garciss.Core.Common.Helper.Converters {
         /// <param name="prefijo">Clave de la que proviene el diccionario a juntar</param>
         private static void MergeDictString(ref Dictionary<string, string> mergeDict, ref Dictionary<string, string> dictToMerge, string prefijo) {
             prefijo = prefijo.ToUpper() + ".";
-            foreach (var k in dictToMerge)
+            foreach (var k in dictToMerge) {
                 mergeDict.Add(prefijo + k.Key.Trim().ToUpper(), k.Value);
+            }
         }
 
         /// <summary>
@@ -53,8 +54,9 @@ namespace Garciss.Core.Common.Helper.Converters {
         /// <param name="prefijo"></param>
         private static void MergeNameValueCollection(ref Dictionary<string, string> dict, ref NameValueCollection nameValue, string prefijo) {
             prefijo = prefijo.Trim().ToUpper() + ".";
-            foreach (var k in nameValue)
+            foreach (var k in nameValue) {
                 dict.Add(prefijo + k.ToString().Trim().ToUpper(), nameValue[(string)k]);
+            }
         }
 
         /// <summary>
@@ -69,9 +71,9 @@ namespace Garciss.Core.Common.Helper.Converters {
 
             dict.Add(prefijo + ".LENGTH", lista.Count.ToString());
             for (var i = 0; i < lista.Count; i++) {
-                if (lista[i].GetType().Namespace.Equals("System"))
+                if (lista[i].GetType().Namespace.Equals("System")) {
                     dict.Add(prefijo + $".[{i}]", lista[i].ToString());
-                else {
+                } else {
                     var objeto = ObjToDictionary(lista[i]);
                     MergeDictString(ref dict, ref objeto, prefijo);
                 }
@@ -107,15 +109,17 @@ namespace Garciss.Core.Common.Helper.Converters {
                 }
                 case var tipoArrayObject when tipoArrayObject == typeof(object[]): {
                     var cadenaAux = string.Empty;
-                    for (var i = 0; i <= (((object[])objeto).Length - 1); i++)
+                    for (var i = 0; i <= (((object[])objeto).Length - 1); i++) {
                         cadenaAux += ((object[])objeto)[i].ToString();
+                    }
+
                     dict.Add(name, cadenaAux);
                     break;
                 }
                 default: {
-                    if (objeto.GetType().Namespace.Equals("System"))
+                    if (objeto.GetType().Namespace.Equals("System")) {
                         dict.Add(name, objeto.ToString());
-                    else {
+                    } else {
                         var diccionario = ObjToDictionary(objeto);
                         MergeDictString(ref dict, ref diccionario, name);
                     }
@@ -132,8 +136,10 @@ namespace Garciss.Core.Common.Helper.Converters {
         /// <returns></returns>
         public static Dictionary<string, string> ObjToDictionary(object objeto) {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            if (objeto == null)
+            if (objeto == null) {
                 return dict;
+            }
+
             if (objeto.GetType().IsArray) {
                 dict.Add("LENGTH", ((object[])objeto).Length.ToString());
                 for (var i = 0; i < ((object[])objeto).Length; i++) {
@@ -147,19 +153,21 @@ namespace Garciss.Core.Common.Helper.Converters {
                 // Si es String suponemos que es o un JSON o un XML
                 case var tipoString when tipoString == typeof(string): {
                     var jsonXml = (string)objeto;
-                    if (string.IsNullOrEmpty(jsonXml))
+                    if (string.IsNullOrEmpty(jsonXml)) {
                         dict.Add("BUFFERDATA", jsonXml);
-                    else
+                    } else {
                         switch (jsonXml.Trim().Substring(0, 1)) {
                             case "{": // JSON
-                            return JsonToObject<Dictionary<string, string>>(jsonXml);
+                                return JsonToObject<Dictionary<string, string>>(jsonXml);
                             case "<": // XML
-                            return JsonToObject<Dictionary<string, string>>((string)XMLStringToJson(jsonXml));
+                                return JsonToObject<Dictionary<string, string>>((string)XMLStringToJson(jsonXml));
                             default: {
                                 dict.Add("BUFFERDATA", jsonXml);
                                 break;
                             }
                         }
+                    }
+
                     break;
                 }
                 case var tipoNameValueCollection when tipoNameValueCollection == typeof(NameValueCollection): {
@@ -221,9 +229,9 @@ namespace Garciss.Core.Common.Helper.Converters {
                                             var valorArray = ObjToDictionary((object[])value);
                                             MergeDictString(ref dict, ref valorArray, name);
                                         } else {
-                                            if (value.GetType().Namespace.Equals("System"))
+                                            if (value.GetType().Namespace.Equals("System")) {
                                                 dict.Add(name, value.ToString());
-                                            else {
+                                            } else {
                                                 var valorDiccionarioString = ObjToDictionary(value);
                                                 MergeDictString(ref dict, ref valorDiccionarioString, name);
                                             }

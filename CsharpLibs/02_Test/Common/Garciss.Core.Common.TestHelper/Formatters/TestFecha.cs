@@ -1,6 +1,6 @@
-﻿using Garciss.Core.Common.Helper.Formatters;
+﻿using System;
+using Garciss.Core.Common.Helper.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Garciss.Core.Common.TestHelper.Formatters {
     [TestClass]

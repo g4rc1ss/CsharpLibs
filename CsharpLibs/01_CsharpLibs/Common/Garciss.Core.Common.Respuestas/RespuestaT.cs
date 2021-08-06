@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
 namespace Garciss.Core.Common.Respuestas {
     /// <summary>
     /// Clase respuesta, para generalizar la devolucion de objetos etc y tracear
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Respuesta<T> :Respuesta {
+    public class Respuesta<T> : Respuesta {
 
         /// <summary>
         /// propiedad que va a contener un objeto

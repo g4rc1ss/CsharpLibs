@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class DecryptAESHelper {
@@ -18,9 +16,11 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
                     using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
                     using (var fileStreamCrypt = new FileStream(cryptFilePath, FileMode.Open, FileAccess.Read))
                     using (var fileStreamOut = new FileStream(decryptFilePath, FileMode.OpenOrCreate, FileAccess.Write))
-                    using (var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read))
-                        for (int data; (data = decryptStream.ReadByte()) != -1;)
+                    using (var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read)) {
+                        for (int data; (data = decryptStream.ReadByte()) != -1;) {
                             fileStreamOut.WriteByte((byte)data);
+                        }
+                    }
                 }
                 return true;
             } catch (Exception) {
@@ -40,10 +40,11 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
                 // Create the streams used for decryption.
                 using (var msDecrypt = new MemoryStream(cipherText))
                 using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                using (var srDecrypt = new StreamReader(csDecrypt))
+                using (var srDecrypt = new StreamReader(csDecrypt)) {
                     // Read the decrypted bytes from the decrypting stream
                     // and place them in a string.
                     return srDecrypt.ReadToEnd();
+                }
             }
         }
 

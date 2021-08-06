@@ -1,8 +1,8 @@
-﻿using Garciss.Core.Common.Helper.Converters;
+﻿using System.Collections.Generic;
+using Garciss.Core.Common.Helper.Converters;
 using Garciss.Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Converters;
-using System.Collections.Generic;
 
 namespace Garciss.Core.Common.TestHelper.Converters {
     [TestClass]
