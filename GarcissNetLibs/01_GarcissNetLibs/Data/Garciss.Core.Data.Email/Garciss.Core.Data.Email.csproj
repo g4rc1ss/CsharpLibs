@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Asier Garcia</Authors>
+    <RepositoryUrl>https://github.com/g4rc1ss/GarcissNetLibs</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Data.Email.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
+  </ItemGroup>
+
+</Project>
