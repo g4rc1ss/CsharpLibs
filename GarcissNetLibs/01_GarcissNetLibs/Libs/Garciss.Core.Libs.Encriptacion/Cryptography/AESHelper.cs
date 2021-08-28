@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Text;
 using Garciss.Core.Libs.Encriptacion.Cryptography.Clases;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography {
@@ -26,7 +27,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// <returns>
         /// Devuelve el vector de inicializacion
         /// </returns>
-        public byte[] IV { get; private set; } = Aes.Create().IV;
+        public byte[] IV { get; private set; }
 
         /// <summary>
         /// Metodo para cifrar una cadena en el algoritmo AES
@@ -45,12 +46,12 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </param>
         /// <example>
         /// <code>
-        /// byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
+        /// byte[] textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO, cifrarTextoClaveRandom.Key, cifrarTextoClaveRandom.IV);
         /// </code>
         /// </example>
-        public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
+        public byte[] EncriptarTexto(string text, byte[] keyParameter, byte[] iVparameter) {
             ValidarCampos(text, keyParameter, iVparameter);
-            return EncryptAESHelper.EncryptStringToBytesAes(text, Key, IV);
+            return EncryptAESHelper.EncryptStringToBytesAes(text, keyParameter, iVparameter);
         }
 
         /// <summary>
@@ -76,16 +77,17 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// using (HashAlgorithm hash = SHA256.Create()) {
         ///     byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
         ///     encriptarArchivoClavePropia.EncriptarFichero(
-        ///         path: archivoAES_TXT_Propia,
-        ///         keyParameter: keyHashByte,
+        ///         originPath: archivoAES_TXT_Propia,
+        ///         finalPath: archivoCifradoAES
+        ///         keyParameter: encriptarArchivoClavePropia.Key,
         ///         iVparameter: encriptarArchivoClavePropia.IV
         ///     );
         /// }           
         /// </code>
         /// </example>
-        public bool EncriptarFichero(string originPath, string finalPath, byte[] keyParameter = null, byte[] iVparameter = null) {
+        public bool EncriptarFichero(string originPath, string finalPath, byte[] keyParameter, byte[] iVparameter) {
             ValidarCampos(originPath, keyParameter, iVparameter);
-            return EncryptAESHelper.EncryptFile(originPath, finalPath, Key, IV);
+            return EncryptAESHelper.EncryptFile(originPath, finalPath, keyParameter, iVparameter);
         }
 
         /// <summary>
@@ -113,7 +115,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </code>
         /// </example>
         public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter, byte[] iVparameter) {
-            ValidarCampos(cipherText.ToString(), keyParameter, iVparameter);
+            ValidarCampos(cipherText, keyParameter, iVparameter);
             return DecryptAESHelper.DecryptStringFromBytesAes(cipherText, keyParameter, iVparameter);
         }
 
@@ -140,41 +142,39 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// using (HashAlgorithm hash = SHA256.Create()) {
         ///     byte[] keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
         ///     encriptarArchivoClavePropia.DesenciptarFichero(
-        ///         path: archivoAES_TXT_Propia,
-        ///         keyParameter: keyHashByte,
+        ///         originPath: archivoAES_TXT_Propia,
+        ///         finalPath: archivoDescifrado_TXT,
+        ///         keyParameter: encriptarArchivoClavePropia.Key,
         ///         iVparameter: encriptarArchivoClavePropia.IV
         ///     );
         /// }           
         /// </code>
         /// </example>
-        public bool DesencriptarFichero(string originPath, string finalPath, byte[] keyParameter = null, byte[] iVparameter = null) {
+        public bool DesencriptarFichero(string originPath, string finalPath, byte[] keyParameter, byte[] iVparameter) {
             ValidarCampos(originPath, keyParameter, iVparameter);
-            return DecryptAESHelper.DecryptFile(originPath, finalPath, Key, IV);
+            return DecryptAESHelper.DecryptFile(originPath, finalPath, keyParameter, iVparameter);
         }
 
         /// <summary>
-        /// Creamos claves aleatorias de cifrado si no queremos usar una contraseña propia
+        /// Creamos las clasves para realizar el cifrado
+        /// Cuando se creen estas claves e IV se guardaran en las propiedades de esta misma clase.
         /// </summary>
         /// <returns>
-        /// devuelve un true o false indicando si ha funcionado la creacion de claves
+        /// Devuelve un true o false indicando si ha funcionado la creacion de claves
         /// </returns>
         /// <exception cref="CryptographicException"/>
         /// <exception cref="System.Reflection.TargetInvocationException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ObjectDisposedException"/>
-        public bool Create() {
-            try {
-                using (var crear = Aes.Create()) {
-                    crear.KeySize = 256;
-                    using (HashAlgorithm hash = SHA256.Create()) {
-                        Key = hash.ComputeHash(crear.Key);
-                    }
-                    IV = crear.IV;
+        public bool CreateKeyIV(string clave) {
+            using (var crear = Aes.Create()) {
+                crear.KeySize = 256;
+                using (HashAlgorithm hash = SHA256.Create()) {
+                    Key = hash.ComputeHash(Encoding.Unicode.GetBytes(clave));
                 }
-                return true;
-            } catch (Exception) {
-                return false;
+                IV = crear.IV;
             }
+            return true;
         }
 
         private static void ValidarCampos(params object[] campos) {

@@ -26,7 +26,9 @@ namespace Garciss.Core.Data.Files {
         }
         private void CopyDirectory(DirectoryInfo origen, DirectoryInfo destino) {
             // Comprueba que el destino exista:
-            if (!destino.Exists) destino.Create();
+            if (!destino.Exists) {
+                destino.Create();
+            }
 
             // Copia todos los archivos del directorio actual:
             Parallel.ForEach(origen.EnumerateFiles(), (archivo) => {

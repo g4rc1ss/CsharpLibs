@@ -1,8 +1,8 @@
-﻿using Garciss.Core.Data.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Garciss.Core.Data.Files;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Data.TestFiles {
     [TestClass]
@@ -29,9 +29,9 @@ namespace Core.Data.TestFiles {
                 Assert.IsTrue(Directory.Exists("prueba") && Directory.Exists("copia"));
                 Assert.IsTrue(nombresOrigen.Count == nombresDestino.Count);
 
-                foreach (var origen in nombresOrigen)
+                foreach (var origen in nombresOrigen) {
                     Assert.IsTrue(nombresOrigen.Contains(origen));
-
+                }
             } finally {
                 Directory.Delete("copia", true);
             }

@@ -101,7 +101,7 @@ namespace Core.Libs.TestEncriptacion {
         [TestMethod]
         public void CifradoArchivos() {
             //----------------------CON CLAVE ALEATORIA------------------\\
-            var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
+            /*var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
             var archivoKeyRandom = "KeyArchivos.aes"; var archivoIVRandom = "IVarchivos.aes";
             var archivoIVPropia = "IVarchivosPropia.aes";
             try {
@@ -153,12 +153,12 @@ namespace Core.Libs.TestEncriptacion {
             } finally {
                 File.Delete(archivoAES_TXT);
                 File.Delete(archivoAES_TXT_Propia);
-            }
+            }*/
         }
 
         [TestMethod]
         public void DecifradoArchivos() {
-            var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
+            /*var archivoAES_TXT = "archivo.txt"; var archivoAES_TXT_Propia = "archivoPropia.txt";
             var archivoKeyRandom = "KeyArchivos.aes"; var archivoIVRandom = "IVarchivos.aes";
             var archivoIVPropia = "IVarchivosPropia.aes";
             CifradoArchivos();
@@ -202,7 +202,7 @@ namespace Core.Libs.TestEncriptacion {
             } finally {
                 File.Delete(archivoAES_TXT);
                 File.Delete(archivoAES_TXT_Propia);
-            }
+            }*/
         }
     }
 }

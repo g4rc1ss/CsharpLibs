@@ -1,51 +1,35 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class DecryptAESHelper {
         internal static bool DecryptFile(string cryptFilePath, string decryptFilePath, byte[] keyParameter, byte[] iVparameter) {
-            // Create an Aes object
-            // with the specified key and IV.
-            try {
-                using (var aesAlg = Aes.Create()) {
-                    aesAlg.Key = keyParameter;
-                    aesAlg.IV = iVparameter;
+            using var aesAlg = Aes.Create();
+            using var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+            using var fileStreamCrypt = new FileStream(cryptFilePath, FileMode.Open, FileAccess.Read);
+            using var fileStreamOut = new FileStream(decryptFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            using var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read);
 
-                    // Create an encryptor to perform the stream transform.
-                    using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
-                    using (var fileStreamCrypt = new FileStream(cryptFilePath, FileMode.Open, FileAccess.Read))
-                    using (var fileStreamOut = new FileStream(decryptFilePath, FileMode.OpenOrCreate, FileAccess.Write))
-                    using (var decryptStream = new CryptoStream(fileStreamCrypt, decryptor, CryptoStreamMode.Read)) {
-                        for (int data; (data = decryptStream.ReadByte()) != -1;) {
-                            fileStreamOut.WriteByte((byte)data);
-                        }
-                    }
-                }
-                return true;
-            } catch (Exception) {
-                return false;
+            aesAlg.Key = keyParameter;
+            aesAlg.IV = iVparameter;
+
+            for (int data; (data = decryptStream.ReadByte()) != -1;) {
+                fileStreamOut.WriteByte((byte)data);
             }
+            return true;
         }
 
         internal static string DecryptStringFromBytesAes(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
-            // Create an Aes object
-            // with the specified key and IV.
-            using (var aesAlg = Aes.Create()) {
-                aesAlg.Key = keyParameter;
-                aesAlg.IV = iVparameter;
+            using var aesAlg = Aes.Create();
+            using var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+            using var msDecrypt = new MemoryStream(cipherText);
+            using var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
+            using var srDecrypt = new StreamReader(csDecrypt);
 
-                // Create a decryptor to perform the stream transform.
-                using (var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
-                // Create the streams used for decryption.
-                using (var msDecrypt = new MemoryStream(cipherText))
-                using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                using (var srDecrypt = new StreamReader(csDecrypt)) {
-                    // Read the decrypted bytes from the decrypting stream
-                    // and place them in a string.
-                    return srDecrypt.ReadToEnd();
-                }
-            }
+            aesAlg.Key = keyParameter;
+            aesAlg.IV = iVparameter;
+
+            return srDecrypt.ReadToEnd();
         }
 
     }

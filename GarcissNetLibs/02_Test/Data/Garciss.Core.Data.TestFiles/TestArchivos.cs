@@ -1,6 +1,6 @@
-﻿using Garciss.Core.Data.Files;
+﻿using System.IO;
+using Garciss.Core.Data.Files;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace Core.Data.TestFiles {
     [TestClass]
