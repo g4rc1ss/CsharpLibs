@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Asier Garcia</Authors>
+    <Description>Libreria para facilitar la gestion de archivos y directorios como copiar, ordenar rutas etc.</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.2.0</Version>
+    <RepositoryUrl>https://github.com/g4rc1ss/CsharpLibs</RepositoryUrl>
+    <PackageId>garciss.DirectoriosArchivos</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Data.Files.xml</DocumentationFile>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+</Project>
