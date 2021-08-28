@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class DecryptAESHelper {
-        internal bool DecryptFile(string cryptFilePath, string decryptFilePath, byte[] keyParameter, byte[] iVparameter) {
+        internal static bool DecryptFile(string cryptFilePath, string decryptFilePath, byte[] keyParameter, byte[] iVparameter) {
             // Create an Aes object
             // with the specified key and IV.
             try {
@@ -28,7 +28,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
             }
         }
 
-        internal string DecryptStringFromBytesAes(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
+        internal static string DecryptStringFromBytesAes(byte[] cipherText, byte[] keyParameter = null, byte[] iVparameter = null) {
             // Create an Aes object
             // with the specified key and IV.
             using (var aesAlg = Aes.Create()) {

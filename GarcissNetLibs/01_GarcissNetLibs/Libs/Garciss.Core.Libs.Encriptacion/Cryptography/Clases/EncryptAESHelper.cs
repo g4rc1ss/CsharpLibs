@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
     internal sealed class EncryptAESHelper {
 
-        internal byte[] EncryptStringToBytesAes(string text, byte[] keyParameter, byte[] iVparameter) {
+        internal static byte[] EncryptStringToBytesAes(string text, byte[] keyParameter, byte[] iVparameter) {
             // Create an Aes object
             // with the specified key and IV.
             using (var aesAlg = Aes.Create()) {
@@ -26,7 +26,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
             // Return the encrypted bytes from the memory stream.
         }
 
-        internal bool EncryptFile(string pathFileToEncrypt, string pathEncryptedFile, byte[] keyParameter, byte[] iVparameter) {
+        internal static bool EncryptFile(string pathFileToEncrypt, string pathEncryptedFile, byte[] keyParameter, byte[] iVparameter) {
             try {
                 using (var aesAlg = Aes.Create()) {
                     aesAlg.Key = keyParameter;

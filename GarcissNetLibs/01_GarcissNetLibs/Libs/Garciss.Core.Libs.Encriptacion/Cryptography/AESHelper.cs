@@ -50,7 +50,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </example>
         public byte[] EncriptarTexto(string text, byte[] keyParameter = null, byte[] iVparameter = null) {
             ValidarCampos(text, keyParameter, iVparameter);
-            return new EncryptAESHelper().EncryptStringToBytesAes(text: text, keyParameter: Key, iVparameter: IV);
+            return EncryptAESHelper.EncryptStringToBytesAes(text, Key, IV);
         }
 
         /// <summary>
@@ -60,7 +60,8 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// Devuelve true o false dependiendo de si ha salido bien la operacion de
         /// cifrado
         /// </returns>
-        /// <param name="path">ruta de archivo a cifrar</param>
+        /// <param name="originPath">ruta de archivo a cifrar</param>
+        /// <param name="finalPath">Ruta donde se va a almacenar el archivo cifrado</param>
         /// <param name="keyParameter">
         /// Contraseña de un maximo de tamaño de 256, la contraseña
         /// se tiene que cifrar con un hash como MD5, SHA256
@@ -82,9 +83,9 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// }           
         /// </code>
         /// </example>
-        public bool EncriptarFichero(string path, byte[] keyParameter = null, byte[] iVparameter = null) {
-            ValidarCampos(path, keyParameter, iVparameter);
-            return new EncryptAESHelper().EncryptFile(pathFileToEncrypt: path, keyParameter: Key, iVparameter: IV);
+        public bool EncriptarFichero(string originPath, string finalPath, byte[] keyParameter = null, byte[] iVparameter = null) {
+            ValidarCampos(originPath, keyParameter, iVparameter);
+            return EncryptAESHelper.EncryptFile(originPath, finalPath, Key, IV);
         }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// </example>
         public string DesencriptarTexto(byte[] cipherText, byte[] keyParameter, byte[] iVparameter) {
             ValidarCampos(cipherText.ToString(), keyParameter, iVparameter);
-            return new DecryptAESHelper().DecryptStringFromBytesAes(cipherText: cipherText, keyParameter: keyParameter, iVparameter: iVparameter);
+            return DecryptAESHelper.DecryptStringFromBytesAes(cipherText, keyParameter, iVparameter);
         }
 
         /// <summary>
@@ -123,7 +124,8 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// Devuelve true o false dependiendo de si ha salido bien la operacion de
         /// descifrado
         /// </returns>
-        /// <param name="path">ruta de archivo a descifrar</param>
+        /// <param name="originPath">ruta de archivo a descifrar</param>
+        /// <param name="originPath">Ruta donde almacenar el archivo descifrado</param>
         /// <param name="keyParameter">
         /// Contraseña de un maximo de tamaño de 256, la contraseña
         /// se tiene que cifrar con un hash como MD5, SHA256
@@ -145,9 +147,9 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// }           
         /// </code>
         /// </example>
-        public bool DesencriptarFichero(string path, byte[] keyParameter = null, byte[] iVparameter = null) {
-            ValidarCampos(path, keyParameter, iVparameter);
-            return new DecryptAESHelper().DecryptFile(cryptFilePath: path, keyParameter: Key, iVparameter: IV);
+        public bool DesencriptarFichero(string originPath, string finalPath, byte[] keyParameter = null, byte[] iVparameter = null) {
+            ValidarCampos(originPath, keyParameter, iVparameter);
+            return DecryptAESHelper.DecryptFile(originPath, finalPath, Key, IV);
         }
 
         /// <summary>
@@ -160,14 +162,13 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         /// <exception cref="System.Reflection.TargetInvocationException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ObjectDisposedException"/>
-        private bool Create() {
+        public bool Create() {
             try {
                 using (var crear = Aes.Create()) {
                     crear.KeySize = 256;
                     using (HashAlgorithm hash = SHA256.Create()) {
                         Key = hash.ComputeHash(crear.Key);
                     }
-
                     IV = crear.IV;
                 }
                 return true;
@@ -176,25 +177,11 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
             }
         }
 
-        private void ValidarCampos(string text, byte[] keyParameter, byte[] iVparameter) {
-            if (keyParameter == null && iVparameter == null) {
-                if (!Create()) {
-                    throw new ArgumentException("Ha fallado la generacion de claves aleatoria");
+        private static void ValidarCampos(params object[] campos) {
+            foreach (var field in campos) {
+                if (field is null) {
+                    throw new ArgumentNullException($"El campo {field.GetType().Name} es nulo");
                 }
-            } else {
-                Key = keyParameter;
-                IV = iVparameter;
-            }
-            if (string.IsNullOrEmpty(text)) {
-                throw new ArgumentNullException("plainText");
-            }
-
-            if ((keyParameter == null || keyParameter.Length <= 0) && (Key == null || Key.Length <= 0)) {
-                throw new ArgumentNullException("Key");
-            }
-
-            if ((iVparameter == null || iVparameter.Length <= 0) && (IV == null || IV.Length <= 0)) {
-                throw new ArgumentNullException("IV");
             }
         }
     }

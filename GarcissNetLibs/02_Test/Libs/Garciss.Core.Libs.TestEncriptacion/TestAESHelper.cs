@@ -109,7 +109,7 @@ namespace Core.Libs.TestEncriptacion {
                 File.WriteAllText(archivoAES_TXT_Propia, TEXTOPLANO);
 
                 var encriptarFicheroClaveRandom = new AESHelper();
-                encriptarFicheroClaveRandom.EncriptarFichero(path: archivoAES_TXT);
+                encriptarFicheroClaveRandom.EncriptarFichero(originPath: archivoAES_TXT);
                 File.WriteAllBytes(archivoKeyRandom, encriptarFicheroClaveRandom.Key);
                 File.WriteAllBytes(archivoIVRandom, encriptarFicheroClaveRandom.IV);
                 //-------------------------------------------------------
@@ -132,7 +132,7 @@ namespace Core.Libs.TestEncriptacion {
                     var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     encriptarArchivoClavePropia.EncriptarFichero(
-                        path: archivoAES_TXT_Propia,
+                        originPath: archivoAES_TXT_Propia,
                         keyParameter: keyHashByte,
                         iVparameter: encriptarArchivoClavePropia.IV
                     );
@@ -165,7 +165,7 @@ namespace Core.Libs.TestEncriptacion {
             try {
                 var desencriptarFicheroClaveRandom = new AESHelper();
                 desencriptarFicheroClaveRandom.DesencriptarFichero(
-                    path: archivoAES_TXT,
+                    originPath: archivoAES_TXT,
                     keyParameter: File.ReadAllBytes(archivoKeyRandom),
                     iVparameter: File.ReadAllBytes(archivoIVRandom)
                 );
@@ -186,7 +186,7 @@ namespace Core.Libs.TestEncriptacion {
                     var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
                     desencriptarArchivoClavePropia.DesencriptarFichero(
-                        path: $"{archivoAES_TXT_Propia}.crypt",
+                        originPath: $"{archivoAES_TXT_Propia}.crypt",
                         keyParameter: keyHashByte,
                         iVparameter: File.ReadAllBytes(archivoIVPropia)
                     );
