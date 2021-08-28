@@ -29,12 +29,12 @@ namespace Garciss.Core.Common.Helper {
         }
 
         public Importe(int cantidad, string moneda = "") {
-            Cantidad = ConvertHelper.ToDecimal(cantidad.ToString());
+            Cantidad = Convert.ToDecimal(cantidad.ToString());
             Moneda = moneda;
         }
 
         public Importe(string cantidad, string moneda = "") {
-            Cantidad = ConvertHelper.ToDecimal(cantidad);
+            Cantidad = Convert.ToDecimal(cantidad);
             Moneda = moneda;
         }
 

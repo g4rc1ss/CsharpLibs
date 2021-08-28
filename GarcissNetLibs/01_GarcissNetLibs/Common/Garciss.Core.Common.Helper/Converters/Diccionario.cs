@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace Garciss.Core.Common.Helper.Converters {
     public partial class ConvertHelper {
-        #region "Funciones Privadas"
         /// <summary>
         /// Convierte un objeto tipo NameValueCollection a Dictionary -> string, string
         /// </summary>
@@ -16,9 +15,7 @@ namespace Garciss.Core.Common.Helper.Converters {
         private static Dictionary<string, string> NameValueCollectionToDictionary(NameValueCollection nameValue) {
             return nameValue.Cast<string>().ToDictionary(key => key, valor => nameValue[valor]);
         }
-        #endregion
 
-        #region "Merge de datos de distintos tipos de objeto a un Dictionary<string, string>"
         /// <summary>
         /// Agrega el segundo diccionario al primero
         /// </summary>
@@ -127,7 +124,6 @@ namespace Garciss.Core.Common.Helper.Converters {
                 }
             }
         }
-        #endregion
 
         /// <summary>
         /// Convierte una clase cualquiera a un objeto Dictionary -> string, string

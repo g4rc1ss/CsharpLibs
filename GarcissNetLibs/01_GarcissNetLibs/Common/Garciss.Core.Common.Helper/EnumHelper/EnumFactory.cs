@@ -1,24 +1,6 @@
 ﻿using System;
 
 namespace Garciss.Core.Common.Helper.EnumHelper {
-    /// <summary>
-    /// Para evitar tener un array de claves o constantes asociado a una enumeración,
-    /// se puede optar por asignar un atributo a cada elemento de la enumeración, de
-    /// forma que toda la información se encuentra en un único lugar
-    /// </summary>
-    public class EnumDescription : Attribute {
-        /// <summary>
-        /// Texto que se asocia como clave a un elemento de la enumeración
-        /// </summary>
-        public string Text { get; set; }
-        /// <summary>
-        /// Constructor del atributo
-        /// </summary>
-        /// <param name="text"></param>
-        public EnumDescription(string text) {
-            Text = text;
-        }
-    }
 
     /// <summary>
     /// Muchas de nuestras enumeraciones correspondería con una clave Alfanumérica, no una clave númerica.
@@ -52,7 +34,6 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
     /// </example>
     public static class EnumFactory {
 
-        #region "Obtencion enumerador a traves de clave"
         /// <example> Métodos sin Array de constantes
         /// <code>
         /// public enum SiNo {
@@ -96,7 +77,6 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
                     }
                 }
             }
-
             return (TEnum)Enum.Parse(enumToTranslate, "-1");
         }
 
@@ -115,13 +95,10 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
             if (posicion < 0) {
                 posicion = -1;
             }
-
-            Enum.TryParse(posicion.ToString(), out TEnum retorno);
+            _ = Enum.TryParse(posicion.ToString(), out TEnum retorno);
             return retorno;
         }
-        #endregion
 
-        #region "Obtencion de clave a traves de enumerador"
         /// <summary>
         /// Devuelve la clave correspondiente a un EnumItem
         /// </summary>
@@ -147,7 +124,6 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
                     return key == "desconocido" ? retorno : key;
                 }
             }
-
             return retorno;
         }
 
@@ -170,12 +146,9 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
             if (num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0)) {
                 return retorno;
             }
-
             return constantes[num];
         }
-        #endregion
 
-        #region "Parseo de Enumeradores"
         /// <summary>
         /// Hace más facil la conversión de un texto a su correspondiente valor en una enumeración
         /// </summary>
@@ -190,9 +163,8 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
             }
 
             if (!Enum.TryParse(value, true, out TEnum retorno)) {
-                throw new ArgumentException("El valor no existe en la enumeración", "value");
+                throw new ArgumentException("El valor no existe en la enumeración", nameof(value));
             }
-
             return retorno;
         }
 
@@ -211,7 +183,6 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
             if (!Enum.TryParse(value, true, out TEnum retorno)) {
                 return null;
             }
-
             return retorno;
         }
 
@@ -248,13 +219,12 @@ namespace Garciss.Core.Common.Helper.EnumHelper {
                         return obj;
                     }
                 }
-                throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
+                throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", nameof(value));
             } else if (!Enum.TryParse(value, true, out retorno)) {
-                throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", "value");
+                throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", nameof(value));
             }
-
             return retorno;
         }
-        #endregion
+
     }
 }
