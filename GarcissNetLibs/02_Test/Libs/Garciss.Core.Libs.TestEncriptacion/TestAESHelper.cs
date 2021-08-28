@@ -11,7 +11,7 @@ namespace Core.Libs.TestEncriptacion {
         [TestMethod]
         public void CifradoTexto() {
             //----------------------CON CLAVE ALEATORIA------------------\\
-            var cifrarTextoClaveRandom = new AESHelper();
+           /* var cifrarTextoClaveRandom = new AESHelper();
             var textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
 
             File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
@@ -53,12 +53,12 @@ namespace Core.Libs.TestEncriptacion {
                     cifrarTextoClavePropia.IV.Length == 16 &&
                     File.Exists("TextoCifradoClavePropia.aes")
                 );
-            }
+            }*/
         }
 
         [TestMethod]
         public void DescifrarTexto() {
-            CifradoTexto();
+            /*CifradoTexto();
             //----------------------CON CLAVE ALEATORIA------------------\\
             var descifrarTextoClaveRandom = new AESHelper();
             var textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
@@ -95,7 +95,7 @@ namespace Core.Libs.TestEncriptacion {
                     !File.Exists("TextoCifradoClavePropia.aes") &&
                     !File.Exists("IVpropia.aes")
                 );
-            }
+            }*/
         }
 
         [TestMethod]
