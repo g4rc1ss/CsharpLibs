@@ -11,10 +11,10 @@ $versionNuget = 3.4
 # Nombre del archivo a generar 
 $rutaNuspec = Convert-Path .
 
-$rutaNuspec += '/Garciss.Csharp.libs.nuspec'
+$rutaNuspec += '/Garciss.Net.Libs.nuspec'
 
 # Ruta raiz donde localizar los archivos .csproj
-$rutaCSProj = '../../CsharpLibs/01_CsharpLibs/'
+$rutaCSProj = '../../GarcissNetLibs/01_GarcissNetLibs/'
 # ruta de la ubicacion de las dll, xml y pdb, se han de configurar los proyectos para que se generen en otras ubicaciones
 $rutaDLL = "../PackagesCompilaciones/" 
 
@@ -23,13 +23,13 @@ $rutaDLL = "../PackagesCompilaciones/"
 # ___________________________________________________________
 
 ## Datos del paquete Nuget
-$id = "Garciss.Csharp.Libs"
+$id = "Garciss.Net.Libs"
 $title = "Garciss Csharp Libs"
 $authors = "Asier Garcia"
 $owners = "Asier Garcia"
 $requireLicenseAcceptance = "false"
 $description = "Librerias creadas para futuros proyectos o usos"
-$repository = "https://github.com/g4rc1ss/CsharpLibs"
+$repository = "https://github.com/g4rc1ss/GarcissNetLibs"
 
 
 $versionEntornoCarpeta = ""

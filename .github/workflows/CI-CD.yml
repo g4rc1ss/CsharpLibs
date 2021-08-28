@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Dotnet Build
-      run: dotnet build --configuration Release ./CsharpLibs/Garciss.Csharp.Libs.sln
+      run: dotnet build --configuration Release ./GarcissNetLibs/Garciss.Net.Libs.sln
     
     - name: Dotnet Test
-      run: dotnet test --configuration Release ./CsharpLibs/Garciss.Csharp.Libs.sln
+      run: dotnet test --configuration Release ./GarcissNetLibs/Garciss.Net.Libs.sln

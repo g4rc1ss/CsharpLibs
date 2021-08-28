@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Dotnet Build
-      run: dotnet build --configuration Release ./CsharpLibs/Garciss.Csharp.Libs.sln
+      run: dotnet build --configuration Release ./GarcissNetLibs/Garciss.Net.Libs.sln
 
     - name: Generar nuspec
       run: |
@@ -27,7 +27,7 @@ jobs:
       run: |
         ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
-        nuget pack Garciss.Csharp.libs.nuspec -Verbosity Detail
+        nuget pack Garciss.Net.Libs.nuspec -Verbosity Detail
         
     - name: Push generated package to GitHub registry
       run: |
