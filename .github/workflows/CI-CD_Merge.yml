@@ -17,7 +17,6 @@ jobs:
 
     - name: Generar nuspec
       run: |
-        ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
         .\nuspecGeneratorNetCoreNetStandard.ps1
       shell: powershell
@@ -25,7 +24,6 @@ jobs:
 
     - name: Nuget Pack para preparar el paquete
       run: |
-        ls NugetPackages/PackagesCompilaciones/netstandard2.1
         cd NugetPackages/NugetConfig/
         nuget pack Garciss.Net.Libs.nuspec -Verbosity Detail
         
