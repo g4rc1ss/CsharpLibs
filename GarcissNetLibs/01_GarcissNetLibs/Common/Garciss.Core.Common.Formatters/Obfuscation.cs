@@ -2,7 +2,7 @@
 using Garciss.Core.Common.Extensions;
 
 namespace Garciss.Core.Common.Formatters {
-    public partial class Format {
+    public class Obfuscation {
         /// <summary>
         /// Oculta la parte del correo electronico
         /// </summary>
