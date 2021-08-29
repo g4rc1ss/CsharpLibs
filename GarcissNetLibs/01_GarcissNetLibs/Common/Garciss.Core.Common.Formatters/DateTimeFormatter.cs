@@ -4,7 +4,7 @@ namespace Garciss.Core.Common.Formatters {
     /// <summary>
     /// Clase para formartear objetos
     /// </summary>
-    public class DateTimeFormat {
+    public class DateTimeFormatter {
 
         /// <summary>
         /// Transforma una fecha a un formato especifico en string

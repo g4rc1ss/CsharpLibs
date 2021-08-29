@@ -51,7 +51,7 @@ namespace Garciss.Core.Common.TestHelper.Converters {
                 "\"PublishDate\":\"2000-12-16\"," +
                 "\"Description\":\"A former architect battles corporate zombies,\\r\\n      an evil sorceress, and her own childhood to become queen\\r\\n" +
                 "      of the world.\",\"id\":\"bk102\"}]}";
-            Assert.IsTrue(((string)json).Equals(jsonToCompare));
+            Assert.IsTrue(json.Equals(jsonToCompare));
         }
 
     }

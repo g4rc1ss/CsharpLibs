@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-using Garciss.Core.Libs.Encriptacion.AES;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Libs.TestEncriptacion {
     [TestClass]
@@ -11,49 +7,49 @@ namespace Core.Libs.TestEncriptacion {
         [TestMethod]
         public void CifradoTexto() {
             //----------------------CON CLAVE ALEATORIA------------------\\
-           /* var cifrarTextoClaveRandom = new AESHelper();
-            var textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
+            /* var cifrarTextoClaveRandom = new AESHelper();
+             var textoCifrado = cifrarTextoClaveRandom.EncriptarTexto(TEXTOPLANO);
 
-            File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
-            File.WriteAllBytes("IV.aes", cifrarTextoClaveRandom.IV);
-            File.WriteAllBytes("TextoCifradoClaveRandom.aes", textoCifrado);
+             File.WriteAllBytes("Key.aes", cifrarTextoClaveRandom.Key);
+             File.WriteAllBytes("IV.aes", cifrarTextoClaveRandom.IV);
+             File.WriteAllBytes("TextoCifradoClaveRandom.aes", textoCifrado);
 
 
-            for (var x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++) {
-                Assert.IsTrue(File.ReadAllBytes("Key.aes")[x] == cifrarTextoClaveRandom.Key[x]);
-            }
+             for (var x = 0; x < File.ReadAllBytes("Key.aes").Length && x < cifrarTextoClaveRandom.Key.Length; x++) {
+                 Assert.IsTrue(File.ReadAllBytes("Key.aes")[x] == cifrarTextoClaveRandom.Key[x]);
+             }
 
-            for (var x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++) {
-                Assert.IsTrue(File.ReadAllBytes("IV.aes")[x] == cifrarTextoClaveRandom.IV[x]);
-            }
+             for (var x = 0; x < File.ReadAllBytes("IV.aes").Length && x < cifrarTextoClaveRandom.IV.Length; x++) {
+                 Assert.IsTrue(File.ReadAllBytes("IV.aes")[x] == cifrarTextoClaveRandom.IV[x]);
+             }
 
-            Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
+             Assert.IsTrue(Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO && File.Exists("TextoCifradoClaveRandom.aes"));
 
-            //----------------------CON CLAVE PROPIA---------------------\\
-            var cifrarTextoClavePropia = new AESHelper();
-            using (HashAlgorithm hash = SHA256.Create()) {
-                var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
+             //----------------------CON CLAVE PROPIA---------------------\\
+             var cifrarTextoClavePropia = new AESHelper();
+             using (HashAlgorithm hash = SHA256.Create()) {
+                 var keyHashByte = hash.ComputeHash(Encoding.Unicode.GetBytes("contrasenia"));
 
-                textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
+                 textoCifrado = cifrarTextoClavePropia.EncriptarTexto(
 
-                    text: TEXTOPLANO,
-                    keyParameter: keyHashByte,
-                    iVparameter: cifrarTextoClavePropia.IV
-                );
-                File.WriteAllBytes("TextoCifradoClavePropia.aes", textoCifrado);
-                File.WriteAllBytes("IVpropia.aes", cifrarTextoClavePropia.IV);
+                     text: TEXTOPLANO,
+                     keyParameter: keyHashByte,
+                     iVparameter: cifrarTextoClavePropia.IV
+                 );
+                 File.WriteAllBytes("TextoCifradoClavePropia.aes", textoCifrado);
+                 File.WriteAllBytes("IVpropia.aes", cifrarTextoClavePropia.IV);
 
-                for (var x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++) {
-                    Assert.IsTrue(File.ReadAllBytes("IVpropia.aes")[x] == cifrarTextoClavePropia.IV[x]);
-                }
+                 for (var x = 0; x < File.ReadAllBytes("IVpropia.aes").Length && x < cifrarTextoClavePropia.IV.Length; x++) {
+                     Assert.IsTrue(File.ReadAllBytes("IVpropia.aes")[x] == cifrarTextoClavePropia.IV[x]);
+                 }
 
-                Assert.IsTrue(
-                    cifrarTextoClavePropia.Key == keyHashByte &&
-                    Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO &&
-                    cifrarTextoClavePropia.IV.Length == 16 &&
-                    File.Exists("TextoCifradoClavePropia.aes")
-                );
-            }*/
+                 Assert.IsTrue(
+                     cifrarTextoClavePropia.Key == keyHashByte &&
+                     Encoding.UTF8.GetString(textoCifrado) != TEXTOPLANO &&
+                     cifrarTextoClavePropia.IV.Length == 16 &&
+                     File.Exists("TextoCifradoClavePropia.aes")
+                 );
+             }*/
         }
 
         [TestMethod]

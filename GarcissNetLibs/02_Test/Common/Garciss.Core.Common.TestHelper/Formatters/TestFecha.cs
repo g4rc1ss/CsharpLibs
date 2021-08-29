@@ -1,5 +1,5 @@
 ﻿using System;
-using Garciss.Core.Common.Helper.Formatters;
+using Garciss.Core.Common.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestHelper.Formatters {
@@ -7,9 +7,9 @@ namespace Garciss.Core.Common.TestHelper.Formatters {
     public class TestFecha {
         [TestMethod]
         public void FormatearFecha() {
-            var fechaFormateadaBarra = Format.FormatearFecha(DateTime.Now.Date);
+            var fechaFormateadaBarra = DateTimeFormatter.FormatearFecha(DateTime.Now.Date);
             Assert.IsTrue(fechaFormateadaBarra.Contains("/"));
-            var fechaFormateadaSinBarra = Format.FormatearFecha(DateTime.Now.Date, "ddMMyyyy");
+            var fechaFormateadaSinBarra = DateTimeFormatter.FormatearFecha(DateTime.Now.Date, "ddMMyyyy");
             Assert.IsTrue(
                 !fechaFormateadaSinBarra.Contains("/") &&
                 fechaFormateadaSinBarra.Substring(0, 2).Contains(DateTime.Now.Day.ToString()) &&
@@ -21,7 +21,7 @@ namespace Garciss.Core.Common.TestHelper.Formatters {
         [TestMethod]
         public void FormatFechaJuliana() {
             var fecha = new DateTime(2019, 11, 10);
-            var fechaFormateada = Format.FormatToFechaJuliana(fecha);
+            var fechaFormateada = DateTimeFormatter.FormatToFechaJuliana(fecha);
             Assert.AreEqual("9314", fechaFormateada);
         }
 
@@ -29,8 +29,8 @@ namespace Garciss.Core.Common.TestHelper.Formatters {
         public void ObtenerMilisegundosDiferenciaDates() {
             var fechaDesde = new DateTime(2016, 11, 10);
             var fechaHasta = new DateTime(2019, 11, 10);
-            var milisegundosFechaDesdeHasta = Format.DateDiffMilliSecond(fechaDesde, fechaHasta);
-            _ = Format.DateDiffMilliSecond(fechaDesde);
+            var milisegundosFechaDesdeHasta = DateTimeFormatter.DateDiffMilliSecond(fechaDesde, fechaHasta);
+            _ = DateTimeFormatter.DateDiffMilliSecond(fechaDesde);
             Assert.IsTrue(94608000000 == milisegundosFechaDesdeHasta);
         }
     }
