@@ -1,4 +1,4 @@
-﻿using Garciss.Core.Common.Helper.Converters;
+﻿using Garciss.Core.Common.Converter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestHelper.Converters {
@@ -28,7 +28,7 @@ namespace Garciss.Core.Common.TestHelper.Converters {
       of the world.</Description>
    </Book>
 </Catalog>";
-            var json = ConvertHelper.XMLStringToJson(xml);
+            var json = ConvertXml.XMLStringToJson(xml);
             Assert.IsTrue(json.Equals("{\"Book\":[{\"Author\":\"Garghentini, Davide\",\"Title\":\"XML Developer's Guide\",\"Genre\":\"Computer\"," +
                     "\"Price\":\"44.95\",\"PublishDate\":\"2000-10-01\"," +
                     "\"Description\":\"An in-depth look at creating applications\\r\\n" +
@@ -43,7 +43,7 @@ namespace Garciss.Core.Common.TestHelper.Converters {
 
         [TestMethod]
         public void TestXmlFileToJSon() {
-            var json = ConvertHelper.XMLFileToJson(@"Converters\Fake\TestXml.xml");
+            var json = ConvertXml.XMLFileToJson(@"Converters\Fake\TestXml.xml");
             var jsonToCompare = "{\"Book\":[{\"Author\":\"Garghentini, Davide\",\"Title\":\"XML Developer's Guide\",\"Genre\":\"Computer\"," +
                 "\"Price\":\"44.95\",\"PublishDate\":\"2000-10-01\",\"Description\":\"An in-depth look at creating applications\\r\\n" +
                 "      with XML.\",\"id\":\"bk101\"}," +
@@ -51,7 +51,7 @@ namespace Garciss.Core.Common.TestHelper.Converters {
                 "\"PublishDate\":\"2000-12-16\"," +
                 "\"Description\":\"A former architect battles corporate zombies,\\r\\n      an evil sorceress, and her own childhood to become queen\\r\\n" +
                 "      of the world.\",\"id\":\"bk102\"}]}";
-            Assert.IsTrue(((string)json).Equals(jsonToCompare));
+            Assert.IsTrue(json.Equals(jsonToCompare));
         }
 
     }

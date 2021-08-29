@@ -1,10 +1,7 @@
-﻿using Garciss.Core.Data.Email.SMTP;
-using Garciss.Testing.MoqTestingData.Data.Email;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Net.Mail;
+using Garciss.Core.Data.Email.SMTP;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Data.TestEmail {
     [TestClass]

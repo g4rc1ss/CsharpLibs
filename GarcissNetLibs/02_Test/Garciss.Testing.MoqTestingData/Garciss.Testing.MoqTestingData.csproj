@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\01_GarcissNetLibs\Data\Garciss.Core.Data.Email\Garciss.Core.Data.Email.csproj" />
+    <ProjectReference Include="..\..\01_GarcissNetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
   </ItemGroup>
 
 </Project>
