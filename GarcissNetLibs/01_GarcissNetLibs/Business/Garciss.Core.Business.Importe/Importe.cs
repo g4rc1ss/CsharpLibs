@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Garciss.Core.Common.Helper {
+namespace Garciss.Core.Business.Importe {
     public sealed class Importe {
         private string moneda;
 
