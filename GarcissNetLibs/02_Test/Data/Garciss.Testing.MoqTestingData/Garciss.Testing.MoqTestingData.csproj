@@ -8,8 +8,4 @@
     <PackageReference Include="Moq" Version="4.16.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\01_GarcissNetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
-  </ItemGroup>
-
 </Project>

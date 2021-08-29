@@ -13,11 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\01_GarcissNetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
-    <ProjectReference Include="..\..\..\Garciss.Testing.MoqTestingData\Garciss.Testing.MoqTestingData.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Plantillas\EmailResponsiveTemplate.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
