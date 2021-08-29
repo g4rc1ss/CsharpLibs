@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
 using System.IO;
+using System.Threading.Tasks;
 using Garciss.Core.Data.Databases.SqlInjection;
+using Microsoft.Data.Sqlite;
 
 namespace Garciss.Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
-    public sealed class SQLiteDB {
+    public sealed class SQLiteDB : IDisposable {
 
         /// <summary>
-        /// Elegimos la base de datos, sino se llamara "Database.db"
+        /// Nombre de la BBDD
         /// </summary>
         /// <returns>
         /// devuelve el nombre de la base de datos
         /// </returns>
-        public string DBName { get; set; } = $"Database.db";
+        public string DBName { get; private set; }
 
         /// <summary>
         /// Creamos una instancia de la conexion privada para ser usada siempre en cada consulta
         /// De esta manera la propia libreria se asegura de cerrar las conexiones etc.
         /// </summary>
-        private SQLiteConnection Conexion => new SQLiteConnection(
-                    string.Format($"Data Source={DBName};Version=3;")
-                ).OpenAndReturn();
+        private SqliteConnection Connection => new($"Data Source={DBName}");
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dBName"></param>
+        public SQLiteDB(string dBName) {
+            DBName = dBName;
+            Connection.Open();
+        }
 
         /// <summary>
         /// Metodo para comprobar si existe la base de datos
@@ -44,45 +51,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
             if (!File.Exists(DBName)) {
                 return false;
             }
-
             return true;
-        }
-
-        /// <summary>
-        /// Metodo para crear la base de datos, tambien comprueba
-        /// si existe o no la base de datos
-        /// </summary>
-        /// <param name="query">consulta SQL escrita como una cadena</param>
-        /// <example>
-        /// <code>
-        /// var baseDatos = new SQLiteDB();
-        /// baseDatos.CreateDatabase("CREATE TABLE EMPRESA(" +
-        ///         "ID          INT       PRIMARY KEY      NOT NULL," +
-        ///         "NOMBRE      TEXT                       NOT NULL," +
-        ///         "EDAD        INT                        NOT NULL," +
-        ///         "DIRECCION   TEXT                       NOT NULL," +
-        ///         "SALARIO     REAL)"
-        ///);
-        ///     
-        /// </code>
-        /// </example>
-        public void CreateDatabase(string query) {
-            ExecuteCreateDatabase(query: query);
-        }
-
-        private void ExecuteCreateDatabase(string query) {
-            SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Create);
-            // Crea la base de datos con la tabla
-            if (!IsCreateDatabase()) {
-                SQLiteConnection.CreateFile(DBName);
-                using (var connect = Conexion) {
-                    using (var command = new SQLiteCommand(query, connect)) {
-                        command.ExecuteNonQuery();
-                    }
-
-                    connect.Close();
-                }
-            }
         }
 
         /// <summary>
@@ -106,17 +75,16 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// }    
         /// </code>
         /// </example>
-        public DataTable Select(string query) {
-            return ExecuteSelect(query: query);
+        public async Task<IDataReader> SelectAsync(string query) {
+            return await ExecuteSelectAsync(query);
         }
 
-        private DataTable ExecuteSelect(string query) {
-            SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Select);
-            using (var connect = Conexion)
-            using (var command = new SQLiteCommand(query, connect)) {
-                var tabla = new DataTable();
-                tabla.Load(command.ExecuteReader());
-                return tabla;
+        private async Task<IDataReader> ExecuteSelectAsync(string query) {
+            using (var command = Connection.CreateCommand()) {
+                command.CommandText = query;
+                using (var reader = await command.ExecuteReaderAsync()) {
+                    return reader;
+                }
             }
         }
 
@@ -141,22 +109,14 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// }
         /// </code>
         /// </example>
-        public int UpdateOrInsert(string query) {
-            return ExecuteUpdateOrInsert(query: query);
+        public async Task<int> NonQueryAsync(string query) {
+            return await ExecuteNonQueryAsync(query);
         }
 
-        private int ExecuteUpdateOrInsert(string query) {
-            if (query.ToUpper().Contains("UPDATE")) {
-                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Update);
-            } else if (query.ToUpper().Contains("INSERT INTO")) {
-                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Insert);
-            } else {
-                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Delete);
-            }
-
-            using (var connect = Conexion)
-            using (var command = new SQLiteCommand(query, connect)) {
-                return command.ExecuteNonQuery();
+        private async Task<int> ExecuteNonQueryAsync(string query) {
+            using (var command = Connection.CreateCommand()) {
+                command.CommandText = query;
+                return await command.ExecuteNonQueryAsync();
             }
         }
 
@@ -174,17 +134,52 @@ namespace Garciss.Core.Data.Databases.SQLite {
         /// int id = baseDatos.MaxID("ID", "EMPRESA");
         /// </code>
         /// </example>
-        public int MaxID(string columna, string table) {
-            return GetMaxCount(columna: columna, table: table);
+        public async Task<int> MaxIDAsync(string columna, string table) {
+            return await GetMaxCountAsync(columna, table);
         }
 
-        private int GetMaxCount(string columna, string table) {
+        private async Task<int> GetMaxCountAsync(string columna, string table) {
             try {
-                using (var countID = ExecuteSelect($"SELECT COUNT({columna}) FROM {table}")) {
-                    return Convert.ToInt32(countID.Rows[0].ItemArray[0]) + 1;
+                using (var countID = await ExecuteSelectAsync($"SELECT COUNT({columna}) FROM {table}")) {
+                    return Convert.ToInt32(countID.GetSchemaTable().Rows[0].ItemArray[0]) + 1;
                 }
             } catch (Exception) {
                 return 1;
+            }
+        }
+
+        private void ValidarSentencias(string query) {
+            switch (query.ToUpper()) {
+                case var sql when sql.StartsWith("UPDATE"):
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Update);
+                    break;
+                case var sql when sql.StartsWith("INSERT INTO"):
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Insert);
+                    break;
+                case var sql when sql.StartsWith("DELETE"):
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Delete);
+                    break;
+                case var sql when sql.StartsWith("CREATE"):
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Create);
+                    break;
+                case var sql when sql.StartsWith("SELECT"):
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Select);
+                    break;
+                default:
+                    SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.None);
+                    break;
+            }
+
+        }
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing) {
+            if (disposing) {
+                Connection.Close();
             }
         }
     }
