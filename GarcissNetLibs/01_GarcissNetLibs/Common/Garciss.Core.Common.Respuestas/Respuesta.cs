@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
 namespace Garciss.Core.Common.Respuestas {
     /// <summary>
@@ -11,7 +11,7 @@ namespace Garciss.Core.Common.Respuestas {
         /// <summary>
         /// Para comparar, OK es 0
         /// </summary>
-        public static int OK => 0;
+        public const int OK = 0;
         /// <summary>
         /// Propiedad que contiene el codigo de un error
         /// </summary>
@@ -74,26 +74,20 @@ namespace Garciss.Core.Common.Respuestas {
         }
 
         private void EjecutarLogger(ILogger logger, TipoLogger tipoLogger) {
-            if (logger != null) switch (tipoLogger) {
+            if (logger is not null) {
+                var logMessage = $"Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};";
+                switch (tipoLogger) {
                     case TipoLogger.Information:
-                    logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogInformation(logMessage);
+                        break;
                     case TipoLogger.Error:
-                    logger.LogError("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogError(logMessage);
+                        break;
                     case TipoLogger.Fatal:
-                    logger.LogCritical(Excepcion, "Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                        Resultado, Funcionalidad, Mensaje);
-                    break;
+                        logger.LogCritical(Excepcion, logMessage);
+                        break;
                 }
+            }
         }
-    }
-
-    internal enum TipoLogger {
-        Information,
-        Error,
-        Fatal
     }
 }

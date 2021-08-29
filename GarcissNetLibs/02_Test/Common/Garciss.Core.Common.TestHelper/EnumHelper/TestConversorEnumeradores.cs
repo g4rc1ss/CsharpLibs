@@ -1,4 +1,4 @@
-﻿using Garciss.Core.Common.Helper.EnumHelper;
+﻿using Garciss.Core.Common.EnumHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestHelper.EnumHelper {

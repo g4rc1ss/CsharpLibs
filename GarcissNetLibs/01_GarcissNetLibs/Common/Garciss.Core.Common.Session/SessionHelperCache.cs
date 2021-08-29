@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace Garciss.Core.Common.Session {
@@ -19,7 +18,7 @@ namespace Garciss.Core.Common.Session {
     /// </summary>
     public static class SessionHelperCache {
         /// <summary>
-        /// 
+        /// Guardamos en json un objeto ligado a una `key` para almacenar en cache dicho objeto
         /// </summary>
         /// <param name="session"></param>
         /// <param name="key"></param>
@@ -30,7 +29,7 @@ namespace Garciss.Core.Common.Session {
         }
 
         /// <summary>
-        /// 
+        /// Obtenemos el json de la cache y lo convertimos al objeto correspondiente
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="session"></param>
@@ -38,16 +37,16 @@ namespace Garciss.Core.Common.Session {
         /// <returns></returns>
         public static T GetObjectFromJson<T>(this ISession session, string key) {
             var value = session.GetString(key);
-            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+            return value == null ? default : JsonConvert.DeserializeObject<T>(value);
         }
 
         /// <summary>
-        /// 
+        /// Eliminamos un objeto almacenado en sesion
         /// </summary>
         /// <param name="session"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static bool RemoveActivities(this ISession session, string key) {
+        public static bool RemoveObjectsOnCache(this ISession session, string key) {
             if (session != null) {
                 session.Remove(key);
                 return true;

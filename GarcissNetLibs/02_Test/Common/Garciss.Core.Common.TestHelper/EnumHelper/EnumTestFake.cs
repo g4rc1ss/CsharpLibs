@@ -1,4 +1,4 @@
-﻿using Garciss.Core.Common.Helper.EnumHelper;
+﻿using Garciss.Core.Common.EnumHelper;
 
 namespace Garciss.Core.Common.TestHelper.EnumHelper {
     public enum EnumTestFake {
