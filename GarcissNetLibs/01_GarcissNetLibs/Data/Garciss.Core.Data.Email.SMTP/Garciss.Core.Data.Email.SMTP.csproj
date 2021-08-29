@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
+    <ProjectReference Include="..\Garciss.Core.Data.Email.Base\Garciss.Core.Data.Email.Base.csproj" />
   </ItemGroup>
 
 </Project>

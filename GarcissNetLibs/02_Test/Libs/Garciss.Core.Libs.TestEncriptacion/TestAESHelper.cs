@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Garciss.Core.Libs.Encriptacion.Cryptography;
+using Garciss.Core.Libs.Encriptacion.AES.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Libs.TestEncriptacion {
@@ -61,6 +61,7 @@ namespace Core.Libs.TestEncriptacion {
             /*CifradoTexto();
             //----------------------CON CLAVE ALEATORIA------------------\\
             var descifrarTextoClaveRandom = new AESHelper();
+            descifrarTextoClaveRandom.DesencriptarTexto(null, null, null);
             var textoDescifrado = descifrarTextoClaveRandom.DesencriptarTexto(
                 cipherText: File.ReadAllBytes("TextoCifradoClaveRandom.aes"),
                 keyParameter: File.ReadAllBytes("Key.aes"),

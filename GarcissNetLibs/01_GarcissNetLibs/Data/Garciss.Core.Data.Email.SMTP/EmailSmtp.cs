@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Garciss.Core.Common.Respuestas;
 
 namespace Garciss.Core.Data.Email.SMTP {
-    public sealed class EmailSmtp : Email {
+    public sealed class EmailSmtp : Base.Email {
         public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
             : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }
@@ -45,7 +45,6 @@ namespace Garciss.Core.Data.Email.SMTP {
                     EnviarMensaje(destinatario);
                 });
             }
-
             return new Respuesta();
         }
 
@@ -62,11 +61,10 @@ namespace Garciss.Core.Data.Email.SMTP {
                     };
 
                     if (ArchivosAdjuntos != null && ArchivosAdjuntos?.Count > 0) {
-                        for (var x = 0; x < ArchivosAdjuntos.Count; x++) {
-                            mensaje.Attachments.Add(new Attachment(stream, NombreArchivosAdjunto[x]));
+                        foreach (var archivoAdjunto in NombreArchivosAdjunto) {
+                            mensaje.Attachments.Add(new Attachment(stream, archivoAdjunto));
                         }
                     }
-
                     cliente.Send(mensaje);
                 }
             }

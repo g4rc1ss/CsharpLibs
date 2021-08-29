@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 
-namespace Garciss.Core.Libs.Encriptacion.Cryptography.Clases {
+namespace Garciss.Core.Libs.Encriptacion.AES.Cryptography.Clases {
     internal sealed class EncryptAESHelper {
 
         internal static byte[] EncryptStringToBytesAes(string text, byte[] keyParameter, byte[] iVparameter) {

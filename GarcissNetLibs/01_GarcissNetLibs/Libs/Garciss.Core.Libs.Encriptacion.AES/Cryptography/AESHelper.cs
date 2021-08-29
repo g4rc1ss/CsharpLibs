@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using Garciss.Core.Libs.Encriptacion.Cryptography.Clases;
+using Garciss.Core.Libs.Encriptacion.AES.Cryptography.Clases;
 
-namespace Garciss.Core.Libs.Encriptacion.Cryptography {
+namespace Garciss.Core.Libs.Encriptacion.AES.Cryptography {
     /// <summary>
     /// Clase con metodos y atributos para facilitar el uso de la clase 
     /// [System.Security.Cryptography].Aes
     /// </summary>
-    public class AESHelper {
+    public sealed class AESHelper {
 
         /// <summary>
         /// Un array de bytes que contiene la contraseña con la que se encriptara
@@ -180,7 +180,7 @@ namespace Garciss.Core.Libs.Encriptacion.Cryptography {
         private static void ValidarCampos(params object[] campos) {
             foreach (var field in campos) {
                 if (field is null) {
-                    throw new ArgumentNullException($"El campo {field.GetType().Name} es nulo");
+                    throw new ArgumentNullException(nameof(field), "Uno de los parametros enviados al metodo es null");
                 }
             }
         }

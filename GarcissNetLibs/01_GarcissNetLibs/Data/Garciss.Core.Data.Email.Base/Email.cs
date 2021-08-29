@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using Garciss.Core.Common.Respuestas;
 
-namespace Garciss.Core.Data.Email {
+namespace Garciss.Core.Data.Email.Base {
     public abstract class Email {
-        private readonly string regexCuerpoVariables = "¬V\\d+";
+        private const string REGEX_CUERPO_VARIABLE = @"¬V\d+";
         private readonly string rutaUbicacionPlantillasHtml;
-        internal readonly string usuario;
-        internal readonly string password;
-        internal readonly string servidorEnvio;
-        internal string Cuerpo { get; set; }
+        protected readonly string usuario;
+        protected readonly string password;
+        protected readonly string servidorEnvio;
+        protected string Cuerpo { get; set; }
 
         public string Remitente { get; set; }
         public string Asunto { get; set; }
@@ -30,49 +30,48 @@ namespace Garciss.Core.Data.Email {
 
         public abstract Respuesta Enviar();
 
-        internal void InicializarEnvioEmail() {
+        protected void InicializarEnvioEmail() {
             ValidarCampos();
             SustituirTokens();
         }
 
         private void ValidarCampos() {
             if (string.IsNullOrEmpty(Remitente)) {
-                throw new Exception($"Campo {nameof(Remitente)} vacio");
+                throw new NullReferenceException($"Campo {nameof(Remitente)} vacio");
             }
 
             if (Destinatarios == null || Destinatarios.Count <= 0) {
-                throw new Exception($"Campo {nameof(Destinatarios)} vacio");
+                throw new NullReferenceException($"Campo {nameof(Destinatarios)} vacio");
             }
 
             if (string.IsNullOrEmpty(usuario)) {
-                throw new Exception($"Campo {nameof(usuario)} vacio");
+                throw new NullReferenceException($"Campo {nameof(usuario)} vacio");
             }
 
             if (string.IsNullOrEmpty(password)) {
-                throw new Exception($"Campo {nameof(password)} vacio");
+                throw new NullReferenceException($"Campo {nameof(password)} vacio");
             }
 
             if (string.IsNullOrEmpty(servidorEnvio)) {
-                throw new Exception($"Campo {nameof(servidorEnvio)} vacio");
+                throw new NullReferenceException($"Campo {nameof(servidorEnvio)} vacio");
             }
 
             if (ArchivosAdjuntos?.Count != NombreArchivosAdjunto?.Count) {
-                throw new Exception("Los archivos tienen que tener su nombre correspondiente");
+                throw new NullReferenceException("Los archivos tienen que tener su nombre correspondiente");
             }
 
             if (string.IsNullOrEmpty(rutaUbicacionPlantillasHtml)) {
-                throw new Exception("Es obligatorio el uso de plantillas Html para el envio del Mail");
+                throw new NullReferenceException("Es obligatorio el uso de plantillas Html para el envio del Mail");
             }
         }
 
         private void SustituirTokens() {
-            var regex = new System.Text.RegularExpressions.Regex(regexCuerpoVariables);
+            var regex = new System.Text.RegularExpressions.Regex(REGEX_CUERPO_VARIABLE);
             var cuerpo = ObtenerTextoDesdeRepositorio();
 
             foreach (var param in BodyPersonalizado) {
                 cuerpo = regex.Replace(cuerpo, param, 1);
             }
-
             Cuerpo = cuerpo;
         }
 
