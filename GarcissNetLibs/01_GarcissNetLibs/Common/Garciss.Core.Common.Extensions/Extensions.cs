@@ -1,4 +1,4 @@
-﻿namespace Garciss.Core.Common.Helper.Extensions {
+﻿namespace Garciss.Core.Common.Extensions {
     /// <summary>
     /// Clase estatica para almacenar extensiones de metodos
     /// </summary>

@@ -60,6 +60,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.Convert
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.EnumHelper", "01_GarcissNetLibs\Common\Garciss.Core.Common.EnumHelper\Garciss.Core.Common.EnumHelper.csproj", "{7A77BAD6-2306-44D0-83BB-69E5B57CC312}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.Extensions", "01_GarcissNetLibs\Common\Garciss.Core.Common.Extensions\Garciss.Core.Common.Extensions.csproj", "{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +124,10 @@ Global
 		{7A77BAD6-2306-44D0-83BB-69E5B57CC312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A77BAD6-2306-44D0-83BB-69E5B57CC312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A77BAD6-2306-44D0-83BB-69E5B57CC312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +156,7 @@ Global
 		{7146657F-4653-4317-B4DE-7A5E0B44CC81} = {944C39E8-D62B-4DC1-A47A-78AFF598C820}
 		{CCE875B7-8998-40BE-B073-2D23101BD6E4} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 		{7A77BAD6-2306-44D0-83BB-69E5B57CC312} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
+		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}
