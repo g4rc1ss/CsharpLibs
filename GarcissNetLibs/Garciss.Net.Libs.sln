@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.EnumHel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.Extensions", "01_GarcissNetLibs\Common\Garciss.Core.Common.Extensions\Garciss.Core.Common.Extensions.csproj", "{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.Formatters", "01_GarcissNetLibs\Common\Garciss.Core.Common.Formatters\Garciss.Core.Common.Formatters.csproj", "{723AAD2F-AEAE-470A-A03C-195E4161C4F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723AAD2F-AEAE-470A-A03C-195E4161C4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723AAD2F-AEAE-470A-A03C-195E4161C4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723AAD2F-AEAE-470A-A03C-195E4161C4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723AAD2F-AEAE-470A-A03C-195E4161C4F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +163,7 @@ Global
 		{CCE875B7-8998-40BE-B073-2D23101BD6E4} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 		{7A77BAD6-2306-44D0-83BB-69E5B57CC312} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 		{975B2FD1-7C82-4C7E-8DB2-023A3AFAF388} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
+		{723AAD2F-AEAE-470A-A03C-195E4161C4F2} = {960296EC-C66D-45FC-B6B6-D363C90EE15D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}
