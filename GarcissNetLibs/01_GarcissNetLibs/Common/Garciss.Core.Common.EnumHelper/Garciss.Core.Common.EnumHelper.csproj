@@ -7,14 +7,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Data.Email.Base.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Common.EnumHelper.xml</DocumentationFile>
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
-  </ItemGroup>
 
 </Project>

@@ -1,32 +1,33 @@
 ﻿using System.Data;
 using System.IO;
+using Newtonsoft.Json;
 
-namespace Garciss.Core.Common.Helper.Converters {
+namespace Garciss.Core.Common.Converter {
     /// <summary>
     /// Clase estatica en la que se ubican metodos para realizar conversiones y tratamiento de objetos
     /// Como por ejemlo: Convertir una clase a un diccionario, un XML a un Json, etc
     /// </summary>
-    public partial class ConvertHelper {
+    public static class ConvertXml {
         /// <summary>
         /// Convierte un xml a un Json
         /// </summary>
         /// <param name="xmlString"></param>
         /// <returns></returns>
-        public static object XMLStringToJson(string xmlString) {
+        public static string XMLStringToJson(string xmlString) {
             var dataSet = new DataSet();
             dataSet.ReadXml(new StringReader(xmlString));
-            return ObjectToJson(dataSet);
+            return JsonConvert.SerializeObject(dataSet);
         }
 
         /// <summary>
         /// Convierte un XMLFile a un Json
         /// </summary>
-        /// <param name="xmlFile"></param>
+        /// <param name="xmlFilePath"></param>
         /// <returns></returns>
-        public static object XMLFileToJson(string xmlFile) {
+        public static string XMLFileToJson(string xmlFilePath) {
             var dataSet = new DataSet();
-            dataSet.ReadXml(xmlFile);
-            return ObjectToJson(dataSet);
+            dataSet.ReadXml(xmlFilePath);
+            return JsonConvert.SerializeObject(dataSet);
         }
     }
 }

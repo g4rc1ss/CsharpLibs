@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
+using Newtonsoft.Json;
 
-namespace Garciss.Core.Common.Helper.Converters {
-    public partial class ConvertHelper {
+namespace Garciss.Core.Common.Converter {
+    public static class ConvertDictionary {
         /// <summary>
         /// Convierte un objeto tipo NameValueCollection a Dictionary -> string, string
         /// </summary>
@@ -106,7 +107,7 @@ namespace Garciss.Core.Common.Helper.Converters {
                 }
                 case var tipoArrayObject when tipoArrayObject == typeof(object[]): {
                     var cadenaAux = string.Empty;
-                    for (var i = 0; i <= (((object[])objeto).Length - 1); i++) {
+                    for (var i = 0; i <= ((object[])objeto).Length - 1; i++) {
                         cadenaAux += ((object[])objeto)[i].ToString();
                     }
 
@@ -154,9 +155,9 @@ namespace Garciss.Core.Common.Helper.Converters {
                     } else {
                         switch (jsonXml.Trim().Substring(0, 1)) {
                             case "{": // JSON
-                                return JsonToObject<Dictionary<string, string>>(jsonXml);
+                                return JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonXml);
                             case "<": // XML
-                                return JsonToObject<Dictionary<string, string>>((string)XMLStringToJson(jsonXml));
+                                return JsonConvert.DeserializeObject<Dictionary<string, string>>(ConvertXml.XMLStringToJson(jsonXml));
                             default: {
                                 dict.Add("BUFFERDATA", jsonXml);
                                 break;

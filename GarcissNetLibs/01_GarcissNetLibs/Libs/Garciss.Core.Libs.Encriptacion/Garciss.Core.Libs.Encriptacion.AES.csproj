@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>garciss.ModulosCifrado</PackageId>
     <Authors>Asier Garcia</Authors>
+    <Description>Libreria para usar algoritmos de cifrado mas sencillamente como AES etc</Description>
+    <Version>1.2.0</Version>
     <RepositoryUrl>https://github.com/g4rc1ss/GarcissNetLibs</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Data.Email.Base.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Libs.Encriptacion.xml</DocumentationFile>
     <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
-  </ItemGroup>
 
 </Project>

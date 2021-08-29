@@ -1,5 +1,5 @@
 ﻿using System;
-using Garciss.Core.Common.Helper.Converters;
+using Garciss.Core.Common.Converter;
 using Garciss.Core.Common.TestHelper.Converters.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -38,7 +38,7 @@ namespace Garciss.Core.Common.TestHelper.Converters {
                     }
                 }
             };
-            var diccionario = ConvertHelper.ObjToDictionary(claseToConvert);
+            var diccionario = ConvertDictionary.ObjToDictionary(claseToConvert);
 
             Assert.IsTrue(
                 diccionario["NOMBRE"] == "Test de conversion" &&
