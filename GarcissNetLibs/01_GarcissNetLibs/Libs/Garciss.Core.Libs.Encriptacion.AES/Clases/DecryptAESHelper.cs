@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 
-namespace Garciss.Core.Libs.Encriptacion.AES.Cryptography.Clases {
+namespace Garciss.Core.Libs.Encriptacion.AES.Clases {
     internal sealed class DecryptAESHelper {
         internal static bool DecryptFile(string cryptFilePath, string decryptFilePath, byte[] keyParameter, byte[] iVparameter) {
             using var aesAlg = Aes.Create();

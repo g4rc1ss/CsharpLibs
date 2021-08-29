@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using Garciss.Core.Libs.Encriptacion.AES.Cryptography.Clases;
+using Garciss.Core.Libs.Encriptacion.AES.Clases;
 
-namespace Garciss.Core.Libs.Encriptacion.AES.Cryptography {
+namespace Garciss.Core.Libs.Encriptacion.AES {
     /// <summary>
     /// Clase con metodos y atributos para facilitar el uso de la clase 
     /// [System.Security.Cryptography].Aes

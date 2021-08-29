@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Garciss.Core.Libs.Encriptacion.AES.Cryptography;
+using Garciss.Core.Libs.Encriptacion.AES;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Libs.TestEncriptacion {
