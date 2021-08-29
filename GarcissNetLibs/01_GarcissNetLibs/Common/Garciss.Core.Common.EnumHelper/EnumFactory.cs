@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Garciss.Core.Common.Helper.EnumHelper {
+namespace Garciss.Core.Common.EnumHelper {
 
     /// <summary>
     /// Muchas de nuestras enumeraciones correspondería con una clave Alfanumérica, no una clave númerica.

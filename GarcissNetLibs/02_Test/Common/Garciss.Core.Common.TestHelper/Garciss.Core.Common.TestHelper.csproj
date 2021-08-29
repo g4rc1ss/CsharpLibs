@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_GarcissNetLibs\Common\Garciss.Core.Common.Converter\Garciss.Core.Common.Converter.csproj" />
+    <ProjectReference Include="..\..\..\01_GarcissNetLibs\Common\Garciss.Core.Common.EnumHelper\Garciss.Core.Common.EnumHelper.csproj" />
     <ProjectReference Include="..\..\..\01_GarcissNetLibs\Common\Garciss.Core.Common.Helper\Garciss.Core.Common.Helper.csproj" />
   </ItemGroup>
 

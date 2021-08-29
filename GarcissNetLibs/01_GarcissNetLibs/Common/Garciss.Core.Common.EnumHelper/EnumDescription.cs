@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Garciss.Core.Common.Helper.EnumHelper {
+namespace Garciss.Core.Common.EnumHelper {
     /// <summary>
     /// Para evitar tener un array de claves o constantes asociado a una enumeración,
     /// se puede optar por asignar un atributo a cada elemento de la enumeración, de
