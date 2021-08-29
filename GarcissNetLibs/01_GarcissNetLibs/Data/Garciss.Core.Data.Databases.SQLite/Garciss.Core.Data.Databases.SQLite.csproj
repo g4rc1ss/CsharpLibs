@@ -21,4 +21,8 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Garciss.Core.Data.Databases.SqlInjection\Garciss.Core.Data.Databases.SqlInjection.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,24 +1,20 @@
 ﻿using System;
-using Garciss.Core.Common.Helper.Converters;
 
 namespace Garciss.Core.Common.Helper {
     public sealed class Importe {
-        private string moneda = "EUR";
+        private string moneda;
+
+        public decimal? Cantidad { get; set; }
         public string Moneda {
             get => moneda;
             set {
                 if (!string.IsNullOrEmpty(value) && value.Length != 3) {
                     throw new ArgumentOutOfRangeException(nameof(Moneda), "La abreviatura no cumple el estandar ISO 4217");
                 }
-
                 moneda = value;
             }
         }
-        public decimal? Cantidad { get; set; }
 
-        /// <summary>
-        /// Inicializa valores por defecto
-        /// </summary>
         public Importe() {
             Cantidad = null;
         }

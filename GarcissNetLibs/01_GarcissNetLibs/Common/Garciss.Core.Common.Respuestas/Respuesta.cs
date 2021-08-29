@@ -74,28 +74,20 @@ namespace Garciss.Core.Common.Respuestas {
         }
 
         private void EjecutarLogger(ILogger logger, TipoLogger tipoLogger) {
-            if (logger != null) {
+            if (logger is not null) {
+                var logMessage = $"Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};";
                 switch (tipoLogger) {
                     case TipoLogger.Information:
-                        logger.LogInformation("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                            Resultado, Funcionalidad, Mensaje);
+                        logger.LogInformation(logMessage);
                         break;
                     case TipoLogger.Error:
-                        logger.LogError("Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                            Resultado, Funcionalidad, Mensaje);
+                        logger.LogError(logMessage);
                         break;
                     case TipoLogger.Fatal:
-                        logger.LogCritical(Excepcion, "Resultado: {Resultado}; \n Funcionalidad: {Funcionalidad}; \n Mensaje: {Mensaje};",
-                            Resultado, Funcionalidad, Mensaje);
+                        logger.LogCritical(Excepcion, logMessage);
                         break;
                 }
             }
         }
-    }
-
-    internal enum TipoLogger {
-        Information,
-        Error,
-        Fatal
     }
 }

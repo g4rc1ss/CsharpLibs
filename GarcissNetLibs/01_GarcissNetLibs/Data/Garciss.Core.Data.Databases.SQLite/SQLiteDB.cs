@@ -2,12 +2,13 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using Garciss.Core.Data.Databases.SqlInjection;
 
 namespace Garciss.Core.Data.Databases.SQLite {
     /// <summary>
     /// Clase para la creacion y uso de una base de datos SQLite
     /// </summary>
-    public sealed class SQLiteDB : Base {
+    public sealed class SQLiteDB {
 
         /// <summary>
         /// Elegimos la base de datos, sino se llamara "Database.db"
@@ -70,7 +71,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
         }
 
         private void ExecuteCreateDatabase(string query) {
-            ValidarSentencia(query, TiposSentenciaSql.Create);
+            SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Create);
             // Crea la base de datos con la tabla
             if (!IsCreateDatabase()) {
                 SQLiteConnection.CreateFile(DBName);
@@ -110,7 +111,7 @@ namespace Garciss.Core.Data.Databases.SQLite {
         }
 
         private DataTable ExecuteSelect(string query) {
-            ValidarSentencia(query, TiposSentenciaSql.Select);
+            SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Select);
             using (var connect = Conexion)
             using (var command = new SQLiteCommand(query, connect)) {
                 var tabla = new DataTable();
@@ -146,11 +147,11 @@ namespace Garciss.Core.Data.Databases.SQLite {
 
         private int ExecuteUpdateOrInsert(string query) {
             if (query.ToUpper().Contains("UPDATE")) {
-                ValidarSentencia(query, TiposSentenciaSql.Update);
+                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Update);
             } else if (query.ToUpper().Contains("INSERT INTO")) {
-                ValidarSentencia(query, TiposSentenciaSql.Insert);
+                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Insert);
             } else {
-                ValidarSentencia(query, TiposSentenciaSql.Delete);
+                SqlInjectionValidation.ValidarSentencia(query, TiposSentenciaSql.Delete);
             }
 
             using (var connect = Conexion)

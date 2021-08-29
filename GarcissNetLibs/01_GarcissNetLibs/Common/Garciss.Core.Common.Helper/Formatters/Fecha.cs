@@ -16,7 +16,6 @@ namespace Garciss.Core.Common.Helper.Formatters {
             if (valor == null) {
                 return "00000000";
             }
-
             return valor.Value.ToString(formato);
         }
 
@@ -26,7 +25,7 @@ namespace Garciss.Core.Common.Helper.Formatters {
         /// <param name="fecha">fecha a convertir</param>
         /// <returns>Fecha en Juliana yydd (año, dia del año)</returns>
         public static string FormatToFechaJuliana(DateTime fecha) {
-            return $"{Convert.ToString(fecha.Year).Substring(3)}{fecha.DayOfYear.ToString().PadLeft(3, '0')}";
+            return $"{Convert.ToString(fecha.Year)[3..]}{fecha.DayOfYear.ToString().PadLeft(3, '0')}";
         }
 
         /// <summary>
@@ -35,13 +34,8 @@ namespace Garciss.Core.Common.Helper.Formatters {
         /// <param name="fechaDesde"></param>
         /// <returns></returns>
         public static double DateDiffMilliSecond(DateTime fechaDesde) {
-            try {
-                var milliseconds = default(double);
-                milliseconds = Math.Round((DateTime.Now - fechaDesde).TotalMilliseconds, 0);
-                return milliseconds < 0 ? 0 : milliseconds;
-            } catch (Exception) {
-                return 99999;
-            }
+            var milliseconds = Math.Round((DateTime.Now - fechaDesde).TotalMilliseconds, 0);
+            return milliseconds < 0 ? 0 : milliseconds;
         }
 
         /// <summary>
@@ -51,13 +45,8 @@ namespace Garciss.Core.Common.Helper.Formatters {
         /// <param name="fechaHasta"></param>
         /// <returns></returns>
         public static double DateDiffMilliSecond(DateTime fechaDesde, DateTime fechaHasta) {
-            try {
-                var milliseconds = default(double);
-                milliseconds = Math.Round((fechaHasta - fechaDesde).TotalMilliseconds, 0);
-                return milliseconds < 0 ? 0 : milliseconds;
-            } catch (Exception) {
-                return 99999;
-            }
+            var milliseconds = Math.Round((fechaHasta - fechaDesde).TotalMilliseconds, 0);
+            return milliseconds < 0 ? 0 : milliseconds;
         }
     }
 }

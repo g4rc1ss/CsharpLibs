@@ -9,14 +9,14 @@
         /// <param name="value"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string Right(string value, int length) {
+        public static string Right(this string value, int length) {
             if (string.IsNullOrEmpty(value)) {
                 return string.Empty;
             }
 
             return value.Length <= length
                 ? value
-                : value.Substring(value.Length - length);
+                : value[^length..];
         }
     }
 }

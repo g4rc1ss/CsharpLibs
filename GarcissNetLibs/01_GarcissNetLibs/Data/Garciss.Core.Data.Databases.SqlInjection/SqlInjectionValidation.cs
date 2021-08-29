@@ -1,73 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Garciss.Core.Data.Databases {
+namespace Garciss.Core.Data.Databases.SqlInjection {
     /// <summary>
-    /// Clase base de la que hay que heredar para realizar validaciones de sentencias SQL etc.
+    /// Clase para la validacion de sentencias SQL
     /// Se usara principalmente para prevenir SQL Injection
     /// </summary>
-    public abstract class Base {
-        /// <summary>
-        /// Tipos de validaciones de expresiones sql
-        /// </summary>
-        public enum TiposSentenciaSql {
-            /// <summary>
-            /// 
-            /// </summary>
-            None = 0,
-            /// <summary>
-            /// 
-            /// </summary>
-            Procedure = 0,
-            /// <summary>
-            /// 
-            /// </summary>
-            Alter = 1,
-            /// <summary>
-            /// 
-            /// </summary>
-            Create = 2,
-            /// <summary>
-            /// 
-            /// </summary>
-            Delete = 4,
-            /// <summary>
-            /// 
-            /// </summary>
-            Drop = 8,
-            /// <summary>
-            /// 
-            /// </summary>
-            Execute = 16,
-            /// <summary>
-            /// 
-            /// </summary>
-            Insert = 32,
-            /// <summary>
-            /// 
-            /// </summary>
-            Select = 64,
-            /// <summary>
-            /// 
-            /// </summary>
-            Update = 128,
-            /// <summary>
-            /// 
-            /// </summary>
-            Union = 256,
-            /// <summary>
-            /// 
-            /// </summary>
-            Batch = 512,
-            /// <summary>
-            /// 
-            /// </summary>
-            Merge = 1024 | Delete | Insert | Select | Update,
-            /// <summary>
-            /// 
-            /// </summary>
-            Comment = 2048
-        }
+    public sealed class SqlInjectionValidation {
 
         /// <summary>
         /// Valida una expresión sql para evitar inyecciones sql
@@ -155,9 +94,7 @@ namespace Garciss.Core.Data.Databases {
                 } else if (value.Trim() == ";") {
                     throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
                 } else {
-                    throw new UnauthorizedAccessException(
-                  string.Concat(value.Substring(0, 1).ToUpper(), value.Substring(1).ToLower(),
-                                " statements not authorized:", Environment.NewLine, sentencia));
+                    throw new UnauthorizedAccessException($"{value[0..1].ToUpper()} {value[1..].ToLower()} statements not authorized: {Environment.NewLine} {sentencia}");
                 }
             }
         }
@@ -185,12 +122,12 @@ namespace Garciss.Core.Data.Databases {
         /// <param name="server">Nombre del servidor (sin contrabarras al principio)</param>
         /// <returns>String con la query resultante de la sustitución de los parametros en el fichero</returns>
         /// <remarks></remarks>
-        protected static string ObtenerQuery(string file, string[] parametros, string server = "") {
+        public static string ObtenerQuery(string file, string[] parametros, string server = "") {
             string strSQL;
             int i;
             var sParametros = "";
 
-            if (file.ToUpper().IndexOf("SELECT ") >= 0 & file.ToUpper().IndexOf("FROM") >= 0) {
+            if (file.ToUpper().Contains("SELECT ", StringComparison.CurrentCulture) & file.ToUpper().Contains("FROM", StringComparison.CurrentCulture)) {
                 strSQL = file;
             } else {
                 if (file.IndexOf(@"\\") < 0) {
@@ -210,7 +147,6 @@ namespace Garciss.Core.Data.Databases {
                     strSQL = strSQL.Replace("@" + i.ToString() + "@", parametros[i]);
                 }
             }
-
             ValidarSentencia(sParametros, TiposSentenciaSql.None);
             return strSQL;
         }

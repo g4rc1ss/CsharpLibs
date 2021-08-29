@@ -11,17 +11,19 @@ namespace Garciss.Core.Common.Respuestas {
         /// <summary>
         /// propiedad que va a contener un objeto
         /// </summary>
-        public T Datos { get; set; }
+        public T Datos { get; private set; }
 
         /// <summary>
-        /// Contructor sin nada
+        /// 
         /// </summary>
+        /// <param name="logger"></param>
         public Respuesta(ILogger logger = null) : base(logger) { }
 
         /// <summary>
-        /// Se inserta un objeto de cualquier tipop para retornar
+        /// Se inserta un objeto de cualquier tipo para retornar
         /// </summary>
         /// <param name="datos"></param>
+        /// <param name="logger"></param>
         public Respuesta(T datos, ILogger logger = null) : base(logger) {
             Datos = datos;
         }
@@ -32,6 +34,7 @@ namespace Garciss.Core.Common.Respuestas {
         /// <param name="resultado"></param>
         /// <param name="mensaje"></param>
         /// <param name="funcionalidad"></param>
+        /// <param name="logger"></param>
         public Respuesta(int resultado, string mensaje, string funcionalidad, ILogger logger = null)
             : base(resultado, mensaje, funcionalidad, logger) {
         }
@@ -41,7 +44,7 @@ namespace Garciss.Core.Common.Respuestas {
         /// </summary>
         /// <param name="ex"></param>
         /// <param name="funcionalidad"></param>
-        /// <param name="guardarLog"></param>
+        /// <param name="logger"></param>
         public Respuesta(Exception ex, string funcionalidad = "", ILogger logger = null)
             : base(ex, funcionalidad, logger) {
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Garciss.Core.Common.Helper.Extensions;
 
 namespace Garciss.Core.Common.Helper.Formatters {
     public partial class Format {
@@ -19,7 +20,7 @@ namespace Garciss.Core.Common.Helper.Formatters {
                 return string.Concat("***", correo);
             } else {
                 // Se escriben tantos * como la longitud del nombre del correo menos 2, Right devuelve los ultimos 2 caracteres y ya se escribe lo demas
-                return string.Concat(new string('*', longitudNombre - 2), Extensions.Extensions.Right(direccionCorreo, 2), "@", dividirCorreo[1]);
+                return string.Concat(new string('*', longitudNombre - 2), direccionCorreo.Right(2), "@", dividirCorreo[1]);
             }
         }
 
@@ -31,10 +32,9 @@ namespace Garciss.Core.Common.Helper.Formatters {
         /// <returns></returns>
         public static string OfuscarMovil(string telefono, char caracterParaOfuscar = '*') {
             if (telefono.Length < 9) {
-                throw new ArgumentOutOfRangeException("telefono", telefono, "La longitud del numero de telefono no es correcta");
+                throw new ArgumentOutOfRangeException(nameof(telefono), telefono, "La longitud del numero de telefono no es correcta");
             }
-
-            return string.Concat(telefono.Substring(0, 3), new string(caracterParaOfuscar, 5), telefono.Substring(8));
+            return string.Concat(telefono[0..3], new string(caracterParaOfuscar, 5), telefono[8..]);
         }
     }
 }
