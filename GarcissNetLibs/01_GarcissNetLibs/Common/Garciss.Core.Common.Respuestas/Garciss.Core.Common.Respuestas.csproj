@@ -2,12 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageId>garciss.Respuestas</PackageId>
     <Authors>Asier Garcia</Authors>
-    <Description>Libreria que contiene un objeto para gestionar resultados y excepciones principalemente en aplicaciones Web, hace que se devuelva los resultados en un formato parecido o igual</Description>
     <RepositoryUrl>https://github.com/g4rc1ss/GarcissNetLibs</RepositoryUrl>
-    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
