@@ -1,11 +1,11 @@
 ﻿using System;
 using Garciss.Core.Common.Converter;
-using Garciss.Core.Common.TestHelper.Converters.Fake;
+using Garciss.Core.Common.TestConverter.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Garciss.Core.Common.TestHelper.Converters {
+namespace Garciss.Core.Common.TestConverter {
     [TestClass]
-    public class TestDiccionario {
+    public class TestConvertDictionary {
 
         [TestMethod]
         public void ConvertObjToDictionary() {

@@ -78,6 +78,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Libs.TestEncri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Business.TestImporte", "02_Test\Business\Garciss.Core.Business.TestImporte\Garciss.Core.Business.TestImporte.csproj", "{1605D246-B2AE-472E-A5D0-FDF04C385C8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.TestConverter", "02_Test\Common\Garciss.Core.Common.TestConverter\Garciss.Core.Common.TestConverter.csproj", "{33416265-9179-4DA3-A36C-026A29C345FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.TestEnumHelper", "02_Test\Common\Garciss.Core.Common.TestEnumHelper\Garciss.Core.Common.TestEnumHelper.csproj", "{01F24E19-9A3E-480D-9CE8-28240086A070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.TestExtensions", "02_Test\Common\Garciss.Core.Common.TestExtensions\Garciss.Core.Common.TestExtensions.csproj", "{30853FE5-F387-4E77-999F-888CC0714491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.TestFormatters", "02_Test\Common\Garciss.Core.Common.TestFormatters\Garciss.Core.Common.TestFormatters.csproj", "{E8E05FF4-8106-47FD-96D6-86A4447E0BEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -164,6 +172,22 @@ Global
 		{1605D246-B2AE-472E-A5D0-FDF04C385C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1605D246-B2AE-472E-A5D0-FDF04C385C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1605D246-B2AE-472E-A5D0-FDF04C385C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33416265-9179-4DA3-A36C-026A29C345FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33416265-9179-4DA3-A36C-026A29C345FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33416265-9179-4DA3-A36C-026A29C345FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33416265-9179-4DA3-A36C-026A29C345FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F24E19-9A3E-480D-9CE8-28240086A070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F24E19-9A3E-480D-9CE8-28240086A070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F24E19-9A3E-480D-9CE8-28240086A070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F24E19-9A3E-480D-9CE8-28240086A070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30853FE5-F387-4E77-999F-888CC0714491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30853FE5-F387-4E77-999F-888CC0714491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30853FE5-F387-4E77-999F-888CC0714491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30853FE5-F387-4E77-999F-888CC0714491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E05FF4-8106-47FD-96D6-86A4447E0BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E05FF4-8106-47FD-96D6-86A4447E0BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E05FF4-8106-47FD-96D6-86A4447E0BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E05FF4-8106-47FD-96D6-86A4447E0BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -201,6 +225,10 @@ Global
 		{3547D325-BE4C-4972-8856-8B3DC53AF139} = {21D5966F-C4D5-4746-9547-1387304789A4}
 		{0D81252A-ED2D-41C9-B43F-DF751C5E0F25} = {22DF1FF9-0C6E-4B88-BD5F-6C6E51E8E613}
 		{1605D246-B2AE-472E-A5D0-FDF04C385C8D} = {41E0F117-985F-4BF4-9922-758D4474348C}
+		{33416265-9179-4DA3-A36C-026A29C345FC} = {9C63C9D5-939F-4D05-A28B-8F06AF4E9C89}
+		{01F24E19-9A3E-480D-9CE8-28240086A070} = {9C63C9D5-939F-4D05-A28B-8F06AF4E9C89}
+		{30853FE5-F387-4E77-999F-888CC0714491} = {9C63C9D5-939F-4D05-A28B-8F06AF4E9C89}
+		{E8E05FF4-8106-47FD-96D6-86A4447E0BEF} = {9C63C9D5-939F-4D05-A28B-8F06AF4E9C89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}

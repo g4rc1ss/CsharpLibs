@@ -1,9 +1,9 @@
 ﻿using Garciss.Core.Common.Converter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Garciss.Core.Common.TestHelper.Converters {
+namespace Garciss.Core.Common.TestConverter {
     [TestClass]
-    public class TestXML {
+    public class TestConvertXml {
         [TestMethod]
         public void TestXMLToJson() {
             var xml = @"

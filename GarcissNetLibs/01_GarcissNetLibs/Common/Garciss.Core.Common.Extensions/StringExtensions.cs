@@ -2,7 +2,7 @@
     /// <summary>
     /// Clase estatica para almacenar extensiones de metodos
     /// </summary>
-    public static class Extensions {
+    public static class StringExtensions {
         /// <summary>
         /// 
         /// </summary>

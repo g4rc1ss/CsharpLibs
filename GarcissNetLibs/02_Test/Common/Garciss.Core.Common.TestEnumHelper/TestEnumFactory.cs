@@ -1,9 +1,10 @@
 ﻿using Garciss.Core.Common.EnumHelper;
+using Garciss.Core.Common.TestEnumHelper.Fake;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Garciss.Core.Common.TestHelper.EnumHelper {
+namespace Garciss.Core.Common.TestEnumHelper {
     [TestClass]
-    public class TestConversorEnumeradores {
+    public class TestEnumFactory {
         [TestMethod]
         public void TestEnumItemFromKeyEnvioClave() {
             var enumeradorPrueba = EnumFactory.EnumItemFromKey<EnumTestFake>("10");

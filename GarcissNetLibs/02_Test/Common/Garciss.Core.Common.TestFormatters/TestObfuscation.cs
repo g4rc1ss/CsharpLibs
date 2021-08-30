@@ -1,7 +1,7 @@
 ﻿using Garciss.Core.Common.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Garciss.Core.Common.TestHelper.Formatters {
+namespace Garciss.Core.Common.TestFormatters {
     [TestClass]
     public class TestOfuscacion {
         [TestMethod]
