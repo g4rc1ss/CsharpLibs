@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\01_NetLibs\Data\Garciss.Core.Data.Databases.SqlInjection\Garciss.Core.Data.Databases.SqlInjection.csproj" />
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Data.Databases.MockSqlInjection\Garciss.Core.Data.Databases.MockSqlInjection.csproj" />
+  </ItemGroup>
+
 </Project>

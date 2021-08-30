@@ -110,45 +110,7 @@ namespace Garciss.Core.Data.Databases.SqlInjection {
             if (string.IsNullOrEmpty(sentencia)) {
                 return string.Empty;
             }
-
             return Regex.Replace(sentencia, regExText, string.Empty);
-        }
-
-        /// <summary>
-        /// Funcion Que obtiene una query partiendo de un fichero y unos parametros
-        /// </summary>
-        /// <param name="file">Nombre del fichero, debe incluir la ruta partiendo desde C:\AccesoBaseDatos</param>
-        /// <param name="parametros">Array de Parametros</param>
-        /// <param name="server">Nombre del servidor (sin contrabarras al principio)</param>
-        /// <returns>String con la query resultante de la sustitución de los parametros en el fichero</returns>
-        /// <remarks></remarks>
-        public static string ObtenerQuery(string file, string[] parametros, string server = "") {
-            string strSQL;
-            int i;
-            var sParametros = "";
-
-            if (file.ToUpper().Contains("SELECT ", StringComparison.CurrentCulture) & file.ToUpper().Contains("FROM", StringComparison.CurrentCulture)) {
-                strSQL = file;
-            } else {
-                if (file.IndexOf(@"\\") < 0) {
-                    var unidad = server == string.Empty ? @"C:" : string.Concat(@"\\", server);
-                    file = string.Concat(unidad, @"\accesoBaseDatos", file);
-                }
-
-                using (var objFile = new System.IO.StreamReader(file, System.Text.Encoding.Default)) {
-                    strSQL = objFile.ReadToEnd();
-                    objFile.Close();
-                }
-            }
-
-            if (!(parametros == null)) {
-                for (i = 0; i <= parametros.Length - 1; i++) {
-                    sParametros += (sParametros.Length > 0 ? "," : "") + parametros[i];
-                    strSQL = strSQL.Replace("@" + i.ToString() + "@", parametros[i]);
-                }
-            }
-            ValidarSentencia(sParametros, TiposSentenciaSql.None);
-            return strSQL;
         }
     }
 }
