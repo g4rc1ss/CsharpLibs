@@ -4,14 +4,14 @@ using System.IO;
 using Garciss.Core.Common.Respuestas;
 
 namespace Garciss.Core.Data.Email.Base {
-    public abstract class Email {
+    public abstract class EnvioEmail {
         private const string REGEX_CUERPO_VARIABLE = @"¬V\d+";
         private readonly string rutaUbicacionPlantillasHtml;
         protected readonly string usuario;
         protected readonly string password;
         protected readonly string servidorEnvio;
-        protected string Cuerpo { get; set; }
 
+        protected string Cuerpo { get; set; }
         public string Remitente { get; set; }
         public string Asunto { get; set; }
         public string NombrePlantilla { get; set; }
@@ -21,7 +21,7 @@ namespace Garciss.Core.Data.Email.Base {
         public List<byte[]> ArchivosAdjuntos { get; set; }
         public List<string> NombreArchivosAdjunto { get; set; }
 
-        public Email(string servidorEnvio, string usuario, string password, string rutaUbicacionPlantillasHtml) {
+        public EnvioEmail(string servidorEnvio, string usuario, string password, string rutaUbicacionPlantillasHtml) {
             this.servidorEnvio = servidorEnvio;
             this.usuario = usuario;
             this.password = password;

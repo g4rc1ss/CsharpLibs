@@ -3,9 +3,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Garciss.Core.Common.Respuestas;
+using Garciss.Core.Data.Email.Base;
 
 namespace Garciss.Core.Data.Email.SMTP {
-    public sealed class EmailSmtp : Base.Email {
+    public sealed class EmailSmtp : EnvioEmail {
         public EmailSmtp(string servidor, string usuario, string password, string rutaUbicacionPlantillasHtml)
             : base(servidor, usuario, password, rutaUbicacionPlantillasHtml) {
         }
