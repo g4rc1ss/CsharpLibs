@@ -5,9 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Core.Data.TestEmail {
     [TestClass]
-    public class TestEmailSMTP {
+    public class TestEmailSmtp {
+
         [TestMethod]
-        public void SendEmail() {
+        public void Enviar() {
             var email = new EmailSmtp("smtp.gmail.com", "emailtemporalparaenvio@gmail.com", "EmailTemporal", "Plantillas") {
                 Remitente = "emailtemporalparaenvio@gmail.com",
                 Destinatarios = new List<string>() {

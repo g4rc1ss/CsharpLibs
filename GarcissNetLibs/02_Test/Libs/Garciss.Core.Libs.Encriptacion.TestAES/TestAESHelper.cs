@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Core.Libs.TestEncriptacion {
+namespace Garciss.Core.Libs.Encriptacion.TestAES {
     [TestClass]
     public class TestAESHelper {
         private const string TEXTOPLANO = "Este texto es el que se va a encriptar :P /\\";
