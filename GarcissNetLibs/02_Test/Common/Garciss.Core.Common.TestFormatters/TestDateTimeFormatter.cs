@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestFormatters {
     [TestClass]
-    public class TestFecha {
+    public class TestDateTimeFormatter {
         [TestMethod]
         public void FormatearFecha() {
             var fechaFormateadaBarra = DateTimeFormatter.FormatearFecha(DateTime.Now.Date);

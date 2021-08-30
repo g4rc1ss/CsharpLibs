@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestFormatters {
     [TestClass]
-    public class TestOfuscacion {
+    public class TestObfuscation {
         [TestMethod]
         public void TestOfuscarCorreo() {
             var ofuscando = Obfuscation.OfuscarCorreo("prueba@gmail.com");
