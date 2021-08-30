@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
 using Moq;
 
-namespace Garciss.Testing.MoqTestingData.Data.Email {
+namespace Garciss.Core.Data.Email.MockSmtp {
     public class EmailSmtpMocks {
 
         public Mock<SmtpClient> MockSmtpEmail { get; set; }

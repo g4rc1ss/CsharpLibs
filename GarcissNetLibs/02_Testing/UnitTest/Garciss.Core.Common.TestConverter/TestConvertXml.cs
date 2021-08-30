@@ -43,7 +43,7 @@ namespace Garciss.Core.Common.TestConverter {
 
         [TestMethod]
         public void TestXmlFileToJSon() {
-            var json = ConvertXml.XMLFileToJson(@"Converters\Fake\TestXml.xml");
+            var json = ConvertXml.XMLFileToJson(@"Fake\TestXml.xml");
             var jsonToCompare = "{\"Book\":[{\"Author\":\"Garghentini, Davide\",\"Title\":\"XML Developer's Guide\",\"Genre\":\"Computer\"," +
                 "\"Price\":\"44.95\",\"PublishDate\":\"2000-10-01\",\"Description\":\"An in-depth look at creating applications\\r\\n" +
                 "      with XML.\",\"id\":\"bk101\"}," +
