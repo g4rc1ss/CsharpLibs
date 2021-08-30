@@ -118,6 +118,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Data.Email.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Libs.Encriptacion.TestAES", "02_Testing\UnitTest\Garciss.Core.Libs.Encriptacion.TestAES\Garciss.Core.Libs.Encriptacion.TestAES.csproj", "{C6000189-7794-4DDB-86B3-17B86174656D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.MockConverter", "02_Testing\Mocking\Garciss.Core.Common.MockConverter\Garciss.Core.Common.MockConverter.csproj", "{F9EB15F9-8D06-4960-BDE7-17635BD4869C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +222,10 @@ Global
 		{C6000189-7794-4DDB-86B3-17B86174656D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6000189-7794-4DDB-86B3-17B86174656D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6000189-7794-4DDB-86B3-17B86174656D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EB15F9-8D06-4960-BDE7-17635BD4869C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EB15F9-8D06-4960-BDE7-17635BD4869C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EB15F9-8D06-4960-BDE7-17635BD4869C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EB15F9-8D06-4960-BDE7-17635BD4869C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,6 +283,7 @@ Global
 		{BEB4CDFB-DBA8-4CB0-9034-C70DEB8DAE43} = {55BBA97E-E27D-4BDC-8A19-1A9452642D0C}
 		{8FCF3FC2-A324-4E54-B32A-6A8B842A8B9E} = {C674192A-0622-4309-B19E-867E465596A4}
 		{C6000189-7794-4DDB-86B3-17B86174656D} = {22DF1FF9-0C6E-4B88-BD5F-6C6E51E8E613}
+		{F9EB15F9-8D06-4960-BDE7-17635BD4869C} = {64DD6404-1E09-4D11-9C09-F9B078028617}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65084CA-7BC0-4ABB-AC14-052A0D858748}

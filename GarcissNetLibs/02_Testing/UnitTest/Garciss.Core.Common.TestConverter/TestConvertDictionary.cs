@@ -1,6 +1,6 @@
 ﻿using System;
 using Garciss.Core.Common.Converter;
-using Garciss.Core.Common.TestConverter.Fake;
+using Garciss.Core.Common.MockConverter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestConverter {

@@ -4,7 +4,7 @@ using System.IO;
 using Garciss.Core.Common.Respuestas;
 
 namespace Garciss.Core.Data.Email.Base {
-    public abstract class EnvioEmail {
+    public abstract class EnvioEmail : IEnvioEmail {
         private const string REGEX_CUERPO_VARIABLE = @"¬V\d+";
         private readonly string rutaUbicacionPlantillasHtml;
         protected readonly string usuario;

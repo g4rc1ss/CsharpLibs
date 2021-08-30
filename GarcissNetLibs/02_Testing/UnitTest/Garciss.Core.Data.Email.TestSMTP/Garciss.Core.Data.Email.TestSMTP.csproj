@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_NetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Data.Email.MockSmtp\Garciss.Core.Data.Email.MockSmtp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

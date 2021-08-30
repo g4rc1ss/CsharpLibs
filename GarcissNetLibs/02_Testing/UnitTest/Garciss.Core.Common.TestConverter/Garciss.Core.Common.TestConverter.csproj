@@ -18,12 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.Converter\Garciss.Core.Common.Converter.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Fake\TestXml.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Common.MockConverter\Garciss.Core.Common.MockConverter.csproj" />
   </ItemGroup>
 
 </Project>

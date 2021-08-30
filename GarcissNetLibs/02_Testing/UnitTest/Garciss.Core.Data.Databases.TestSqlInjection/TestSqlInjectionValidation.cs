@@ -6,14 +6,17 @@ namespace Garciss.Core.Data.Databases.TestSqlInjection {
 
         [TestMethod]
         public void ValidarSentencia() {
+
         }
 
         [TestMethod]
         public void LimpiarParametros() {
+
         }
 
         [TestMethod]
         public void ObtenerQuery() {
+
         }
     }
 }
