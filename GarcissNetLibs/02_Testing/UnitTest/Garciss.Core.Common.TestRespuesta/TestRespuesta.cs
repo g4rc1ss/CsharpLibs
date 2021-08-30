@@ -1,6 +1,7 @@
 ﻿using System;
+using Garciss.Core.Common.MockRespuesta;
 using Garciss.Core.Common.Respuestas;
-using Garciss.Core.Common.TestRespuesta.Fake;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestRespuesta {
@@ -23,9 +24,17 @@ namespace Garciss.Core.Common.TestRespuesta {
 
             Assert.IsTrue(
                 resp1.Datos == null && resp1.Mensaje == "" && resp1.Resultado == Respuesta.OK &&
-                object.ReferenceEquals(resp2.Datos.GetType(), new DatosFake().GetType()) &&
+                ReferenceEquals(resp2.Datos.GetType(), new DatosFake().GetType()) &&
                 resp2.Mensaje == string.Empty && resp2.Resultado == Respuesta.OK
             );
+        }
+
+        [TestMethod]
+        public void RespuestaConLogger() {
+            ILogger logger = new Logger<TestRespuesta>(new LoggerFactory());
+
+            var resp = new Respuesta<DatosFake>(logger);
+            var resp2 = new Respuesta<DatosFake>(5000, "Mensaje de error", nameof(RespuestaConLogger), logger);
         }
     }
 }

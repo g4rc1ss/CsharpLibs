@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace Garciss.Core.Common.MockConverter {
-    public class ClaseParaConvertirToDictionary {
+namespace Garciss.Core.Common.MockConverter.Dictionary {
+    public class DictionaryMock {
         public string Nombre { get; set; }
         public decimal Salario { get; set; }
         public int Edad { get; set; }
@@ -13,6 +13,6 @@ namespace Garciss.Core.Common.MockConverter {
         public NameValueCollection NameValue { get; set; }
         public List<int> ListaValoresInt { get; set; }
         public List<string> ListaValoresString { get; set; }
-        public List<OtherClass> ListaValoresOtroObj { get; set; }
+        public List<ClaseConvertDictionary> ListaValoresOtroObj { get; set; }
     }
 }

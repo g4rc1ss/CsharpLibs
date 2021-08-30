@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.EnumHelper\Garciss.Core.Common.EnumHelper.csproj" />
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Common.MockEnumHelper\Garciss.Core.Common.MockEnumHelper.csproj" />
   </ItemGroup>
 
 </Project>

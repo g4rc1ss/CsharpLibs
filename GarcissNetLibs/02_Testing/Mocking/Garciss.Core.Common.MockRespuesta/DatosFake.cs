@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Garciss.Core.Common.TestRespuesta.Fake {
+namespace Garciss.Core.Common.MockRespuesta {
     public class DatosFake {
         public string Nombre { get; set; }
         public string Apellido { get; set; }

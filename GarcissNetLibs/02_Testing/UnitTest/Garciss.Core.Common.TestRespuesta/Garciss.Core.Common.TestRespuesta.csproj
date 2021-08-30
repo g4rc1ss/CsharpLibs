@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.Respuestas\Garciss.Core.Common.Respuestas.csproj" />
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Common.MockRespuesta\Garciss.Core.Common.MockRespuesta.csproj" />
   </ItemGroup>
 
 </Project>

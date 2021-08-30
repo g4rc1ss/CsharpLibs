@@ -1,6 +1,7 @@
 ﻿using System;
 using Garciss.Core.Common.Converter;
 using Garciss.Core.Common.MockConverter;
+using Garciss.Core.Common.MockConverter.Dictionary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestConverter {
@@ -9,7 +10,7 @@ namespace Garciss.Core.Common.TestConverter {
 
         [TestMethod]
         public void ConvertObjToDictionary() {
-            var claseToConvert = new ClaseParaConvertirToDictionary {
+            var claseToConvert = new DictionaryMock {
                 ArrayString = new string[] { "1", "2", "3" },
                 Date = new DateTime(2018, 06, 21),
                 Diccionario = new System.Collections.Generic.Dictionary<string, string>() {
@@ -30,8 +31,8 @@ namespace Garciss.Core.Common.TestConverter {
                     "ListaValoresString1",
                     "ListaValoresString2"
                 },
-                ListaValoresOtroObj = new System.Collections.Generic.List<OtherClass> {
-                    new OtherClass {
+                ListaValoresOtroObj = new System.Collections.Generic.List<ClaseConvertDictionary> {
+                    new ClaseConvertDictionary {
                         Nombre = "Prueba Test",
                         Date = new DateTime(2016, 12, 22).Date,
                         Edad = 22

@@ -3,9 +3,11 @@
 namespace Garciss.Core.Common.TestSession {
     [TestClass]
     public class TestSessionHelperCache {
+        private ISession
         
         [TestMethod]
         public void SetObjectAsJson() {
+
         }
 
         [TestMethod]

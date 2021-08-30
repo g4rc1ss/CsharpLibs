@@ -1,6 +1,6 @@
 ﻿using Garciss.Core.Common.EnumHelper;
 
-namespace Garciss.Core.Common.TestEnumHelper.Fake {
+namespace Garciss.Core.Common.MockEnumHelper {
     public enum EnumTestFake {
         unknow = -1,
         [EnumDescription(@"00")]

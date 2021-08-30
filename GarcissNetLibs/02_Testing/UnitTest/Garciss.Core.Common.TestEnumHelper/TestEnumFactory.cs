@@ -1,5 +1,5 @@
 ﻿using Garciss.Core.Common.EnumHelper;
-using Garciss.Core.Common.TestEnumHelper.Fake;
+using Garciss.Core.Common.MockEnumHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Garciss.Core.Common.TestEnumHelper {
