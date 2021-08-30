@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_GarcissNetLibs\Common\Garciss.Core.Common.Formatters\Garciss.Core.Common.Formatters.csproj" />
+    <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.Formatters\Garciss.Core.Common.Formatters.csproj" />
   </ItemGroup>
 
 </Project>

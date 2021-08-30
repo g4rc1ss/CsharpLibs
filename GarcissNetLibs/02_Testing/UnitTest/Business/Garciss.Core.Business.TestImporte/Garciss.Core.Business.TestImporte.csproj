@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_GarcissNetLibs\Business\Garciss.Core.Business.Importe\Garciss.Core.Business.Importe.csproj" />
+    <ProjectReference Include="..\..\..\01_NetLibs\Business\Garciss.Core.Business.Importe\Garciss.Core.Business.Importe.csproj" />
   </ItemGroup>
 
 </Project>

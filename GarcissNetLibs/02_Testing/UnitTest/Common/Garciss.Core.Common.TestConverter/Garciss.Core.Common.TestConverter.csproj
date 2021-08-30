@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_GarcissNetLibs\Common\Garciss.Core.Common.Converter\Garciss.Core.Common.Converter.csproj" />
+    <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.Converter\Garciss.Core.Common.Converter.csproj" />
   </ItemGroup>
 
   <ItemGroup>

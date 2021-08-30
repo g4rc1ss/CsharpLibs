@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\01_GarcissNetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
+    <ProjectReference Include="..\..\..\01_NetLibs\Data\Garciss.Core.Data.Email.SMTP\Garciss.Core.Data.Email.SMTP.csproj" />
   </ItemGroup>
 
   <ItemGroup>
