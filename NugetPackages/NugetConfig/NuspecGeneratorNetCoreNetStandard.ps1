@@ -3,7 +3,7 @@
 ###########################################################################
 
 #Version del paquete nuget a generar
-$versionNuget = 3.4
+$versionNuget = 4.0
 
 # Lectura de variables de configuracion
 # _________________________________________
@@ -14,7 +14,7 @@ $rutaNuspec = Convert-Path .
 $rutaNuspec += '/Garciss.Net.Libs.nuspec'
 
 # Ruta raiz donde localizar los archivos .csproj
-$rutaCSProj = '../../GarcissNetLibs/01_GarcissNetLibs/'
+$rutaCSProj = '../../GarcissNetLibs/01_NetLibs/'
 # ruta de la ubicacion de las dll, xml y pdb, se han de configurar los proyectos para que se generen en otras ubicaciones
 $rutaDLL = "../PackagesCompilaciones/" 
 
