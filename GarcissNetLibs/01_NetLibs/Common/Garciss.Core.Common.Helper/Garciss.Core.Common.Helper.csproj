@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Asier Garcia</Authors>
+    <RepositoryUrl>https://github.com/g4rc1ss/GarcissNetLibs</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Common.Helper.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

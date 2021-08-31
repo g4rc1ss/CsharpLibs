@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Asier Garcia</Authors>
+    <RepositoryUrl>https://github.com/g4rc1ss/GarcissNetLibs</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>..\..\..\..\NugetPackages\PackagesCompilaciones\Garciss.Core.Libs.Encriptacion.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\NugetPackages\PackagesCompilaciones</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.6" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.6" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\01_NetLibs\Common\Garciss.Core.Common.Converter\Garciss.Core.Common.Converter.csproj" />
+    <ProjectReference Include="..\..\Mocking\Garciss.Core.Common.MockConverter\Garciss.Core.Common.MockConverter.csproj" />
+  </ItemGroup>
+
+</Project>

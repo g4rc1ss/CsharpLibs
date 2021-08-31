@@ -1,0 +1,116 @@
+﻿using System;
+using System.Text.RegularExpressions;
+
+namespace Garciss.Core.Data.Databases.SqlInjection {
+    /// <summary>
+    /// Clase para la validacion de sentencias SQL
+    /// Se usara principalmente para prevenir SQL Injection
+    /// </summary>
+    public sealed class SqlInjectionValidation {
+
+        /// <summary>
+        /// Valida una expresión sql para evitar inyecciones sql
+        /// </summary>
+        /// <param name="sentencia">Sql o parte de una sql a validar</param>
+        /// <param name="sentenciasAutorizadas">requisitos de la validación</param>
+        /// <exception cref="UnauthorizedAccessException">Si la expresión sql no cumple los requisitos</exception>
+        /// <example>https://larrysteinle.com/2011/02/20/use-regular-expressions-to-detect-sql-code-injection/</example>
+        public static void ValidarSentencia(string sentencia, TiposSentenciaSql sentenciasAutorizadas) {
+            //Construct Regular Expression To Find Text Blocks, Statement Breaks & SQL Statement Headers
+            var regExText = "('(''|[^'])*')|(;)|(--)|(\\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|SELECT|UPDATE|UNION( +ALL){0,1})\\b)";
+
+            //Remove Authorized Options
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Batch) == TiposSentenciaSql.Batch) {
+                regExText = regExText.Replace("(;)", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Alter) == TiposSentenciaSql.Alter) {
+                regExText = regExText.Replace("ALTER", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Create) == TiposSentenciaSql.Create) {
+                regExText = regExText.Replace("CREATE", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete) {
+                regExText = regExText.Replace("DELETE", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Delete) == TiposSentenciaSql.Delete) {
+                regExText = regExText.Replace("DELETETREE", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Drop) == TiposSentenciaSql.Drop) {
+                regExText = regExText.Replace("DROP", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Execute) == TiposSentenciaSql.Execute) {
+                regExText = regExText.Replace("EXEC(UTE){0,1}", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Insert) == TiposSentenciaSql.Insert) {
+                regExText = regExText.Replace("INSERT( +INTO){0,1}", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Merge) == TiposSentenciaSql.Merge) {
+                regExText = regExText.Replace("MERGE", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Select) == TiposSentenciaSql.Select) {
+                regExText = regExText.Replace("SELECT", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Union) == TiposSentenciaSql.Union) {
+                regExText = regExText.Replace("UNION", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Update) == TiposSentenciaSql.Update) {
+                regExText = regExText.Replace("UPDATE", string.Empty);
+            }
+
+            if ((sentenciasAutorizadas & TiposSentenciaSql.Comment) == TiposSentenciaSql.Comment) {
+                regExText = regExText.Replace("(--)", string.Empty);
+            }
+
+
+            //Remove extra separators
+            var regExOptions = RegexOptions.IgnoreCase | RegexOptions.Multiline;
+            regExText = Regex.Replace(regExText, "\\(\\|", "(", regExOptions);
+            regExText = Regex.Replace(regExText, "\\|{2,}", "|", regExOptions);
+            regExText = Regex.Replace(regExText, "\\|\\)", ")", regExOptions);
+
+            //Check for errors
+            if (string.IsNullOrEmpty(sentencia)) {
+                return;
+            }
+
+            var patternMatchList = Regex.Matches(sentencia, regExText, regExOptions);
+            for (var patternIndex = patternMatchList.Count - 1; patternIndex >= 0; patternIndex += -1) {
+                var value = patternMatchList[patternIndex].Value.Trim();
+                if (string.IsNullOrWhiteSpace(value)) {
+                    //Continue - Not an error.
+                } else if (value.StartsWith("'") && value.EndsWith("'")) {
+                    //Continue - Text Block
+                } else if (value.Trim() == ";") {
+                    throw new UnauthorizedAccessException("Batch statements not authorized:" + Environment.NewLine + sentencia);
+                } else {
+                    throw new UnauthorizedAccessException($"{value[0..1].ToUpper()} {value[1..].ToLower()} statements not authorized: {Environment.NewLine} {sentencia}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Elimina caracteres no permitidos
+        /// </summary>
+        /// <param name="sentencia">Texto a limpiar</param>
+        /// <returns>Parámetro sentencia sin los carecteres no permitidos</returns>
+        public static string LimpiarParametrosSql(string sentencia) {
+            var regExText = "\\W";
+
+            if (string.IsNullOrEmpty(sentencia)) {
+                return string.Empty;
+            }
+            return Regex.Replace(sentencia, regExText, string.Empty);
+        }
+    }
+}
