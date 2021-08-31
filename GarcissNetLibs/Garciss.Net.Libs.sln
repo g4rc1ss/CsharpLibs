@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_NetLibs", "01_NetLibs", "{98C6551E-0F30-44D1-BDF4-F71BAE118002}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Test", "02_Test", "{BEB1288C-83C6-4457-A787-28A5023C18E3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Testing", "02_Testing", "{BEB1288C-83C6-4457-A787-28A5023C18E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configs", "_Configs", "{407CBADE-DFE9-4AFE-9BBE-65272625EF22}"
 	ProjectSection(SolutionItems) = preProject
@@ -118,11 +118,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Libs.Encriptac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Common.MockConverter", "02_Testing\Mocking\Garciss.Core.Common.MockConverter\Garciss.Core.Common.MockConverter.csproj", "{F9EB15F9-8D06-4960-BDE7-17635BD4869C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.MockEnumHelper", "02_Testing\Mocking\Garciss.Core.Common.MockEnumHelper\Garciss.Core.Common.MockEnumHelper.csproj", "{BC1E4850-D201-42C9-8340-79B8D044D7A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Common.MockEnumHelper", "02_Testing\Mocking\Garciss.Core.Common.MockEnumHelper\Garciss.Core.Common.MockEnumHelper.csproj", "{BC1E4850-D201-42C9-8340-79B8D044D7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Common.MockRespuesta", "02_Testing\Mocking\Garciss.Core.Common.MockRespuesta\Garciss.Core.Common.MockRespuesta.csproj", "{ADFE58E7-B3ED-4350-8189-EF1BF4C26616}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Common.MockRespuesta", "02_Testing\Mocking\Garciss.Core.Common.MockRespuesta\Garciss.Core.Common.MockRespuesta.csproj", "{ADFE58E7-B3ED-4350-8189-EF1BF4C26616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garciss.Core.Data.Databases.MockSqlInjection", "02_Testing\Mocking\Garciss.Core.Data.Databases.MockSqlInjection\Garciss.Core.Data.Databases.MockSqlInjection.csproj", "{01252CC0-DBF1-4361-B0C3-1A0AA6101835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garciss.Core.Data.Databases.MockSqlInjection", "02_Testing\Mocking\Garciss.Core.Data.Databases.MockSqlInjection\Garciss.Core.Data.Databases.MockSqlInjection.csproj", "{01252CC0-DBF1-4361-B0C3-1A0AA6101835}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

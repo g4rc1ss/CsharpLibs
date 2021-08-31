@@ -16,14 +16,11 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
         private static readonly byte[] IV = new byte[] { 0xed, 0xe0, 0xab, 0xe7, 0xa3, 0x5c, 0x9b, 0x6b, 0x14, 0x91,
                                                   0x94, 0x57, 0xee, 0x1e, 0xc4, 0xec, };
 
-        private const string CIFRADO_TEXTO = "TextoCifradoClavePropia.aes";
-        private const string IV_TEXTO = "IVpropia.aes";
-
         private const string CONTRASENIA = "contrasenia";
 
         private const string CIFRAR_ARCHIVO = "ArchivoToCrypt.txt";
         private const string DESCIFRAR_ARCHIVO = "ArchivoToDecrypt.aes";
-        private const string IV_ARCHIVO = "IVarchivosPropia.aes";
+        private const string IV_ARCHIVO = "IV.aes";
 
         [ClassInitialize]
         public static void Create(TestContext testContext) {
@@ -31,8 +28,6 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
                 throw new System.ArgumentNullException(nameof(testContext));
             }
 
-            File.WriteAllBytes(CIFRADO_TEXTO, TEXTOCIFRADO);
-            File.WriteAllBytes(IV_TEXTO, IV);
             File.WriteAllText(CIFRAR_ARCHIVO, TEXTOPLANO);
             File.WriteAllBytes(DESCIFRAR_ARCHIVO, TEXTOCIFRADO);
             File.WriteAllBytes(IV_ARCHIVO, IV);
@@ -41,8 +36,6 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
 
         [ClassCleanup]
         public static void Clean() {
-            File.Delete(CIFRADO_TEXTO);
-            File.Delete(IV_TEXTO);
             File.Delete(CIFRAR_ARCHIVO);
             File.Delete(DESCIFRAR_ARCHIVO);
             File.Delete(IV_ARCHIVO);
@@ -54,13 +47,6 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
             cifrarTexto.CreateKeyIV(CONTRASENIA);
             var textoCifrado = cifrarTexto.EncriptarTexto(TEXTOPLANO, cifrarTexto.Key, IV);
 
-            File.WriteAllBytes(CIFRADO_TEXTO, textoCifrado);
-            File.WriteAllBytes(IV_TEXTO, cifrarTexto.IV);
-
-            for (var x = 0; x < File.ReadAllBytes(IV_TEXTO).Length && x < cifrarTexto.IV.Length; x++) {
-                Assert.IsTrue(File.ReadAllBytes(IV_TEXTO)[x] == cifrarTexto.IV[x]);
-            }
-
             for (int i = 0; i < textoCifrado.Length; i++) {
                 Assert.IsTrue(textoCifrado[i] == TEXTOCIFRADO[i]);
             }
@@ -70,10 +56,8 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
         public void DescifrarTexto() {
             var descifrarTexto = new AESHelper();
 
-            var textoCifrado = File.ReadAllBytes(CIFRADO_TEXTO);
-            var ivPropia = File.ReadAllBytes(IV_TEXTO);
             descifrarTexto.CreateKeyIV(CONTRASENIA);
-            var textoDescifrado = descifrarTexto.DesencriptarTexto(textoCifrado, descifrarTexto.Key, ivPropia);
+            var textoDescifrado = descifrarTexto.DesencriptarTexto(TEXTOCIFRADO, descifrarTexto.Key, IV);
 
             Assert.IsTrue(textoDescifrado.Equals(TEXTOPLANO));
         }
@@ -85,10 +69,10 @@ namespace Garciss.Core.Libs.Encriptacion.TestAES {
             encriptarArchivo.CreateKeyIV(CONTRASENIA);
             encriptarArchivo.EncriptarFichero(CIFRAR_ARCHIVO, DESCIFRAR_ARCHIVO, encriptarArchivo.Key, IV);
 
-            File.WriteAllBytes(IV_ARCHIVO, encriptarArchivo.IV);
+            File.WriteAllBytes(IV_ARCHIVO, IV);
 
             for (var x = 0; x < File.ReadAllBytes(IV_ARCHIVO).Length && x < encriptarArchivo.IV.Length; x++) {
-                Assert.IsTrue(File.ReadAllBytes(IV_ARCHIVO)[x] == encriptarArchivo.IV[x]);
+                Assert.IsTrue(File.ReadAllBytes(IV_ARCHIVO)[x] == IV[x]);
             }
 
             var textoCifrado = File.ReadAllBytes(DESCIFRAR_ARCHIVO);
