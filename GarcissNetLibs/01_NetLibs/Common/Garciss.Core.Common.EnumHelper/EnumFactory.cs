@@ -70,8 +70,8 @@ namespace Garciss.Core.Common.EnumHelper {
             if (enumToTranslate.IsEnum) {
                 foreach (var valor in Enum.GetValues(enumToTranslate)) {
                     var miembro = enumToTranslate.GetMember(valor.ToString());
-                    var attrs = miembro[0].GetCustomAttributes(typeof(EnumDescription), false);
-                    var nombre = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
+                    var attrs = miembro[0].GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
+                    var nombre = attrs.Length > 0 ? ((EnumDescriptionAttribute)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
                     if (nombre == clave) {
                         return (TEnum)valor;
                     }
@@ -119,8 +119,8 @@ namespace Garciss.Core.Common.EnumHelper {
             foreach (var value in Enum.GetValues(enumToSearch)) {
                 if (enumItem.Equals(value)) {
                     var m = enumToSearch.GetMember(value.ToString());
-                    var attrs = m[0].GetCustomAttributes(typeof(EnumDescription), false);
-                    var key = attrs.Length > 0 ? ((EnumDescription)attrs[0]).Text : Enum.GetName(enumToSearch, value);
+                    var attrs = m[0].GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
+                    var key = attrs.Length > 0 ? ((EnumDescriptionAttribute)attrs[0]).Text : Enum.GetName(enumToSearch, value);
                     return key == "desconocido" ? retorno : key;
                 }
             }
